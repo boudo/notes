@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import static org.asciidoctor.Asciidoctor.Factory.create;
 import org.asciidoctor.Asciidoctor;
-import java.util.Collections;
 /*
  * Hello world!
  *
@@ -31,6 +30,8 @@ public class App
         } catch (Exception ignored) {
         }
     }
+	
+	
     public static void main( String[] args )
     {
     	disableAccessWarnings();
