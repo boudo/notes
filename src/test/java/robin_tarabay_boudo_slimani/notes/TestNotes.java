@@ -6,9 +6,9 @@ import org.junit.Test;
 
 
 public class TestNotes {
-
+	
 	@Test
-	public void TestInstance() {
+	public void TestInstanceBuilder() {
 		
 		Notes test = new Notes.NoteBuilder("Ma première Note").build();
 		
