@@ -1,0 +1,15 @@
+= Salut, Les amis!
+Doc Writer <doc@example.com>
+
+Premier test sur notre bitbucket privé.
+
+== First Section
+
+* Ici c'est un test pour la commande "view"
+* Si tout marche bien alor ce document existe
+* Sinon ...(°_°)
+* Mais apparemment tout est bien!!
+* Juste un test
+
+[source,ruby]
+puts "Hello, World!"
