@@ -4,11 +4,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import static org.asciidoctor.Asciidoctor.Factory.create;
 import org.asciidoctor.Asciidoctor;
-/*
- * Hello world!
- *
- */
-
 
 public class App 
 {
@@ -36,6 +31,8 @@ public class App
     {
     	disableAccessWarnings();
     	Asciidoctor asciidoctor = create();
-
+    	
+    	Notes test = new Notes.NoteBuilder("Ma première Note").build();
+    	System.out.println(test.toString());
     }
 }
