@@ -10,26 +10,18 @@ package robin_tarabay_boudo_slimani.notes;
 
 public class ViewNotesCommand implements Command {
 	
-	/**
-	 * La note
-	 */
 	private String note;
 	
 	/**
-	 * Constructeur
-	 * 
-	 * ViewNotesCommand
-	 * @param note
+	 * Constructeur ViewNotesCommand
+	 * @param note : le nom de la note
 	 */
 	public ViewNotesCommand(String note)
 	{
 		this.note = note;
 	}
 	/**
-	 * execute()
-	 * 
-	 * Permet d'exécuter la commande de view
-	 * qui affiche une note
+	 * Permet d'exécuter la commande de view qui affiche une note
 	 */
 	public void execute()
 	{
@@ -47,6 +39,10 @@ public class ViewNotesCommand implements Command {
 			e.getMessage();
 		}
 	}
+	/**
+	 * Récupère le nom de la note
+	 * @return le nom de la note
+	 */
 	public String getNote()
 	{
 		return this.note;
