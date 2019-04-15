@@ -46,7 +46,11 @@ public class SaisieCommand {
 		{
 //			String s = saisie.nextLine();
 			String cmd = args[0];
-			String note = args[1];
+			String note = "";
+			if(args.length != 1)
+			{
+				 note = args[1];
+			}
 			System.out.println(cmd);
 			System.out.println(note);
 			
@@ -88,6 +92,11 @@ public class SaisieCommand {
 						storeAndExecute(note, command);
 					}
 					break;
+					
+				case "list":
+				case "ls":
+					Notes.liste();
+					break;
 
 				default:
 					break;
@@ -96,11 +105,18 @@ public class SaisieCommand {
 		else
 		{
 //			afficheInfo();
-//			String s = saisie.nextLine();
+			String note = "";
 			String cmd = saisie.next();
-			String note = saisie.nextLine();
+			if(cmd != "ls" || cmd != "list")
+			{
+				 note = saisie.nextLine();
+			}
 			System.out.println(cmd);
 			System.out.println(note);
+			 if(note.length() != 0)
+			 {
+				 note = note.substring(1,note.length());
+			 }
 			
 			switch (cmd)
 			{
@@ -130,6 +146,11 @@ public class SaisieCommand {
 						Command command = new ViewNotesCommand(note);
 						storeAndExecute(note, command);
 					}
+					break;
+					
+				case "list":
+				case "ls":
+					Notes.liste();
 					break;
 
 				default:

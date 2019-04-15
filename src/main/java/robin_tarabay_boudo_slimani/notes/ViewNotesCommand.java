@@ -1,5 +1,8 @@
 package robin_tarabay_boudo_slimani.notes;
 
+import java.io.File;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
 /**
  * ViewNotesCommand.java : Classe permettant de visualiser les notes
@@ -27,15 +30,18 @@ public class ViewNotesCommand implements Command {
 	{
 		try
 		{
-//			Process proc1 = Runtime.getRuntime().exec("asciidoctor " + this.note + ".adoc");
-//			Process proc2 = Runtime.getRuntime().exec("firefox "+ this.note + ".html");
-//			Process proc3 = Runtime.getRuntime().exec("google-chrome Test.html");
 			
 			String nomDuSysthem = System.getProperty("os.name");
 			System.out.println(nomDuSysthem);
 			Runtime proc1 = Runtime.getRuntime();
-			proc1.exec("asciidoctor " + this.note + ".adoc");
-			proc1.exec("firefox "+ this.note + ".html");
+			File fichier = new File("fc");
+			String path = fichier.getCanonicalPath();
+			path = path.substring(0, path.length() - 2);
+			System.out.println(path);
+			proc1.exec("asciidoctor " + path + Notes.repertoire + "/" + this.note + ".adoc");
+			proc1.toString();
+			proc1.exec("google-chrome "+ path + Notes.repertoire + "/" + this.note + ".html");
+//			proc1.exec("firefox "+ path + Notes.repertoire + "/" + this.note + ".html");
 		}catch (Exception e)
 		{
 			e.getMessage();

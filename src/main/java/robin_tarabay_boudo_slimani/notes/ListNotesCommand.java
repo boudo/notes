@@ -8,12 +8,12 @@ package robin_tarabay_boudo_slimani.notes;
  */
 
 public class ListNotesCommand implements Command {
-
+	
 	/**
 	 * Permet d'exécuter la commande de liste
 	 */
 	public void execute() {
-		// TODO Auto-generated method stub
+		Notes.liste();
 		
 	}
 

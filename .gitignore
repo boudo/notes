@@ -66,3 +66,7 @@ nb-configuration.xml
 *.ear
 hs_err_pid*
 
+##########################
+## Repertoire
+##########################
+Document/

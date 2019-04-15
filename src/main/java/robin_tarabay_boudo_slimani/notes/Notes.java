@@ -1,6 +1,7 @@
 package robin_tarabay_boudo_slimani.notes;
 
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 /**
  * Notes.java est une classe représentant les notes crées par les utilisateurs
@@ -14,6 +15,7 @@ public class Notes {
 	private final String nom;
 	private final String project;
 	private final String context;
+	public static String repertoire = "Document";
 	
 	/**
 	 * Constructeur Notes
@@ -110,5 +112,22 @@ public String getContext() {
 @Override
 public String toString() {
 	return "Notes [nom=" + nom + ", project=" + project + ", context=" + context + "]";
+}
+
+public static void liste() {
+	
+	File rep = new File(repertoire);
+    String liste[] = rep.list();      
+
+    if (liste != null && liste.length != 0) {         
+        for (int i = 0; i < liste.length; i++) {
+        	if(liste[i].contains(".adoc"))
+        	{
+        		System.out.println(liste[i]);
+        	}
+        }
+    } else {
+        System.err.println("Repertoire vide");
+    }
 }
 }
