@@ -10,26 +10,19 @@ package robin_tarabay_boudo_slimani.notes;
 
 public class ViewNotesCommand implements Command {
 	
-	/**
-	 * La note
-	 */
 	private String note;
 	
 	/**
-	 * Constructeur
+	 * Constructeur ViewNotesCommand
 	 * 
-	 * ViewNotesCommand
-	 * @param note
+	 * @param note, le nom de la note
 	 */
 	public ViewNotesCommand(String note)
 	{
 		this.note = note;
 	}
 	/**
-	 * execute()
-	 * 
-	 * Permet d'exécuter la commande de view
-	 * qui affiche une note
+	 * Permet d'exécuter la commande de view qui affiche une note
 	 */
 	public void execute()
 	{
@@ -39,6 +32,8 @@ public class ViewNotesCommand implements Command {
 //			Process proc2 = Runtime.getRuntime().exec("firefox "+ this.note + ".html");
 //			Process proc3 = Runtime.getRuntime().exec("google-chrome Test.html");
 			
+			String nomDuSysthem = System.getProperty("os.name");
+			System.out.println(nomDuSysthem);
 			Runtime proc1 = Runtime.getRuntime();
 			proc1.exec("asciidoctor " + this.note + ".adoc");
 			proc1.exec("firefox "+ this.note + ".html");
@@ -47,6 +42,11 @@ public class ViewNotesCommand implements Command {
 			e.getMessage();
 		}
 	}
+	
+	/**
+	 * 
+	 * @return le nom de la note
+	 */
 	public String getNote()
 	{
 		return this.note;
