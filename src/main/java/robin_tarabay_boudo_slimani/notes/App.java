@@ -14,12 +14,14 @@ public class App
 	 * Fonction principale du programme 
 	 * @param args pour récupérer les commandes saisies par l'utilisateur
 	 */
-    public static void main( String[] args )
-    {
-    	
-    	Notes test = new Notes.NoteBuilder("Ma première Note").build();
-    	System.out.println(test.toString());
-    	ViewNotesCommand cmd = new ViewNotesCommand("Test");
-    	cmd.execute();
-    }
+//    public static void main( String[] args )
+//    {
+//    	
+////    	Notes test = new Notes.NoteBuilder("Ma première Note").build();
+////    	System.out.println(test.toString());
+////    	ViewNotesCommand cmd = new ViewNotesCommand("Test");
+////    	cmd.execute();
+//    	SaisieCommand saisie = new SaisieCommand();
+//    	saisie.saisieUser();
+//    }
 }
