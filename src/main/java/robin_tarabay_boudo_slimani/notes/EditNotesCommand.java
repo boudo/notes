@@ -9,6 +9,7 @@ package robin_tarabay_boudo_slimani.notes;
 
 public class EditNotesCommand implements Command {
 
+	
 	/**
 	 * Permet d'exécuter la commande d'édition
 	 */

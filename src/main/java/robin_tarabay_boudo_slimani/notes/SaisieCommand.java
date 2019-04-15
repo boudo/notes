@@ -8,12 +8,12 @@ package robin_tarabay_boudo_slimani.notes;
  */
 
 
-public class SaisieNotes {
+public class SaisieCommand {
 	
 	/**
 	 * Constructeur par défaut
 	 */
-	public SaisieNotes() {
+	public SaisieCommand() {
 		// TODO Auto-generated constructor stub
 	}
 	
