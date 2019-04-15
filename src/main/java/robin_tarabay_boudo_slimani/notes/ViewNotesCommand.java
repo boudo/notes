@@ -14,8 +14,7 @@ public class ViewNotesCommand implements Command {
 	
 	/**
 	 * Constructeur ViewNotesCommand
-	 * 
-	 * @param note, le nom de la note
+	 * @param note : le nom de la note
 	 */
 	public ViewNotesCommand(String note)
 	{
@@ -42,9 +41,9 @@ public class ViewNotesCommand implements Command {
 			e.getMessage();
 		}
 	}
-	
+
 	/**
-	 * 
+	 * Récupère le nom de la note
 	 * @return le nom de la note
 	 */
 	public String getNote()

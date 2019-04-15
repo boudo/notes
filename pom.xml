@@ -7,7 +7,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>notes</name>
+  <name>KholleGL</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -16,44 +16,77 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <main-class>robin_tarabay_boudo_slimani.notes.App</main-class>
   </properties>
-  
-  <build>
-    <plugins>
-     <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-jar-plugin</artifactId>
-	<version>2.4</version>
-	<configuration>
-	  <archive>
-	    <manifest>
-		<addClasspath>true</addClasspath>
-		<mainClass>robin_tarabay_boudo_slimani.notes.App</mainClass>
-		<classpathPrefix>dependency-jars/</classpathPrefix>
-	    </manifest>
-	  </archive>
-	</configuration>
-  </plugin>
-  <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-dependency-plugin</artifactId>
-	<version>2.5.1</version>
-	<executions>
-	  <execution>
-		<id>copy-dependencies</id>
-		<phase>package</phase>
-		<goals>
-		    <goal>copy-dependencies</goal>
-		</goals>
-		<configuration>
-		    <outputDirectory>
-                          ${project.build.directory}/dependency-jars/
-                    </outputDirectory>
-		</configuration>
-	    </execution>
-	</executions>
-  </plugin>
 
-      <!-- 	<plugin>
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${main-class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            
+            
+            
+            <plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-site-plugin</artifactId>
+  <version>3.3</version>
+</plugin>
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-project-info-reports-plugin</artifactId>
+  <version>2.7</version>
+</plugin>
+            
+            
+            
+            
+            
+            
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>${main-class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.0-M1</version>
                 <executions>
@@ -65,28 +98,64 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin> -->
-  </plugins>
-  </build>
-  
+            </plugin>
+            
+            <plugin>
+  <groupId>com.github.spotbugs</groupId>
+  <artifactId>spotbugs-maven-plugin</artifactId>
+  <version>3.1.7</version>
   <dependencies>
+    <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs</artifactId>
+      <version>3.1.8</version>
     </dependency>
-    
-	<dependency>
-	    <groupId>org.asciidoctor</groupId>
-	    <artifactId>asciidoctorj</artifactId>
-	    <version>2.0.0-RC.1</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.asciidoctor</groupId>
-	    <artifactId>asciidoctorj-pdf</artifactId>
-	    <version>1.5.0-alpha.16</version>
-	</dependency>
-	
   </dependencies>
-</project>
+</plugin>
+            
+        </plugins>
+
+    </build>
+    
+    <reporting>
+      <plugins>
+      
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.0.0</version>
+          <reportSets>
+            <reportSet>
+              <reports>
+                <report>checkstyle</report>
+              </reports>
+            </reportSet>
+          </reportSets>
+        </plugin>
+        
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>2.3</version>
+        </plugin>
+        
+      </plugins>
+    </reporting>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    </project>
