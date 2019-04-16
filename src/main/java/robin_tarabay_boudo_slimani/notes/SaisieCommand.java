@@ -49,6 +49,7 @@ public class SaisieCommand {
 			String note = "";
 			if(args.length != 1)
 			{
+				System.out.println("********** ici ***********");
 				 note = args[1];
 			}
 			System.out.println(cmd);
@@ -107,8 +108,11 @@ public class SaisieCommand {
 //			afficheInfo();
 			String note = "";
 			String cmd = saisie.next();
-			if(cmd != "ls" || cmd != "list")
+			String ls = "ls";
+			String list = "list";
+			if(!cmd.equals(ls) && !cmd.equals(list))
 			{
+				System.out.println("*********** ici **********");
 				 note = saisie.nextLine();
 			}
 			System.out.println(cmd);

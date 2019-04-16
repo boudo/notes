@@ -40,6 +40,7 @@ public class ViewNotesCommand implements Command {
 			System.out.println(path);
 			proc1.exec("asciidoctor " + path + Notes.repertoire + "/" + this.note + ".adoc");
 			proc1.toString();
+			proc1.toString();
 			proc1.exec("google-chrome "+ path + Notes.repertoire + "/" + this.note + ".html");
 //			proc1.exec("firefox "+ path + Notes.repertoire + "/" + this.note + ".html");
 		}catch (Exception e)
