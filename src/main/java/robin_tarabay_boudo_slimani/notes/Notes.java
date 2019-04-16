@@ -114,6 +114,9 @@ public String toString() {
 	return "Notes [nom=" + nom + ", project=" + project + ", context=" + context + "]";
 }
 
+/**
+ * Fonction statique qui permet de lister le contenu du dossier Document
+ */
 public static void liste() {
 	
 	File rep = new File(repertoire);
