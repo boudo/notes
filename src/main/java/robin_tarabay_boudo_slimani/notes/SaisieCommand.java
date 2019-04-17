@@ -1,6 +1,5 @@
 package robin_tarabay_boudo_slimani.notes;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -15,14 +14,17 @@ public class SaisieCommand {
 	
 	private Scanner saisie;
 	private final Map<String, Command> commands;
+	private App app;
 	
 	/**
 	 * Constructeur par défaut
+	 * @param a qui prend en paramètre App
 	 */
-	public SaisieCommand()
+	public SaisieCommand(App a)
 	{
 		this.saisie = new Scanner(System.in);
 		this.commands = new HashMap<>();
+		this.app = a;
 	}
 	
 	/**
@@ -113,7 +115,7 @@ public class SaisieCommand {
 					}
 					else
 					{
-						Command command = new EditNotesCommand(note);
+						Command command = new EditNotesCommand(app,note);
 						storeAndExecute(note, command);
 					}
 					break;
@@ -128,14 +130,14 @@ public class SaisieCommand {
 					else
 					{
 						System.out.println("else");
-						Command command = new ViewNotesCommand(note);
+						Command command = new ViewNotesCommand(app,note);
 						storeAndExecute(note, command);
 					}
 					break;
 					
 				case "list":
 				case "ls":
-					Notes.liste();
+					app.liste();
 					break;
 
 				default:
@@ -168,7 +170,7 @@ public class SaisieCommand {
 					}
 					else
 					{
-						Command command = new EditNotesCommand(note);
+						Command command = new EditNotesCommand(app,note);
 						storeAndExecute(note, command);
 					}
 					break;
@@ -183,21 +185,21 @@ public class SaisieCommand {
 					else
 					{
 						System.out.println("else");
-						Command command = new ViewNotesCommand(note);
+						Command command = new ViewNotesCommand(app,note);
 						storeAndExecute(note, command);
 					}
 					break;
 					
 				case "list":
 				case "ls":
-					Notes.liste();
+					app.liste();
 					break;
 
 				default:
 					break;
 				}
 		}
-
+			saisie.close();
 		
 	}
 	
@@ -207,12 +209,8 @@ public class SaisieCommand {
 	 */
 	public static void main( String[] args )
     {
-    	
-//    	Notes test = new Notes.NoteBuilder("Ma première Note").build();
-//    	System.out.println(test.toString());
-//    	ViewNotesCommand cmd = new ViewNotesCommand("Test");
-//    	cmd.execute();
-    	SaisieCommand saisie = new SaisieCommand();
+    	App app = new App();
+    	SaisieCommand saisie = new SaisieCommand(app);
     	saisie.saisieUser(args);
     }
 }

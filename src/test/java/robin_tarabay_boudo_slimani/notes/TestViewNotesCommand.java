@@ -8,16 +8,10 @@ public class TestViewNotesCommand {
 
 	@Test
 	public void testConstructeur() {
-		ViewNotesCommand cmd = new ViewNotesCommand("Test");
+		
+		App app = new App();
+		ViewNotesCommand cmd = new ViewNotesCommand(app,"Test");
 		assertNotNull(cmd);
 	}
-	
-	@Test
-	public void testGetNote() {
-		ViewNotesCommand cmd = new ViewNotesCommand("Test");
-		assertNotNull(cmd);
-		assertTrue(cmd.getNote().equals("Test"));
-	}
-
 
 }
