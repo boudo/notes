@@ -143,5 +143,32 @@ public class App
 			e.getMessage();
 		}
 	}
+	
+	/**
+	 * Fonction qui permet de supprimer une note 
+	 * @param nom qui prend en paramètre un nom
+	 */
+	public void delete(String nom) {
+		
+		if(!this.notes.containsKey(nom))
+		{
+			System.out.println("Ce Fichier n'existe pas");
+		}
+		
+		else {
+			try
+			{
+				System.out.println("delete");
+				Runtime proc1 = Runtime.getRuntime();
+				proc1.exec("rm " + repertoire + "/" + nom +".adoc");
+			}catch (Exception e)
+			{
+				e.getMessage();
+			}
+			
+		}
+		
+		
+	}
 		
 }

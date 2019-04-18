@@ -139,6 +139,12 @@ public class SaisieCommand {
 				case "ls":
 					app.liste();
 					break;
+					
+				case "delete":
+				case "d":
+					app.delete(note);
+					break;
+					
 
 				default:
 					break;
@@ -193,6 +199,11 @@ public class SaisieCommand {
 				case "list":
 				case "ls":
 					app.liste();
+					break;
+					
+				case "delete":
+				case "d":
+					app.delete(note);
 					break;
 
 				default:

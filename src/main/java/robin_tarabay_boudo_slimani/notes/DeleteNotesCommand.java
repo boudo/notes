@@ -9,11 +9,27 @@ package robin_tarabay_boudo_slimani.notes;
 
 public class DeleteNotesCommand implements Command {
 
+	
+	private App app;
+	private String nom;
+	
+	/**
+	 * Constructeur par défaut
+	 * @param a qui prend en paramètre App
+	 * @param n qui prend en paramètre un nom
+	 */
+	public DeleteNotesCommand(App a,String n)
+	{
+		this.app = a;
+		this.nom = n;
+	}
+	
 	/**
 	 * Permet d'exécuter la commande de suppression
 	 */
 	public void execute() {
-		// TODO Auto-generated method stub
+		
+		app.delete(nom);
 		
 	}
 
