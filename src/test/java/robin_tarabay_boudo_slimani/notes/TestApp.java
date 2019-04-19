@@ -9,9 +9,9 @@ public class TestApp {
 	@Test
 	public void TestInstanceApp() {
 		
-		App app = new App();
+		GestionNotes gestionNotes = new GestionNotes();
 		
-		assertNotNull(app);
+		assertNotNull(gestionNotes);
 	}
 
 }

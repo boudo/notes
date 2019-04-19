@@ -9,8 +9,8 @@ public class TestViewNotesCommand {
 	@Test
 	public void testConstructeur() {
 		
-		App app = new App();
-		ViewNotesCommand cmd = new ViewNotesCommand(app,"Test");
+		GestionNotes gestionNotes = new GestionNotes();
+		ViewNotesCommand cmd = new ViewNotesCommand(gestionNotes,"Test");
 		assertNotNull(cmd);
 	}
 

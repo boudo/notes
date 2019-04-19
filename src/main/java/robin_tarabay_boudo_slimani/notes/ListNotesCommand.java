@@ -9,22 +9,22 @@ package robin_tarabay_boudo_slimani.notes;
 
 public class ListNotesCommand implements Command {
 	
-	private App app;
+	private GestionNotes gestionNotes;
 	
 	/**
 	 * Constructeur par défaut qui prend en argument App
 	 * @param a qui prend en paramètre App
 	 */
-	public ListNotesCommand(App a)
+	public ListNotesCommand(GestionNotes a)
 	{
-		this.app = a;
+		this.gestionNotes = a;
 	}
 	
 	/**
 	 * Permet d'exécuter la commande de liste
 	 */
 	public void execute() {
-		app.liste();
+		gestionNotes.liste();
 		
 	}
 

@@ -9,7 +9,7 @@ package robin_tarabay_boudo_slimani.notes;
 
 public class EditNotesCommand implements Command {
 	
-	private App app;
+	private GestionNotes gestionNotes;
 	private String nom;
 	
 	/**
@@ -17,9 +17,9 @@ public class EditNotesCommand implements Command {
 	 * @param a qui prend en paramètre App
 	 * @param n qui prend en paramètre un nom
 	 */
-	public EditNotesCommand(App a,String n)
+	public EditNotesCommand(GestionNotes a,String n)
 	{
-		this.app = a;
+		this.gestionNotes = a;
 		this.nom = n;
 	}
 
@@ -29,7 +29,7 @@ public class EditNotesCommand implements Command {
 	 */
 	public void execute()
 	{
-		app.edit(nom);
+		gestionNotes.edit(nom);
 	}
 
 }

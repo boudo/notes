@@ -5,13 +5,13 @@ import java.io.File;
 
 
 /**
- * App.java : classe principale qui exécute le programme
+ * GestionNotes.java : classe principale qui exécute le programme
  * 
  * @author robin_tarabay_boudo_slimani
  * @version 1.0
  */
 
-public class App 
+public class GestionNotes 
 {
 	/**
 	 * Fonction principale du programme 
@@ -23,7 +23,7 @@ public class App
 	/**
 	 * Constructeur par défaut
 	 */
-	public App()
+	public GestionNotes()
 	{
 		this.notes = new HashMap<> ();
 		

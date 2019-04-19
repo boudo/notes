@@ -9,9 +9,9 @@ public class TestEditNotesCommand {
 	@Test
 	public void TestInstanceEdit() {
 		
-		App app = new App();
+		GestionNotes gestionNotes = new GestionNotes();
 		String n = "test" ;
-		EditNotesCommand e = new EditNotesCommand(app,n);
+		EditNotesCommand e = new EditNotesCommand(gestionNotes,n);
 		
 		assertNotNull(e);
 	}

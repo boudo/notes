@@ -9,8 +9,8 @@ public class TestSaisieCommand {
 	@Test
 	public void TestInstanceSaisie() {
 		
-		App app = new App();
-		SaisieCommand s = new SaisieCommand(app);
+		GestionNotes gestionNotes = new GestionNotes();
+		SaisieCommand s = new SaisieCommand(gestionNotes);
 		
 		assertNotNull(s);
 	}

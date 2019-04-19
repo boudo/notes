@@ -9,8 +9,8 @@ public class Main {
 	 */
 	public static void main( String[] args )
     {
-    	App app = new App();
-    	SaisieCommand saisie = new SaisieCommand(app);
+    	GestionNotes gestionNotes = new GestionNotes();
+    	SaisieCommand saisie = new SaisieCommand(gestionNotes);
     	saisie.saisieUser(args);
     }
 

@@ -9,9 +9,9 @@ public class TestListNotesCommand {
 	@Test
 	public void TestInstanceList() {
 		
-		App app = new App();
+		GestionNotes gestionNotes = new GestionNotes();
 		
-		ListNotesCommand l = new ListNotesCommand(app);
+		ListNotesCommand l = new ListNotesCommand(gestionNotes);
 		
 		assertNotNull(l);
 	}

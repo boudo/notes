@@ -11,7 +11,7 @@ package robin_tarabay_boudo_slimani.notes;
 
 public class ViewNotesCommand implements Command {
 	
-	private App app;
+	private GestionNotes gestionNotes;
 	private String nom;
 	
 	/**
@@ -19,9 +19,9 @@ public class ViewNotesCommand implements Command {
 	 * @param a qui prend en paramètre App
 	 * @param n qui prend en paramètre un nom
 	 */
-	public ViewNotesCommand(App a,String n)
+	public ViewNotesCommand(GestionNotes a,String n)
 	{
-		this.app = a;
+		this.gestionNotes = a;
 		this.nom = n;
 	}
 	
@@ -30,7 +30,7 @@ public class ViewNotesCommand implements Command {
 	 */
 	public void execute()
 	{
-		app.view(nom);
+		gestionNotes.view(nom);
 	}
 		
 }

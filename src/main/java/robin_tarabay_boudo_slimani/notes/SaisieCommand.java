@@ -14,17 +14,17 @@ public class SaisieCommand {
 	
 	private Scanner saisie;
 	private final Map<String, Command> commands;
-	private App app;
+	private GestionNotes gestionNotes;
 	
 	/**
 	 * Constructeur par défaut
 	 * @param a qui prend en paramètre App
 	 */
-	public SaisieCommand(App a)
+	public SaisieCommand(GestionNotes a)
 	{
 		this.saisie = new Scanner(System.in);
 		this.commands = new HashMap<>();
-		this.app = a;
+		this.gestionNotes = a;
 	}
 	
 	/**
@@ -120,7 +120,7 @@ public class SaisieCommand {
 						}
 						else
 						{
-							Command command = new EditNotesCommand(app,note);
+							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
@@ -135,7 +135,7 @@ public class SaisieCommand {
 						else
 						{
 							System.out.println("else");
-							Command command = new ViewNotesCommand(app,note);
+							Command command = new ViewNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
@@ -150,7 +150,7 @@ public class SaisieCommand {
 						else
 						{
 							System.out.println("else");
-							Command command = new ListNotesCommand(app);
+							Command command = new ListNotesCommand(gestionNotes);
 							storeAndExecute(cmd, command);
 						}
 						break;
@@ -165,7 +165,7 @@ public class SaisieCommand {
 						else
 						{
 							System.out.println("else");
-							Command command = new DeleteNotesCommand(app,note);
+							Command command = new DeleteNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
@@ -210,7 +210,7 @@ public class SaisieCommand {
 						}
 						else
 						{
-							Command command = new EditNotesCommand(app,note);
+							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
@@ -225,7 +225,7 @@ public class SaisieCommand {
 						else
 						{
 							System.out.println("else");
-							Command command = new ViewNotesCommand(app,note);
+							Command command = new ViewNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
@@ -240,7 +240,7 @@ public class SaisieCommand {
 						else
 						{
 							System.out.println("else");
-							Command command = new ListNotesCommand(app);
+							Command command = new ListNotesCommand(gestionNotes);
 							storeAndExecute(cmd, command);
 						}
 						break;
@@ -255,7 +255,7 @@ public class SaisieCommand {
 						else
 						{
 							System.out.println("else");
-							Command command = new DeleteNotesCommand(app,note);
+							Command command = new DeleteNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
 						break;

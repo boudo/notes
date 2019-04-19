@@ -10,7 +10,7 @@ package robin_tarabay_boudo_slimani.notes;
 public class DeleteNotesCommand implements Command {
 
 	
-	private App app;
+	private GestionNotes gestionNotes;
 	private String nom;
 	
 	/**
@@ -18,9 +18,9 @@ public class DeleteNotesCommand implements Command {
 	 * @param a qui prend en paramètre App
 	 * @param n qui prend en paramètre un nom
 	 */
-	public DeleteNotesCommand(App a,String n)
+	public DeleteNotesCommand(GestionNotes a,String n)
 	{
-		this.app = a;
+		this.gestionNotes = a;
 		this.nom = n;
 	}
 	
@@ -29,7 +29,7 @@ public class DeleteNotesCommand implements Command {
 	 */
 	public void execute() {
 		
-		app.delete(nom);
+		gestionNotes.delete(nom);
 		
 	}
 

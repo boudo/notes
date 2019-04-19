@@ -9,9 +9,9 @@ public class TestDeleteNotesCommand {
 	@Test
 	public void TestInstanceDelete() {
 		
-		App app = new App();
+		GestionNotes gestionNotes = new GestionNotes();
 		String n ="jojo" ;
-		DeleteNotesCommand d = new DeleteNotesCommand(app,n);
+		DeleteNotesCommand d = new DeleteNotesCommand(gestionNotes,n);
 		
 		assertNotNull(d);
 	}
