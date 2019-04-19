@@ -1,7 +1,6 @@
 package robin_tarabay_boudo_slimani.notes;
 
 import java.util.*;
-
 import java.io.File;
 
 
@@ -101,9 +100,16 @@ public class App
 			path = path.substring(0, path.length() - 2);
 			System.out.println(path);
 			proc1.exec("asciidoctor " + path + repertoire + "/" + nom + ".adoc");
-			proc1.toString();
-			proc1.exec("google-chrome "+ path + repertoire + "/" + nom + ".html");
-//			proc1.exec("firefox "+ path + Notes.repertoire + "/" + this.note + ".html");
+			//proc1.toString();
+			//proc1.exec("google-chrome "+ path + repertoire + "/" + nom + ".html");
+			
+			File f = new File(path + repertoire + "/" + nom + ".html");
+			while(!f.exists() && !f.isFile())
+			{
+				
+			}
+			proc1.exec("firefox "+ path + repertoire + "/" + nom + ".html");
+			System.out.println("on est la");
 		}catch (Exception e)
 		{
 			e.getMessage();
@@ -159,8 +165,16 @@ public class App
 			try
 			{
 				System.out.println("delete");
-				Runtime proc1 = Runtime.getRuntime();
-				proc1.exec("rm " + repertoire + "/" + nom +".adoc");
+				File fichier = new File("fc");
+				String path = fichier.getCanonicalPath();
+				path = path.substring(0, path.length() - 2);
+				System.out.println(path);
+				File adoc = new File(path+ repertoire + "/" + nom +".adoc");
+				File html = new File(path+ repertoire + "/" + nom +".html");
+				adoc.delete();
+				html.delete();
+				Notes o  = (Notes) this.notes.remove(nom);
+				System.out.println( o.getNom() + " à été supprimer" );
 			}catch (Exception e)
 			{
 				e.getMessage();

@@ -84,144 +84,195 @@ public class SaisieCommand {
 	 */
 	public void saisieUser(String[] args)
 	{
-		if(args.length != 0)
+		boolean exit = false;
+		boolean q = false;
+		boolean affiche = true;
+		while(!exit)
 		{
-//			String s = saisie.nextLine();
-			String cmd = args[0];
-			String note = "";
-			if(args.length != 1)
+			if(args.length != 0)
 			{
-				 note = args[1];
-			}
-			System.out.println(cmd);
-			System.out.println(note);
-			
-			
-//			try
-//			{
-//					
-//			}catch(IOException e)
-//			{
-//				System.out.println(e.getMessage());
-//			}
+//				String s = saisie.nextLine();
+				String cmd = args[0];
+				String note = "";
+				if(args.length != 1)
+				{
+					 note = args[1];
+				}
+				System.out.println(cmd);
+				System.out.println(note);
 				
-			switch (cmd)
-			{
-				case "edit":
-				case "e":
-					if(this.commands.containsKey(note))
-					{
-						executeCommand(note);
-					}
-					else
-					{
-						Command command = new EditNotesCommand(app,note);
-						storeAndExecute(note, command);
-					}
-					break;
+				
+//				try
+//				{
+//						
+//				}catch(IOException e)
+//				{
+//					System.out.println(e.getMessage());
+//				}
+					
+				switch (cmd)
+				{
+					case "edit":
+					case "e":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+							Command command = new EditNotesCommand(app,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
+						break;
+							
+					case "view":
+					case "v":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+							System.out.println("if");
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new ViewNotesCommand(app,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
+						break;
 						
-				case "view":
-				case "v":
-					if(this.commands.containsKey(note))
-					{
-						System.out.println("if");
-						executeCommand(note);
-					}
-					else
-					{
-						System.out.println("else");
-						Command command = new ViewNotesCommand(app,note);
-						storeAndExecute(note, command);
-					}
-					break;
-					
-				case "list":
-				case "ls":
-					app.liste();
-					break;
-					
-				case "delete":
-				case "d":
-					app.delete(note);
-					break;
-					
-
-				default:
-					break;
-				}
-			}
-		else
-		{
-			afficheInfo();
-			String note = "";
-			String cmd = saisie.next();
-			if(cmd != "ls" || cmd != "list")
-			{
-				 note = saisie.nextLine();
-			}
-			System.out.println(cmd);
-			System.out.println(note);
-			 if(note.length() != 0)
-			 {
-				 note = note.substring(1,note.length());
-			 }
-			
-			switch (cmd)
-			{
-				case "edit":
-				case "e":
-					if(this.commands.containsKey(note))
-					{
-						executeCommand(note);
-					}
-					else
-					{
-						Command command = new EditNotesCommand(app,note);
-						storeAndExecute(note, command);
-					}
-					break;
+					case "list":
+					case "ls":
+						if(this.commands.containsKey(cmd))
+						{
+							System.out.println("if");
+							executeCommand(cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new ListNotesCommand(app);
+							storeAndExecute(cmd, command);
+						}
+						break;
 						
-				case "view":
-				case "v":
-					if(this.commands.containsKey(note))
-					{
-						System.out.println("if");
-						executeCommand(note);
-					}
-					else
-					{
-						System.out.println("else");
-						Command command = new ViewNotesCommand(app,note);
-						storeAndExecute(note, command);
-					}
-					break;
-					
-				case "list":
-				case "ls":
-					app.liste();
-					break;
-					
-				case "delete":
-				case "d":
-					app.delete(note);
-					break;
+					case "delete":
+					case "d":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+							System.out.println("if");
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new DeleteNotesCommand(app,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
+						break;
+						
+					case "exit":
+					case "q":
+						exit = true;
+						break;
+						
 
-				default:
-					break;
+					default:
+						break;
+					}
 				}
+			else
+			{
+				if(affiche)
+				{
+					afficheInfo();
+					affiche = false;
+				}
+				String note = "";
+				String cmd = saisie.next();
+				if(cmd != "ls" || cmd != "list")
+				{
+					 note = saisie.nextLine();
+				}
+				System.out.println(cmd);
+				System.out.println(note);
+				 if(note.length() != 0)
+				 {
+					 note = note.substring(1,note.length());
+				 }
+				
+				switch (cmd)
+				{
+					case "edit":
+					case "e":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+							Command command = new EditNotesCommand(app,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
+						break;
+							
+					case "view":
+					case "v":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+							System.out.println("if");
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new ViewNotesCommand(app,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
+						break;
+						
+					case "list":
+					case "ls":
+						if(this.commands.containsKey(cmd))
+						{
+							System.out.println("if");
+							executeCommand(cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new ListNotesCommand(app);
+							storeAndExecute(cmd, command);
+						}
+						break;
+						
+					case "delete":
+					case "d":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+							System.out.println("if");
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new DeleteNotesCommand(app,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
+						break;
+						
+					case "exit":
+					case "q":
+						exit = true;
+						break;
+
+					default:
+						break;
+					}
+			}
 		}
-			saisie.close();
+		
+		saisie.close();
 		
 	}
 	
-	/**
-	 * Fonction principale du programme 
-	 * @param args pour récupérer les commandes saisies par l'utilisateur
-	 */
-	public static void main( String[] args )
-    {
-    	App app = new App();
-    	SaisieCommand saisie = new SaisieCommand(app);
-    	saisie.saisieUser(args);
-    }
 }

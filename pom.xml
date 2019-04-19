@@ -14,7 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <main-class>robin_tarabay_boudo_slimani.notes.SaisieCommand</main-class>
+    <main-class>robin_tarabay_boudo_slimani.notes.Main</main-class>
   </properties>
 
 <build>
