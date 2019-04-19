@@ -87,19 +87,37 @@ public class SaisieCommand {
 		boolean exit = false;
 		boolean q = false;
 		boolean affiche = true;
-		while(!exit)
+		while(!exit && !q)
 		{
 			if(args.length != 0)
 			{
-//				String s = saisie.nextLine();
+				//String s = saisie.nextLine();
 				String cmd = args[0];
 				String note = "";
+				String projet = "";
+				String context = "";
 				if(args.length != 1)
 				{
 					 note = args[1];
 				}
-				System.out.println(cmd);
-				System.out.println(note);
+				if(args.length > 3) {
+					int i = 2;
+					while(i<args.length) {
+						if(args[i].equals("c")) {
+							i=i+1;
+							context = args[i];
+							i=i+1;							
+						} 
+						if(args[i].equals("p")) {
+							i=i+1;
+							projet = args[i];
+							i=i+1;							
+						}
+					}
+				}
+			
+//				System.out.println(cmd);
+//				System.out.println(note);
 				
 				
 //				try
