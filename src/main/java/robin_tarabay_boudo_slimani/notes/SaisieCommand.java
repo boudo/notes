@@ -87,9 +87,10 @@ public class SaisieCommand {
 		boolean exit = false;
 		boolean q = false;
 		boolean affiche = true;
+		boolean init = true;
 		while(!exit && !q)
 		{
-			if(args.length != 0)
+			if(args.length != 0 && init == true)
 			{
 				//String s = saisie.nextLine();
 				String cmd = args[0];
@@ -115,6 +116,9 @@ public class SaisieCommand {
 						}
 					}
 				}
+				init = false;
+				affiche = false;
+				
 			
 //				System.out.println(cmd);
 //				System.out.println(note);
