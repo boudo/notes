@@ -33,7 +33,13 @@ public class GestionNotes
 			String path = fichier.getCanonicalPath();
 			path = path.substring(0, path.length() - 2);
 			
-			File dossier = new File(path+"/"+repertoire);
+			File rep = new File (path + repertoire);
+			rep.mkdirs();
+			System.out.println("rep = "+rep.getCanonicalPath());
+			path += repertoire;
+			this.repertoire = path;
+			
+			File dossier = new File(repertoire);
 			
 			if(dossier.exists() && dossier.isDirectory())
 			{
@@ -62,7 +68,7 @@ public class GestionNotes
 	 * Fonction qui permet de lister le contenu du dossier Document
 	 */
 	public void liste() {
-		
+		// foction de vérification
 		
 		if(!this.notes.isEmpty()) {
 		
@@ -98,23 +104,23 @@ public class GestionNotes
 		{	
 //			String nomDuSystem = System.getProperty("os.name");
 //			System.out.println(nomDuSystem);
+			
 			Runtime proc1 = Runtime.getRuntime();
-			File fichier = new File("fc");
-			String path = fichier.getCanonicalPath();
-			path = path.substring(0, path.length() - 2);
-//			System.out.println(path);
+			File noteAdoc = new File (repertoire, nom +".adoc");
+			String laNoteAdoc = noteAdoc.getCanonicalPath();
+			proc1.exec("asciidoctor " + laNoteAdoc);
 			
-			proc1.exec("asciidoctor " + path + repertoire + "/" + nom + ".adoc");
-			
-			File f = new File(path + repertoire + "/" + nom + ".html");
+			File f = new File(repertoire, nom + ".html");
 			while(!f.exists() && !f.isFile())
 			{
 				
 			}
+			File noteHtml = new File (repertoire, nom +".html");
+//			String laNoteHtml = noteHtml.getCanonicalPath();
+			
 //			proc1.exec("firefox "+ path + repertoire + "/" + nom + ".html");
-			proc1.exec("xdg-open "+ path + repertoire + "/" + nom + ".html");
-//			File htmlFile = new File(path + repertoire + "/" + nom + ".html");
-//			Desktop.getDesktop().browse(htmlFile.toURI());
+//			proc1.exec("xdg-open " + laNoteHtml);
+			Desktop.getDesktop().browse(noteHtml.toURI());
 			
 		}catch (Exception e)
 		{
@@ -145,10 +151,10 @@ public class GestionNotes
 		try
 		{
 			System.out.println("Edition de: " + nom + "....");
+			File note = new File (repertoire, nom +".adoc");
+			String laNote = note.getCanonicalPath();
 			Runtime proc1 = Runtime.getRuntime();
-			proc1.exec("mkdir -p " + repertoire);
-			proc1.toString();
-			proc1.exec("code " + repertoire + "/" + nom +".adoc");
+			proc1.exec("code " + laNote);
 		}catch (Exception e)
 		{
 			e.getMessage();
@@ -169,17 +175,12 @@ public class GestionNotes
 		else {
 			try
 			{
-//				System.out.println("delete");
-				File fichier = new File("fc");
-				String path = fichier.getCanonicalPath();
-				path = path.substring(0, path.length() - 2);
-//				System.out.println(path);
-				File adoc = new File(path+ repertoire + "/" + nom +".adoc");
-				File html = new File(path+ repertoire + "/" + nom +".html");
+				File adoc = new File (repertoire, nom +".adoc");
+				File html = new File (repertoire, nom +".html");
 				adoc.delete();
 				html.delete();
 				Notes o  = (Notes) this.notes.remove(nom);
-				System.out.println( o.getNom() + " à été supprimer" );
+				System.out.println( o.getNom() + " a été supprimer" );
 			}catch (Exception e)
 			{
 				e.getMessage();
