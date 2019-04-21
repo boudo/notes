@@ -27,6 +27,7 @@ public class EditNotesCommand implements Command {
 		{
 			System.out.println("edit");
 			Runtime proc1 = Runtime.getRuntime();
+			
 			proc1.exec("mkdir -p " + Notes.repertoire);
 			proc1.toString();
 			proc1.toString();

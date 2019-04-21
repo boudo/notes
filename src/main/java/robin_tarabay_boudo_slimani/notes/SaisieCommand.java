@@ -1,6 +1,5 @@
 package robin_tarabay_boudo_slimani.notes;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -52,18 +51,18 @@ public class SaisieCommand {
 	{
 		System.out.println("\n" + 
 				"\n" + 
-				" __    __              __                         \n" + 
-				"/  \\  /  |            /  |                        \n" + 
-				"$$  \\ $$ |  ______   _$$ |_     ______    _______ \n" + 
-				"$$$  \\$$ | /      \\ / $$   |   /      \\  /       |\n" + 
-				"$$$$  $$ |/$$$$$$  |$$$$$$/   /$$$$$$  |/$$$$$$$/ \n" + 
-				"$$ $$ $$ |$$ |  $$ |  $$ | __ $$    $$ |$$      \\ \n" + 
-				"$$ |$$$$ |$$ \\__$$ |  $$ |/  |$$$$$$$$/  $$$$$$  |\n" + 
-				"$$ | $$$ |$$    $$/   $$  $$/ $$       |/     $$/ \n" + 
-				"$$/   $$/  $$$$$$/     $$$$/   $$$$$$$/ $$$$$$$/  \n" + 
-				"                                                  \n" + 
-				"                                                  \n" + 
-				"                                                  \n" + 
+				"		 __    __              __                         \n" + 
+				"		/  \\  /  |            /  |                        \n" + 
+				"		$$  \\ $$ |  ______   _$$ |_     ______    _______ \n" + 
+				"		$$$  \\$$ | /      \\ / $$   |   /      \\  /       |\n" + 
+				"		$$$$  $$ |/$$$$$$  |$$$$$$/   /$$$$$$  |/$$$$$$$_/ \n" + 
+				"		$$ $$ $$ |$$ |  $$ |  $$ | __ $$    $$ |$$  /     \n" + 
+				"		$$ |$$$$ |$$ \\__$$ |  $$ |/  |$$$$$$$$/  $$$$$$ \\\n" + 
+				"		$$ | $$$ |$$    $$/   $$  $$/ $$  /         /  $$ \n" + 
+				"		$$/   $$/  $$$$$$/     $$$$/   $$$$$$$/ /$$$$$$$/  \n" + 
+				"		                                                  \n" + 
+				"       		                                           \n" + 
+				"           		                                       \n" + 
 				"\n" + 
 				"");
 		System.out.println("Bienvenue sur notre application de prises de Notes !\n\n"+
@@ -82,127 +81,137 @@ public class SaisieCommand {
 	 */
 	public void saisieUser(String[] args)
 	{
-		if(args.length != 0)
+		boolean exit = false;
+		boolean info = true;
+		while(!exit)
 		{
-//			String s = saisie.nextLine();
-			String cmd = args[0];
-			String note = "";
-			if(args.length != 1)
+			if(args.length != 0)
 			{
-				System.out.println("********** ici ***********");
-				 note = args[1];
-			}
-			System.out.println(cmd);
-			System.out.println(note);
-			
-			
-//			try
-//			{
-//					
-//			}catch(IOException e)
-//			{
-//				System.out.println(e.getMessage());
-//			}
+//				String s = saisie.nextLine();
+				String cmd = args[0];
+				String note = "";
+				if(args.length != 1)
+				{
+//					System.out.println("********** ici ***********");
+					 note = args[1];
+				}
+//				System.out.println(cmd);
+//				System.out.println(note);
 				
-			switch (cmd)
-			{
-				case "edit":
-				case "e":
-					if(this.commands.containsKey(note))
-					{
-						executeCommand(note);
-					}
-					else
-					{
-						Command command = new EditNotesCommand(note);
-						storeAndExecute(note, command);
-					}
-					break;
-						
-				case "view":
-				case "v":
-					if(this.commands.containsKey(note))
-					{
-						System.out.println("if");
-						executeCommand(note);
-					}
-					else
-					{
-						System.out.println("else");
-						Command command = new ViewNotesCommand(note);
-						storeAndExecute(note, command);
-					}
-					break;
+				
+//				try
+//				{
+//						
+//				}catch(IOException e)
+//				{
+//					System.out.println(e.getMessage());
+//				}
 					
-				case "list":
-				case "ls":
-					Notes.liste();
-					break;
-
-				default:
-					break;
-				}
-			}
-		else
-		{
-			afficheInfo();
-			String note = "";
-			String cmd = saisie.next();
-			String ls = "ls";
-			String list = "list";
-			if(!cmd.equals(ls) && !cmd.equals(list))
-			{
-				System.out.println("*********** ici **********");
-				 note = saisie.nextLine();
-			}
-			System.out.println(cmd);
-			System.out.println(note);
-			 if(note.length() != 0)
-			 {
-				 note = note.substring(1,note.length());
-			 }
-			
-			switch (cmd)
-			{
-				case "edit":
-				case "e":
-					if(this.commands.containsKey(note))
-					{
-						executeCommand(note);
-					}
-					else
-					{
-						Command command = new EditNotesCommand(note);
-						storeAndExecute(note, command);
-					}
-					break;
+				switch (cmd)
+				{
+					case "edit":
+					case "e":
+						if(this.commands.containsKey(note))
+						{
+							executeCommand(note);
+						}
+						else
+						{
+							Command command = new EditNotesCommand(note);
+							storeAndExecute(note, command);
+						}
+						break;
+							
+					case "view":
+					case "v":
+						if(this.commands.containsKey(note))
+						{
+//							System.out.println("if");
+							executeCommand(note);
+						}
+						else
+						{
+//							System.out.println("else");
+							Command command = new ViewNotesCommand(note);
+							storeAndExecute(note, command);
+						}
+						break;
 						
-				case "view":
-				case "v":
-					if(this.commands.containsKey(note))
-					{
-						System.out.println("if");
-						executeCommand(note);
-					}
-					else
-					{
-						System.out.println("else");
-						Command command = new ViewNotesCommand(note);
-						storeAndExecute(note, command);
-					}
-					break;
-					
-				case "list":
-				case "ls":
-					Notes.liste();
-					break;
+					case "list":
+					case "ls":
+						Notes.liste();
+						break;
 
-				default:
-					break;
+					default:
+						break;
+					}
 				}
+			else
+			{
+				if(info)
+				{
+					afficheInfo();
+					info = false;
+				}
+				String note = "";
+				String cmd = saisie.next();
+				if(!cmd.equals("ls") && !cmd.equals("list"))
+				{
+					System.out.println("*********** ici **********");
+					 note = saisie.nextLine();
+				}
+				System.out.println(cmd);
+				System.out.println(note);
+				 if(note.length() != 0)
+				 {
+					 note = note.substring(1,note.length());
+				 }
+				
+				switch (cmd)
+				{
+					case "edit":
+					case "e":
+						if(this.commands.containsKey(note))
+						{
+							executeCommand(note);
+						}
+						else
+						{
+							Command command = new EditNotesCommand(note);
+							storeAndExecute(note, command);
+						}
+						break;
+							
+					case "view":
+					case "v":
+						if(this.commands.containsKey(note))
+						{
+//							System.out.println("if");
+							executeCommand(note);
+						}
+						else
+						{
+//							System.out.println("else");
+							Command command = new ViewNotesCommand(note);
+							storeAndExecute(note, command);
+						}
+						break;
+						
+					case "list":
+					case "ls":
+						Notes.liste();
+						break;
+						
+					case "exit":
+						exit = true;
+						break;
+
+					default:
+						break;
+					}
+			}
 		}
-
-		
+		saisie.close();
 	}
 	
 	/**

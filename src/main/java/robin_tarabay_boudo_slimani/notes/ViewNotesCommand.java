@@ -1,8 +1,6 @@
 package robin_tarabay_boudo_slimani.notes;
 
 import java.io.File;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 
 /**
  * ViewNotesCommand.java : Classe permettant de visualiser les notes
@@ -33,11 +31,13 @@ public class ViewNotesCommand implements Command {
 			
 			String nomDuSysthem = System.getProperty("os.name");
 			System.out.println(nomDuSysthem);
+			
 			Runtime proc1 = Runtime.getRuntime();
 			File fichier = new File("fc");
 			String path = fichier.getCanonicalPath();
 			path = path.substring(0, path.length() - 2);
 			System.out.println(path);
+			
 			proc1.exec("asciidoctor " + path + Notes.repertoire + "/" + this.note + ".adoc");
 			proc1.toString();
 			proc1.toString();
