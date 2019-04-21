@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -138,7 +139,7 @@ public class GestionNotes
 		if(!this.notes.containsKey(nom))
 		{
 			System.out.println("je suis la pour ajouter le nom");
-			this.notes.put(nom,new Notes.NoteBuilder(nom).build());
+			//this.notes.put(nom,new Notes.NoteBuilder(nom).build());
 			System.out.println(this.notes.toString());
 		}
 		
@@ -154,10 +155,10 @@ public class GestionNotes
 				file.createNewFile();
 				FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			   BufferedWriter bw = new BufferedWriter(fw);
-			   bw.write("= zbeub");
+			   bw.write("= "+this.notes.get(nom).getNom()+"\n"+new SimpleDateFormat("dd/MM/yyyy").format(new Date())+"\n"+":context: "+this.notes.get(nom).getContext()+"\n"+":project: "+this.notes.get(nom).getProject());
 			   bw.close();
 			}
-			//proc1.exec("code " + repertoire + "/" + nom +".adoc");
+			proc1.exec("code " + repertoire + "/" + nom +".adoc");
 		}catch (Exception e)
 		{
 			e.getMessage();

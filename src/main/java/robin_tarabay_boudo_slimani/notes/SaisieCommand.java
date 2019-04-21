@@ -142,6 +142,7 @@ public class SaisieCommand {
 						}
 						else
 						{
+							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).context(context).project(projet).build());
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
