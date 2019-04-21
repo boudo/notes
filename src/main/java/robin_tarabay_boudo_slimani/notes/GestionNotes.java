@@ -1,7 +1,9 @@
 package robin_tarabay_boudo_slimani.notes;
 
 import java.util.*;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 
 
 /**
@@ -55,6 +57,10 @@ public class GestionNotes
 		{
 			e.getMessage();
 		}
+	}
+	
+	public Map<String, Notes> getNotes() {
+		return notes;
 	}
 
 	/**
@@ -143,7 +149,15 @@ public class GestionNotes
 			Runtime proc1 = Runtime.getRuntime();
 			proc1.exec("mkdir -p " + repertoire);
 			proc1.toString();
-			proc1.exec("code " + repertoire + "/" + nom +".adoc");
+			File file = new File(repertoire + "/" + nom+".adoc");
+			if (!file.exists()) {
+				file.createNewFile();
+				FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			   BufferedWriter bw = new BufferedWriter(fw);
+			   bw.write("= zbeub");
+			   bw.close();
+			}
+			//proc1.exec("code " + repertoire + "/" + nom +".adoc");
 		}catch (Exception e)
 		{
 			e.getMessage();

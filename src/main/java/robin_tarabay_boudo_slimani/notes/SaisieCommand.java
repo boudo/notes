@@ -97,12 +97,12 @@ public class SaisieCommand {
 				String note = "";
 				String projet = "";
 				String context = "";
-				if(args.length != 1)
-				{
-					 note = args[1];
-				}
-				if(args.length > 3) {
-					int i = 2;
+				if(args.length > 1) {
+					int i = 1;
+					while(i<args.length && !(args[i].equals("c") || args[i].equals("p"))) {
+						note = note + args[i];
+						i=i+1;
+					}
 					while(i<args.length) {
 						if(args[i].equals("c")) {
 							i=i+1;
