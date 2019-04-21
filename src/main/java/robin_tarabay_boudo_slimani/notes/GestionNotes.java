@@ -136,12 +136,12 @@ public class GestionNotes
 	 */
 	public void edit(String nom) {
 		
-		if(!this.notes.containsKey(nom))
-		{
-			System.out.println("je suis la pour ajouter le nom");
-			//this.notes.put(nom,new Notes.NoteBuilder(nom).build());
-			System.out.println(this.notes.toString());
-		}
+//		if(!this.notes.containsKey(nom))
+//		{
+//			System.out.println("je suis la pour ajouter le nom");
+//			//this.notes.put(nom,new Notes.NoteBuilder(nom).build());
+//			System.out.println(this.notes.toString());
+//		}
 		
 		
 		try

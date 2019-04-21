@@ -211,18 +211,32 @@ public class SaisieCommand {
 					affiche = false;
 				}
 				String note = "";
-				String cmd = saisie.next();
-				if(cmd != "ls" || cmd != "list")
-				{
-					 note = saisie.nextLine();
+				String projet = "";
+				String context = "";
+				String cmd = "";
+				String phrase = saisie.nextLine();
+				String delims = "[ ]+";
+				String[] tokens = phrase.split(delims);
+				cmd = tokens[0];
+				if(tokens.length > 1) {
+					int i = 1;
+					while(i<tokens.length && !(tokens[i].equals("c") || tokens[i].equals("p"))) {
+						note = note + tokens[i];
+						i=i+1;
+					}
+					while(i<tokens.length) {
+						if(tokens[i].equals("c")) {
+							i=i+1;
+							context = tokens[i];
+							i=i+1;							
+						} 
+						if(tokens[i].equals("p")) {
+							i=i+1;
+							projet = tokens[i];
+							i=i+1;							
+						}
+					}
 				}
-				System.out.println(cmd);
-				System.out.println(note);
-				 if(note.length() != 0)
-				 {
-					 note = note.substring(1,note.length());
-				 }
-				
 				switch (cmd)
 				{
 					case "edit":
@@ -233,6 +247,7 @@ public class SaisieCommand {
 						}
 						else
 						{
+							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).context(context).project(projet).build());
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
