@@ -4,14 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestViewNotesCommand {
+public class TestSaisieCommand {
 
 	@Test
-	public void testConstructeur() {
+	public void TestInstanceSaisie() {
 		
 		GestionNotes gestionNotes = new GestionNotes();
-		ViewNotesCommand cmd = new ViewNotesCommand(gestionNotes,"Test");
-		assertNotNull(cmd);
+		SaisieCommand s = new SaisieCommand(gestionNotes);
+		
+		assertNotNull(s);
 	}
 
 }

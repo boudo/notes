@@ -14,14 +14,17 @@ public class SaisieCommand {
 	
 	private Scanner saisie;
 	private final Map<String, Command> commands;
+	private GestionNotes gestionNotes;
 	
 	/**
 	 * Constructeur par défaut
+	 * @param a qui prend en paramètre App
 	 */
-	public SaisieCommand()
+	public SaisieCommand(GestionNotes a)
 	{
 		this.saisie = new Scanner(System.in);
 		this.commands = new HashMap<>();
+		this.gestionNotes = a;
 	}
 	
 	/**
@@ -82,7 +85,8 @@ public class SaisieCommand {
 	public void saisieUser(String[] args)
 	{
 		boolean exit = false;
-		boolean info = true;
+		boolean q = false;
+		boolean affiche = true;
 		while(!exit)
 		{
 			if(args.length != 0)
@@ -92,11 +96,10 @@ public class SaisieCommand {
 				String note = "";
 				if(args.length != 1)
 				{
-//					System.out.println("********** ici ***********");
 					 note = args[1];
 				}
-//				System.out.println(cmd);
-//				System.out.println(note);
+				System.out.println(cmd);
+				System.out.println(note);
 				
 				
 //				try
@@ -111,36 +114,67 @@ public class SaisieCommand {
 				{
 					case "edit":
 					case "e":
-						if(this.commands.containsKey(note))
+						if(this.commands.containsKey(note+" "+cmd))
 						{
-							executeCommand(note);
+							executeCommand(note+" "+cmd);
 						}
 						else
 						{
-							Command command = new EditNotesCommand(note);
-							storeAndExecute(note, command);
+							Command command = new EditNotesCommand(gestionNotes,note);
+							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
 							
 					case "view":
 					case "v":
-						if(this.commands.containsKey(note))
+						if(this.commands.containsKey(note+" "+cmd))
 						{
-//							System.out.println("if");
-							executeCommand(note);
+							System.out.println("if");
+							executeCommand(note+" "+cmd);
 						}
 						else
 						{
-//							System.out.println("else");
-							Command command = new ViewNotesCommand(note);
-							storeAndExecute(note, command);
+							System.out.println("else");
+							Command command = new ViewNotesCommand(gestionNotes,note);
+							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
 						
 					case "list":
 					case "ls":
-						Notes.liste();
+						if(this.commands.containsKey(cmd))
+						{
+							System.out.println("if");
+							executeCommand(cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new ListNotesCommand(gestionNotes);
+							storeAndExecute(cmd, command);
+						}
 						break;
+						
+					case "delete":
+					case "d":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+							System.out.println("if");
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new DeleteNotesCommand(gestionNotes,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
+						break;
+						
+					case "exit":
+					case "q":
+						exit = true;
+						break;
+						
 
 					default:
 						break;
@@ -148,16 +182,15 @@ public class SaisieCommand {
 				}
 			else
 			{
-				if(info)
+				if(affiche)
 				{
 					afficheInfo();
-					info = false;
+					affiche = false;
 				}
 				String note = "";
 				String cmd = saisie.next();
-				if(!cmd.equals("ls") && !cmd.equals("list"))
+				if(cmd != "ls" || cmd != "list")
 				{
-					System.out.println("*********** ici **********");
 					 note = saisie.nextLine();
 				}
 				System.out.println(cmd);
@@ -171,38 +204,64 @@ public class SaisieCommand {
 				{
 					case "edit":
 					case "e":
-						if(this.commands.containsKey(note))
+						if(this.commands.containsKey(note+" "+cmd))
 						{
-							executeCommand(note);
+							executeCommand(note+" "+cmd);
 						}
 						else
 						{
-							Command command = new EditNotesCommand(note);
-							storeAndExecute(note, command);
+							Command command = new EditNotesCommand(gestionNotes,note);
+							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
 							
 					case "view":
 					case "v":
-						if(this.commands.containsKey(note))
+						if(this.commands.containsKey(note+" "+cmd))
 						{
-//							System.out.println("if");
-							executeCommand(note);
+							System.out.println("if");
+							executeCommand(note+" "+cmd);
 						}
 						else
 						{
-//							System.out.println("else");
-							Command command = new ViewNotesCommand(note);
-							storeAndExecute(note, command);
+							System.out.println("else");
+							Command command = new ViewNotesCommand(gestionNotes,note);
+							storeAndExecute(note+" "+cmd, command);
 						}
 						break;
 						
 					case "list":
 					case "ls":
-						Notes.liste();
+						if(this.commands.containsKey(cmd))
+						{
+							System.out.println("if");
+							executeCommand(cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new ListNotesCommand(gestionNotes);
+							storeAndExecute(cmd, command);
+						}
+						break;
+						
+					case "delete":
+					case "d":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+							System.out.println("if");
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+							System.out.println("else");
+							Command command = new DeleteNotesCommand(gestionNotes,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
 						break;
 						
 					case "exit":
+					case "q":
 						exit = true;
 						break;
 
@@ -212,20 +271,8 @@ public class SaisieCommand {
 			}
 		}
 		saisie.close();
+		
+
 	}
 	
-	/**
-	 * Fonction principale du programme 
-	 * @param args pour récupérer les commandes saisies par l'utilisateur
-	 */
-	public static void main( String[] args )
-    {
-    	
-//    	Notes test = new Notes.NoteBuilder("Ma première Note").build();
-//    	System.out.println(test.toString());
-//    	ViewNotesCommand cmd = new ViewNotesCommand("Test");
-//    	cmd.execute();
-    	SaisieCommand saisie = new SaisieCommand();
-    	saisie.saisieUser(args);
-    }
 }

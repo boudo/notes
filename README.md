@@ -25,8 +25,31 @@ Cette commande permet aussi de générer les résultats de checkstyle
 ##II]Manuel Utilisateur
 
   Voici les différentes actions que l'utilisateur devra effectuer pour le bon déroulement de l'application :
+  
+###1)Lancement du Programme
 
-###1)
+  L'utilisateur exécute le programme avec la commande suivante : "java -jar target/notes-1.0-SNAPSHOT.jar".
+  Il arrive donc dans le menu d'accueil qui liste les différentes commandes qui sont les suivantes :
+
+###2)Créer/éditer une note
+
+Pour créer ou éditer une note, l'utilisateur doit taper la commande suivante : "edit nom_de_la_note" ou "e nom_de_la_note" 
+
+###3)Visualiser une note
+
+Pour visualiser une note, l'utilisateur doit taper la commande suivante : "view nom_de_la_note" ou "v nom_de_la_note" 
+
+###4)Lister les notes
+
+Pour lister les notes contenues dans le répertoire ./Document, l'utilisateur doit taper la commande suivante : "list" ou "ls" 
+
+###5)Supprimer une note
+
+Pour supprimer une note, l'utilisateur doit taper la commande suivante : "delete nom_de_la_note" ou "d nom_de_la_note" 
+
+###6)Rechercher un mot-clé
+
+Remarque : l'utilisateur peut aussi effectuer toutes ces actions en ligne de commande direct à l'exécution du programme par exemple : "java -jar target/notes-1.0-SNAPSHOT.jar edit Test" exécutera la commande edit .
 
 ##III]Manuel Technique
 
