@@ -1,6 +1,7 @@
 package robin_tarabay_boudo_slimani.notes;
 
 import java.util.*;
+import java.awt.Desktop;
 import java.io.File;
 
 
@@ -67,13 +68,15 @@ public class GestionNotes
 		
 			Set<String> list = this.notes.keySet();
 			Iterator<String> iterator = list.iterator();
-			
+			System.out.println("--------------------------------------------------------------------------------");
+			System.out.println("Voici la liste de vos notes:\n");
 			while(iterator.hasNext())
 			{
 				Object key = iterator.next();
-				System.out.println(this.notes.get(key).getNom());
+				System.out.println("+ " + this.notes.get(key).getNom());
 				
 			}
+			System.out.println("--------------------------------------------------------------------------------");
 		}
 		else
 		{
@@ -90,26 +93,29 @@ public class GestionNotes
 		
 	if(this.notes.containsKey(nom))
 	{
+		System.out.println("Lecture de: " + nom + "....");
 		try
 		{	
-			String nomDuSystem = System.getProperty("os.name");
-			System.out.println(nomDuSystem);
+//			String nomDuSystem = System.getProperty("os.name");
+//			System.out.println(nomDuSystem);
 			Runtime proc1 = Runtime.getRuntime();
 			File fichier = new File("fc");
 			String path = fichier.getCanonicalPath();
 			path = path.substring(0, path.length() - 2);
-			System.out.println(path);
+//			System.out.println(path);
+			
 			proc1.exec("asciidoctor " + path + repertoire + "/" + nom + ".adoc");
-			//proc1.toString();
-			//proc1.exec("google-chrome "+ path + repertoire + "/" + nom + ".html");
 			
 			File f = new File(path + repertoire + "/" + nom + ".html");
 			while(!f.exists() && !f.isFile())
 			{
 				
 			}
-			proc1.exec("firefox "+ path + repertoire + "/" + nom + ".html");
-			System.out.println("on est la");
+//			proc1.exec("firefox "+ path + repertoire + "/" + nom + ".html");
+			proc1.exec("xdg-open "+ path + repertoire + "/" + nom + ".html");
+//			File htmlFile = new File(path + repertoire + "/" + nom + ".html");
+//			Desktop.getDesktop().browse(htmlFile.toURI());
+			
 		}catch (Exception e)
 		{
 			e.getMessage();
@@ -131,15 +137,14 @@ public class GestionNotes
 		
 		if(!this.notes.containsKey(nom))
 		{
-			System.out.println("je suis la pour ajouter le nom");
 			this.notes.put(nom,new Notes.NoteBuilder(nom).build());
-			System.out.println(this.notes.toString());
+//			System.out.println(this.notes.toString());
 		}
 		
 		
 		try
 		{
-			System.out.println("edit");
+			System.out.println("Edition de: " + nom + "....");
 			Runtime proc1 = Runtime.getRuntime();
 			proc1.exec("mkdir -p " + repertoire);
 			proc1.toString();
@@ -164,11 +169,11 @@ public class GestionNotes
 		else {
 			try
 			{
-				System.out.println("delete");
+//				System.out.println("delete");
 				File fichier = new File("fc");
 				String path = fichier.getCanonicalPath();
 				path = path.substring(0, path.length() - 2);
-				System.out.println(path);
+//				System.out.println(path);
 				File adoc = new File(path+ repertoire + "/" + nom +".adoc");
 				File html = new File(path+ repertoire + "/" + nom +".html");
 				adoc.delete();

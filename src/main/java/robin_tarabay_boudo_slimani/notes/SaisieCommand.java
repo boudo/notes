@@ -87,9 +87,9 @@ public class SaisieCommand {
 		boolean exit = false;
 		boolean q = false;
 		boolean affiche = true;
-		while(!exit)
+		while(!exit && !q)
 		{
-			if(args.length != 0)
+			if(args != null && args.length != 0)
 			{
 //				String s = saisie.nextLine();
 				String cmd = args[0];
@@ -98,8 +98,8 @@ public class SaisieCommand {
 				{
 					 note = args[1];
 				}
-				System.out.println(cmd);
-				System.out.println(note);
+//				System.out.println(cmd);
+//				System.out.println(note);
 				
 				
 //				try
@@ -123,56 +123,61 @@ public class SaisieCommand {
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
+						args = null;
 						break;
 							
 					case "view":
 					case "v":
 						if(this.commands.containsKey(note+" "+cmd))
 						{
-							System.out.println("if");
+//							System.out.println("if");
 							executeCommand(note+" "+cmd);
 						}
 						else
 						{
-							System.out.println("else");
+//							System.out.println("else");
 							Command command = new ViewNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
+						args = null;
 						break;
 						
 					case "list":
 					case "ls":
 						if(this.commands.containsKey(cmd))
 						{
-							System.out.println("if");
+//							System.out.println("if");
 							executeCommand(cmd);
 						}
 						else
 						{
-							System.out.println("else");
+//							System.out.println("else");
 							Command command = new ListNotesCommand(gestionNotes);
 							storeAndExecute(cmd, command);
 						}
+						args = null;
 						break;
 						
 					case "delete":
 					case "d":
 						if(this.commands.containsKey(note+" "+cmd))
 						{
-							System.out.println("if");
+//							System.out.println("if");
 							executeCommand(note+" "+cmd);
 						}
 						else
 						{
-							System.out.println("else");
+//							System.out.println("else");
 							Command command = new DeleteNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
+						args = null;
 						break;
 						
 					case "exit":
 					case "q":
 						exit = true;
+						args = null;
 						break;
 						
 
@@ -193,8 +198,8 @@ public class SaisieCommand {
 				{
 					 note = saisie.nextLine();
 				}
-				System.out.println(cmd);
-				System.out.println(note);
+//				System.out.println(cmd);
+//				System.out.println(note);
 				 if(note.length() != 0)
 				 {
 					 note = note.substring(1,note.length());
@@ -219,12 +224,12 @@ public class SaisieCommand {
 					case "v":
 						if(this.commands.containsKey(note+" "+cmd))
 						{
-							System.out.println("if");
+//							System.out.println("if");
 							executeCommand(note+" "+cmd);
 						}
 						else
 						{
-							System.out.println("else");
+//							System.out.println("else");
 							Command command = new ViewNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
@@ -234,12 +239,12 @@ public class SaisieCommand {
 					case "ls":
 						if(this.commands.containsKey(cmd))
 						{
-							System.out.println("if");
+//							System.out.println("if");
 							executeCommand(cmd);
 						}
 						else
 						{
-							System.out.println("else");
+//							System.out.println("else");
 							Command command = new ListNotesCommand(gestionNotes);
 							storeAndExecute(cmd, command);
 						}
@@ -249,12 +254,12 @@ public class SaisieCommand {
 					case "d":
 						if(this.commands.containsKey(note+" "+cmd))
 						{
-							System.out.println("if");
+//							System.out.println("if");
 							executeCommand(note+" "+cmd);
 						}
 						else
 						{
-							System.out.println("else");
+//							System.out.println("else");
 							Command command = new DeleteNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
