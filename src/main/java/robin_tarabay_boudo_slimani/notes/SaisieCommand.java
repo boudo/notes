@@ -99,21 +99,20 @@ public class SaisieCommand {
 				String context = "";
 				if(args.length > 1) {
 					int i = 1;
-					while(i<args.length && !(args[i].equals("c") || args[i].equals("p"))) {
+					while(i<args.length && !(args[i].equals("-c") || args[i].equals("-p"))) {
 						note = note + args[i];
 						i=i+1;
 					}
 					while(i<args.length) {
-						if(args[i].equals("c")) {
+						if(args[i].equals("-c")) {
 							i=i+1;
 							context = args[i];
-							i=i+1;							
 						} 
-						if(args[i].equals("p")) {
+						if(args[i].equals("-p")) {
 							i=i+1;
 							projet = args[i];
-							i=i+1;							
 						}
+						i=i+1;
 					}
 				}
 				init = false;
@@ -220,21 +219,20 @@ public class SaisieCommand {
 				cmd = tokens[0];
 				if(tokens.length > 1) {
 					int i = 1;
-					while(i<tokens.length && !(tokens[i].equals("c") || tokens[i].equals("p"))) {
+					while(i<tokens.length && !(tokens[i].equals("-c") || tokens[i].equals("-p"))) {
 						note = note + tokens[i];
 						i=i+1;
 					}
 					while(i<tokens.length) {
-						if(tokens[i].equals("c")) {
+						if(tokens[i].equals("-c")) {
 							i=i+1;
-							context = tokens[i];
-							i=i+1;							
+							context = tokens[i];							
 						} 
-						if(tokens[i].equals("p")) {
+						else if(tokens[i].equals("-p")) {
 							i=i+1;
 							projet = tokens[i];
-							i=i+1;							
 						}
+						i=i+1;
 					}
 				}
 				switch (cmd)
