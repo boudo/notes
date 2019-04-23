@@ -148,7 +148,7 @@ public class SaisieCommand {
 		{
 			if(args.length != 0 && init == true)
 			{
-				//String s = saisie.nextLine();
+				System.out.println("je suis la");
 				String cmd = args[0];
 				String note = "";
 				String projet = "";
@@ -161,31 +161,19 @@ public class SaisieCommand {
 					}
 					while(i<args.length) {
 						if(args[i].equals("-c")) {
-							i=i+1;
+							i++;
 							context = args[i];
 						} 
 						if(args[i].equals("-p")) {
-							i=i+1;
+							i++;
 							projet = args[i];
 						}
-						i=i+1;
+						i++;
 					}
 				}
 				init = false;
 				affiche = false;
 				
-			
-//				System.out.println(cmd);
-//				System.out.println(note);
-				
-				
-//				try
-//				{
-//						
-//				}catch(IOException e)
-//				{
-//					System.out.println(e.getMessage());
-//				}
 					
 				switch (cmd)
 				{
@@ -270,101 +258,10 @@ public class SaisieCommand {
 					afficheInfo();
 					affiche = false;
 				}
-				String note = "";
-				String projet = "";
-				String context = "";
-				String cmd = "";
 				String phrase = saisie.nextLine();
 				String delims = "[ ]+";
-				String[] tokens = phrase.split(delims);
-				cmd = tokens[0];
-				if(tokens.length > 1) {
-					int i = 1;
-					while(i<tokens.length && !(tokens[i].equals("-c") || tokens[i].equals("-p"))) {
-						note = note + tokens[i];
-						i=i+1;
-					}
-					while(i<tokens.length) {
-						if(tokens[i].equals("-c")) {
-							i=i+1;
-							context = tokens[i];							
-						} 
-						else if(tokens[i].equals("-p")) {
-							i=i+1;
-							projet = tokens[i];
-						}
-						i=i+1;
-					}
-				}
-				switch (cmd)
-				{
-					case "edit":
-					case "e":
-						if(this.commands.containsKey(note+" "+cmd))
-						{
-							executeCommand(note+" "+cmd);
-						}
-						else
-						{
-							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).context(context).project(projet).build());
-							Command command = new EditNotesCommand(gestionNotes,note);
-							storeAndExecute(note+" "+cmd, command);
-						}
-						break;
-							
-					case "view":
-					case "v":
-						if(this.commands.containsKey(note+" "+cmd))
-						{
-//							System.out.println("if");
-							executeCommand(note+" "+cmd);
-						}
-						else
-						{
-//							System.out.println("else");
-							Command command = new ViewNotesCommand(gestionNotes,note);
-							storeAndExecute(note+" "+cmd, command);
-						}
-						break;
-						
-					case "list":
-					case "ls":
-						if(this.commands.containsKey(cmd))
-						{
-//							System.out.println("if");
-							executeCommand(cmd);
-						}
-						else
-						{
-//							System.out.println("else");
-							Command command = new ListNotesCommand(gestionNotes);
-							storeAndExecute(cmd, command);
-						}
-						break;
-						
-					case "delete":
-					case "d":
-						if(this.commands.containsKey(note+" "+cmd))
-						{
-//							System.out.println("if");
-							executeCommand(note+" "+cmd);
-						}
-						else
-						{
-//							System.out.println("else");
-							Command command = new DeleteNotesCommand(gestionNotes,note);
-							storeAndExecute(note+" "+cmd, command);
-						}
-						break;
-						
-					case "exit":
-					case "q":
-						exit = true;
-						break;
-
-					default:
-						break;
-					}
+				args = phrase.split(delims);
+				init = true;
 			}
 		}
 		saisie.close();
