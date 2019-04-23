@@ -234,7 +234,6 @@ public class SaisieCommand {
 							Command command = new DeleteNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
-						args = null;
 						break;
 						
 					case "exit":
