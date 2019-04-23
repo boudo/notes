@@ -189,7 +189,6 @@ public class SaisieCommand {
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
-						args = null;
 						break;
 							
 					case "view":
@@ -205,7 +204,6 @@ public class SaisieCommand {
 							Command command = new ViewNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
-						args = null;
 						break;
 						
 					case "list":
@@ -221,7 +219,6 @@ public class SaisieCommand {
 							Command command = new ListNotesCommand(gestionNotes);
 							storeAndExecute(cmd, command);
 						}
-						args = null;
 						break;
 						
 					case "delete":
@@ -237,13 +234,11 @@ public class SaisieCommand {
 							Command command = new DeleteNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
-						args = null;
 						break;
 						
 					case "exit":
 					case "q":
 						exit = true;
-						args = null;
 						break;
 						
 
