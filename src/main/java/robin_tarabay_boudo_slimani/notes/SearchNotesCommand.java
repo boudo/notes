@@ -9,12 +9,16 @@ package robin_tarabay_boudo_slimani.notes;
 
 public class SearchNotesCommand implements Command {
 
-	/**
-	 * Permet d'exécuter la commande de recherche
-	 */
+	private GestionNotes gestionNotes;
+	private String mot;
+	
+	
+	public SearchNotesCommand(GestionNotes a,String n) {
+		this.gestionNotes = a;
+		this.mot = n;
+	}
 	public void execute() {
-		// TODO Auto-generated method stub
-		
+		gestionNotes.search(mot);
 	}
 
 }

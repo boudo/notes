@@ -1,5 +1,7 @@
 package robin_tarabay_boudo_slimani.notes;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -184,7 +186,7 @@ public class SaisieCommand {
 						}
 						else
 						{
-							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).context(context).project(projet).build());
+							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).date(new Date(System.currentTimeMillis())).context(context).project(projet).build());
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
@@ -231,6 +233,21 @@ public class SaisieCommand {
 						{
 //							System.out.println("else");
 							Command command = new DeleteNotesCommand(gestionNotes,note);
+							storeAndExecute(note+" "+cmd, command);
+						}
+						break;
+						
+					case "search":
+					case "s":
+						if(this.commands.containsKey(note+" "+cmd))
+						{
+//							System.out.println("if");
+							executeCommand(note+" "+cmd);
+						}
+						else
+						{
+//							System.out.println("else");
+							Command command = new SearchNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
 						break;

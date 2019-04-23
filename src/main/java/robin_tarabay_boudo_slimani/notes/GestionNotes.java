@@ -1,6 +1,8 @@
 package robin_tarabay_boudo_slimani.notes;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -52,6 +54,7 @@ public class GestionNotes
 				String s = "";
 				String index = "";
 				String titre = "";
+				Date date = null;
 				String project = "";
 				String contexte = "";
 				boolean b = true;
@@ -66,16 +69,23 @@ public class GestionNotes
 					        		try( FileInputStream fs = new FileInputStream (new File(repertoire, liste[i]));
 					                        Scanner scanner = new Scanner(fs))
 					                {
+					        			Pattern p = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{4}");
+					        			
 //					        			System.out.println(repertoire + "/"+liste[i]);
 					                    while(scanner.hasNext())
 					                    {
 //					                    	System.out.println("while");
 					                        index = scanner.next();
+					                        Matcher m = p.matcher(index);
 					                        if(index.equals("=") && b)
 					                        {
 					                        	titre = scanner.nextLine();
 //					                        	System.out.println("titre = " + titre);
 					                        	b = false;
+					                        }
+					                        else if(m.find()) {
+					                        	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+					                        	date = sdf.parse(index);
 					                        }
 					                        else if(index.equals(":context:"))
 					                        {
@@ -104,11 +114,12 @@ public class GestionNotes
 //					                    System.out.println("\n fin if");
 					                }
 //		                        	System.out.println("\n fin de boucle");
-//					        		System.out.println("\n la note contien: \n" + "\n" + s);
+					        		System.out.println("\n la note contien: \n" + "\n" + s);
 					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre)
+					        																			.date(date)
 					        																			.context(contexte)
 					        																			.project(project)
-					        																			.contenuNote(s)
+					        																			.contenu(s)
 					        																			.build());
 					        		s = "";
 					        	}
@@ -263,6 +274,25 @@ public class GestionNotes
 		}
 		
 		
+	}
+	
+	public void search(String mot) {
+		Set<String> list = this.notes.keySet();
+		Iterator<String> iterator = list.iterator();
+		while(iterator.hasNext())
+		{
+			Object key = iterator.next();
+			if(this.notes.get(key).getNom().contains(mot)         ||
+			   this.notes.get(key).getContext().contains(mot)     ||
+			   this.notes.get(key).getProject().contains(mot)     ||
+			   this.notes.get(key).getContenu().contains(mot)
+					) {
+				System.out.println(this.notes.get(key).getNom());
+			}else {
+				System.out.println("Recherche introuvable");
+			}
+			
+		}
 	}
 		
 }
