@@ -35,7 +35,6 @@ public class GestionNotes
 	public GestionNotes()
 	{
 		this.notes = new HashMap<> ();
-		
 		try {
 			File fichier = new File("fc");
 			String path = fichier.getCanonicalPath();
@@ -46,93 +45,8 @@ public class GestionNotes
 			System.out.println("rep = "+rep.getCanonicalPath());
 			path += repertoire;
 			this.repertoire = path;
-			
-			File dossier = new File(repertoire);
-			
-			if(dossier.exists() && dossier.isDirectory())
-			{
-				String s = "";
-				String index = "";
-				String titre = "";
-				Date date = null;
-				String project = "";
-				String contexte = "";
-				boolean b = true;
-			    String liste[] = dossier.list();      
-				
-					    if (liste != null && liste.length != 0) {         
-					        for (int i = 0; i < liste.length; i++)
-					        {
-					        	if(liste[i].contains(".adoc"))
-					        	{
-//					        		System.out.println(liste[i]);
-					        		try( FileInputStream fs = new FileInputStream (new File(repertoire, liste[i]));
-					                        Scanner scanner = new Scanner(fs))
-					                {
-					        			Pattern p = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{4}");
-					        			
-//					        			System.out.println(repertoire + "/"+liste[i]);
-					                    while(scanner.hasNext())
-					                    {
-//					                    	System.out.println("while");
-					                        index = scanner.next();
-					                        Matcher m = p.matcher(index);
-					                        if(index.equals("=") && b)
-					                        {
-					                        	titre = scanner.nextLine();
-//					                        	System.out.println("titre = " + titre);
-					                        	b = false;
-					                        }
-					                        else if(m.find()) {
-					                        	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-					                        	date = sdf.parse(index);
-					                        }
-					                        else if(index.equals(":context:"))
-					                        {
-					                        	contexte = scanner.nextLine();
-//					                        	System.out.println("contexte = " + project);
-					                        }
-					                        else if(index.equals(":project:"))
-					                        {
-					                        	project = scanner.nextLine();
-//					                        	System.out.println("project = " + project);
-					                        }
-					                        else
-					                        {
-					                        	s += index;
-					                        	if(scanner.hasNext())
-					                        	{
-					                        		s += scanner.nextLine() + "\n";
-					                        	}
-//					                        	System.out.println("la note contien: \n" + "\n" + s);
-//					                        	System.out.println("else");
-					                        }
-					                        
-					                    }
-					                    fs.close();
-					                    scanner.close();
-//					                    System.out.println("\n fin if");
-					                }
-//		                        	System.out.println("\n fin de boucle");
-					        		System.out.println("\n la note contien: \n" + "\n" + s);
-					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre)
-					        																			.date(date)
-					        																			.context(contexte)
-					        																			.project(project)
-					        																			.contenu(s)
-					        																			.build());
-					        		s = "";
-					        	}
-					        }
-					    }
-			}
-			else {
-				
-			}
-		}
-		catch(Exception e)
-		{
-			e.getMessage();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 	
@@ -288,11 +202,103 @@ public class GestionNotes
 			   this.notes.get(key).getContenu().contains(mot)
 					) {
 				System.out.println(this.notes.get(key).getNom());
-			}else {
-				System.out.println("Recherche introuvable");
 			}
 			
 		}
 	}
 		
+	public void actualiserTable() {
+		try {
+			this.notes.clear();
+			File dossier = new File(repertoire);
+			
+			if(dossier.exists() && dossier.isDirectory())
+			{
+				String s = "";
+				String index = "";
+				String titre = "";
+				Date date = null;
+				String project = "";
+				String contexte = "";
+				boolean b = true;
+			    String liste[] = dossier.list();      
+				
+					    if (liste != null && liste.length != 0) {         
+					        for (int i = 0; i < liste.length; i++)
+					        {
+					        	if(liste[i].contains(".adoc"))
+					        	{
+//					        		System.out.println(liste[i]);
+					        		try( FileInputStream fs = new FileInputStream (new File(repertoire, liste[i]));
+					                        Scanner scanner = new Scanner(fs))
+					                {
+					        			Pattern p = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{4}");
+					        			
+//					        			System.out.println(repertoire + "/"+liste[i]);
+					                    while(scanner.hasNext())
+					                    {
+//					                    	System.out.println("while");
+					                        index = scanner.next();
+					                        Matcher m = p.matcher(index);
+					                        if(index.equals("=") && b)
+					                        {
+					                        	titre = scanner.nextLine();
+//					                        	System.out.println("titre = " + titre);
+					                        	b = false;
+					                        }
+					                        else if(m.find()) {
+					                        	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+					                        	date = sdf.parse(index);
+					                        }
+					                        else if(index.equals(":context:"))
+					                        {
+					                        	contexte = scanner.nextLine();
+//					                        	System.out.println("contexte = " + project);
+					                        }
+					                        else if(index.equals(":project:"))
+					                        {
+					                        	project = scanner.nextLine();
+//					                        	System.out.println("project = " + project);
+					                        }
+					                        else
+					                        {
+					                        	s += index;
+					                        	if(scanner.hasNext())
+					                        	{
+					                        		s += scanner.nextLine() + "\n";
+					                        	}
+//					                        	System.out.println("la note contien: \n" + "\n" + s);
+//					                        	System.out.println("else");
+					                        }
+					                        
+					                    }
+					                    fs.close();
+					                    scanner.close();
+//					                    System.out.println("\n fin if");
+					                }
+//		                        	System.out.println("\n fin de boucle");
+//					        		System.out.println("\n la note contien: \n" + "\n" + s);
+					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre)
+					        																			.date(date)
+					        																			.context(contexte)
+					        																			.project(project)
+					        																			.contenu(s)
+					        																			.build());
+					        		s = "";
+					        		b = true;
+					        	}
+					        }
+					    }
+			}
+			else {
+				
+			}
+		}
+		catch(Exception e)
+		{
+			e.getMessage();
+		}
+
+	}
+	
 }

@@ -148,16 +148,19 @@ public class SaisieCommand {
 		boolean init = true;
 		while(!exit && !q)
 		{
+			this.gestionNotes.actualiserTable();
 			if(args.length != 0 && init == true)
 			{
 				String cmd = args[0];
 				String note = "";
+				String avecEspace = "";
 				String projet = "";
 				String context = "";
 				if(args.length > 1) {
 					int i = 1;
 					while(i<args.length && !(args[i].equals("-c") || args[i].equals("-p"))) {
 						note = note + args[i];
+						avecEspace = avecEspace + args[i] + " ";
 						i=i+1;
 					}
 					while(i<args.length) {
@@ -247,7 +250,7 @@ public class SaisieCommand {
 						else
 						{
 //							System.out.println("else");
-							Command command = new SearchNotesCommand(gestionNotes,note);
+							Command command = new SearchNotesCommand(gestionNotes,avecEspace);
 							storeAndExecute(note+" "+cmd, command);
 						}
 						break;

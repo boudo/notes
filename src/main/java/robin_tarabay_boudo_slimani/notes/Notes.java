@@ -49,6 +49,7 @@ public static class NoteBuilder{
 		public NoteBuilder(String n)
 		{
 			nom = n;
+			contenu = "";
 		}
 		
 		/**
