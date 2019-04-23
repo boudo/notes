@@ -148,7 +148,6 @@ public class SaisieCommand {
 		{
 			if(args.length != 0 && init == true)
 			{
-				System.out.println("je suis la");
 				String cmd = args[0];
 				String note = "";
 				String projet = "";

@@ -2,8 +2,11 @@ package robin_tarabay_boudo_slimani.notes;
 
 import java.util.*;
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 
@@ -46,13 +49,68 @@ public class GestionNotes
 			
 			if(dossier.exists() && dossier.isDirectory())
 			{
+				String s = "";
+				String index = "";
+				String titre = "";
+				String project = "";
+				String contexte = "";
+				boolean b = true;
 			    String liste[] = dossier.list();      
 				
 					    if (liste != null && liste.length != 0) {         
-					        for (int i = 0; i < liste.length; i++) {
+					        for (int i = 0; i < liste.length; i++)
+					        {
 					        	if(liste[i].contains(".adoc"))
 					        	{
-					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(liste[i].substring(0, liste[i].length()-5)).build());
+//					        		System.out.println(liste[i]);
+					        		try( FileInputStream fs = new FileInputStream (new File(repertoire, liste[i]));
+					                        Scanner scanner = new Scanner(fs))
+					                {
+//					        			System.out.println(repertoire + "/"+liste[i]);
+					                    while(scanner.hasNext())
+					                    {
+//					                    	System.out.println("while");
+					                        index = scanner.next();
+					                        if(index.equals("=") && b)
+					                        {
+					                        	titre = scanner.nextLine();
+//					                        	System.out.println("titre = " + titre);
+					                        	b = false;
+					                        }
+					                        else if(index.equals(":context:"))
+					                        {
+					                        	contexte = scanner.nextLine();
+//					                        	System.out.println("contexte = " + project);
+					                        }
+					                        else if(index.equals(":project:"))
+					                        {
+					                        	project = scanner.nextLine();
+//					                        	System.out.println("project = " + project);
+					                        }
+					                        else
+					                        {
+					                        	s += index;
+					                        	if(scanner.hasNext())
+					                        	{
+					                        		s += scanner.nextLine() + "\n";
+					                        	}
+//					                        	System.out.println("la note contien: \n" + "\n" + s);
+//					                        	System.out.println("else");
+					                        }
+					                        
+					                    }
+					                    fs.close();
+					                    scanner.close();
+//					                    System.out.println("\n fin if");
+					                }
+//		                        	System.out.println("\n fin de boucle");
+//					        		System.out.println("\n la note contien: \n" + "\n" + s);
+					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre)
+					        																			.context(contexte)
+					        																			.project(project)
+					        																			.contenuNote(s)
+					        																			.build());
+					        		s = "";
 					        	}
 					        }
 					    }
@@ -93,7 +151,7 @@ public class GestionNotes
 		}
 		else
 		{
-			System.out.println(this.notes.size());
+//			System.out.println(this.notes.size());
 			System.out.println("Il n'y a aucune notes");
 		}
 	}

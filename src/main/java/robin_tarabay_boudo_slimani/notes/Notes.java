@@ -14,6 +14,7 @@ public class Notes {
 	private final String nom;
 	private final String project;
 	private final String context;
+	private final String contenu;
 	
 	
 	/**
@@ -25,6 +26,7 @@ public class Notes {
 		nom = builder.nom;
 		project = builder.project;
 		context = builder.context;
+		contenu = builder.contenu;
 	}
 	
 	/**
@@ -35,6 +37,7 @@ public static class NoteBuilder{
 		private String nom;
 		private String project;
 		private String context;
+		private String contenu;
 		
 		/**
 		 * Constructeur NoteBuilder par défaut
@@ -45,6 +48,7 @@ public static class NoteBuilder{
 			nom = n;
 			project = "";
 			context = "";
+			contenu = "";
 		}
 		
 		/**
@@ -66,6 +70,17 @@ public static class NoteBuilder{
 		public NoteBuilder context(String c)
 		{
 			context = c;
+			return this;
+		}
+		
+		/**
+		 * Permet d'ajouter un contenu à une note
+		 * @param ctn qui représente le contenu de la note
+		 * @return this qui retourne la note avec sontenu
+		 */
+		public NoteBuilder contenuNote(String ctn)
+		{
+			context = ctn;
 			return this;
 		}
 		
@@ -102,6 +117,14 @@ public String getProject() {
  */
 public String getContext() {
 	return context;
+}
+
+/**
+ * Récupère le contexte
+ * @return context : qui renvoie le context 
+ */
+public String getContenuNote() {
+	return contenu;
 }
 
 /**
