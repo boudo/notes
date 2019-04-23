@@ -2,7 +2,10 @@ package robin_tarabay_boudo_slimani.notes;
 
 import java.util.*;
 import java.awt.Desktop;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -62,6 +65,10 @@ public class GestionNotes
 		{
 			e.getMessage();
 		}
+	}
+	
+	public Map<String, Notes> getNotes() {
+		return notes;
 	}
 
 	/**
@@ -141,18 +148,27 @@ public class GestionNotes
 	 */
 	public void edit(String nom) {
 		
-		if(!this.notes.containsKey(nom))
-		{
-			this.notes.put(nom,new Notes.NoteBuilder(nom).build());
-//			System.out.println(this.notes.toString());
-		}
-		
-		
+
+//		if(!this.notes.containsKey(nom))
+//		{
+//			this.notes.put(nom,new Notes.NoteBuilder(nom).build());
+////			System.out.println(this.notes.toString());
+//		}
+
 		try
 		{
 			System.out.println("Edition de: " + nom + "....");
 			File note = new File (repertoire, nom +".adoc");
 			String laNote = note.getCanonicalPath();
+			if (!note.exists())
+			{
+				note.createNewFile();
+				FileWriter fw = new FileWriter(laNote);
+				BufferedWriter bw = new BufferedWriter(fw);
+				bw.write("= "+this.notes.get(nom).getNom()+"\n"+new SimpleDateFormat("dd/MM/yyyy").format(new Date())+"\n"+":context: "+this.notes.get(nom).getContext()+"\n"+":project: "+this.notes.get(nom).getProject());
+				bw.close();
+			}
+			
 			Runtime proc1 = Runtime.getRuntime();
 			proc1.exec("code " + laNote);
 		}catch (Exception e)

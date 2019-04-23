@@ -143,17 +143,38 @@ public class SaisieCommand {
 		boolean exit = false;
 		boolean q = false;
 		boolean affiche = true;
+		boolean init = true;
 		while(!exit && !q)
 		{
-			if(args != null && args.length != 0)
+			if(args.length != 0 && init == true)
 			{
-//				String s = saisie.nextLine();
+				//String s = saisie.nextLine();
 				String cmd = args[0];
 				String note = "";
-				if(args.length != 1)
-				{
-					 note = args[1];
+				String projet = "";
+				String context = "";
+				if(args.length > 1) {
+					int i = 1;
+					while(i<args.length && !(args[i].equals("-c") || args[i].equals("-p"))) {
+						note = note + args[i];
+						i=i+1;
+					}
+					while(i<args.length) {
+						if(args[i].equals("-c")) {
+							i=i+1;
+							context = args[i];
+						} 
+						if(args[i].equals("-p")) {
+							i=i+1;
+							projet = args[i];
+						}
+						i=i+1;
+					}
 				}
+				init = false;
+				affiche = false;
+				
+			
 //				System.out.println(cmd);
 //				System.out.println(note);
 				
@@ -176,6 +197,7 @@ public class SaisieCommand {
 						}
 						else
 						{
+							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).context(context).project(projet).build());
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
@@ -249,18 +271,31 @@ public class SaisieCommand {
 					affiche = false;
 				}
 				String note = "";
-				String cmd = saisie.next();
-				if(cmd != "ls" || cmd != "list")
-				{
-					 note = saisie.nextLine();
+				String projet = "";
+				String context = "";
+				String cmd = "";
+				String phrase = saisie.nextLine();
+				String delims = "[ ]+";
+				String[] tokens = phrase.split(delims);
+				cmd = tokens[0];
+				if(tokens.length > 1) {
+					int i = 1;
+					while(i<tokens.length && !(tokens[i].equals("-c") || tokens[i].equals("-p"))) {
+						note = note + tokens[i];
+						i=i+1;
+					}
+					while(i<tokens.length) {
+						if(tokens[i].equals("-c")) {
+							i=i+1;
+							context = tokens[i];							
+						} 
+						else if(tokens[i].equals("-p")) {
+							i=i+1;
+							projet = tokens[i];
+						}
+						i=i+1;
+					}
 				}
-//				System.out.println(cmd);
-//				System.out.println(note);
-				 if(note.length() != 0)
-				 {
-					 note = note.substring(1,note.length());
-				 }
-				
 				switch (cmd)
 				{
 					case "edit":
@@ -271,6 +306,7 @@ public class SaisieCommand {
 						}
 						else
 						{
+							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).context(context).project(projet).build());
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
