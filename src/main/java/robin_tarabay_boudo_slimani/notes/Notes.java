@@ -1,6 +1,6 @@
 package robin_tarabay_boudo_slimani.notes;
 
-
+import java.util.Date;
 
 /**
  * Notes.java est une classe représentant les notes crées par les utilisateurs
@@ -12,6 +12,7 @@ package robin_tarabay_boudo_slimani.notes;
 public class Notes {
 	
 	private final String nom;
+	private final Date date;
 	private final String project;
 	private final String context;
 	private final String contenu;
@@ -24,6 +25,7 @@ public class Notes {
 	public Notes(NoteBuilder builder)
 	{
 		nom = builder.nom;
+		date = builder.date;
 		project = builder.project;
 		context = builder.context;
 		contenu = builder.contenu;
@@ -34,7 +36,8 @@ public class Notes {
 	 */
 public static class NoteBuilder{
 		
-		private String nom;
+		private final String nom;
+		private Date date;
 		private String project;
 		private String context;
 		private String contenu;
@@ -46,10 +49,20 @@ public static class NoteBuilder{
 		public NoteBuilder(String n)
 		{
 			nom = n;
-			project = "";
-			context = "";
 			contenu = "";
 		}
+		
+		/**
+		 * Permet d'ajouter une date à une note
+		 * @param d qui représente la date de creation de la note
+		 * @return this qui retourne la note avec l'attribut date
+		 */
+		public NoteBuilder date(Date d)
+		{
+			this.date = d;
+			return this;
+		}
+		
 		
 		/**
 		 * Permet d'ajouter un project à une note
@@ -78,9 +91,9 @@ public static class NoteBuilder{
 		 * @param ctn qui représente le contenu de la note
 		 * @return this qui retourne la note avec sontenu
 		 */
-		public NoteBuilder contenuNote(String ctn)
+		public NoteBuilder contenu(String ctn)
 		{
-			context = ctn;
+			contenu = ctn;
 			return this;
 		}
 		
@@ -120,10 +133,18 @@ public String getContext() {
 }
 
 /**
+ * Récupère la date de création
+ * @return date : qui renvoie la date de création 
+ */
+public Date getDate() {
+	return date;
+}
+
+/**
  * Récupère le contexte
  * @return context : qui renvoie le context 
  */
-public String getContenuNote() {
+public String getContenu() {
 	return contenu;
 }
 
