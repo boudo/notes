@@ -157,10 +157,12 @@ public class SaisieCommand {
 				String projet = "";
 				String context = "";
 				if(args.length > 1) {
-					int i = 1;
+					note = note + args[1];
+					avecEspace = avecEspace + args[1];
+					int i = 2;
 					while(i<args.length && !(args[i].equals("-c") || args[i].equals("-p"))) {
 						note = note + args[i];
-						avecEspace = avecEspace + args[i] + " ";
+						avecEspace = avecEspace + " " + args[i];
 						i=i+1;
 					}
 					while(i<args.length) {
