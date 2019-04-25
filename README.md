@@ -35,6 +35,15 @@ Cette commande permet aussi de générer les résultats de checkstyle
 
 Pour créer ou éditer une note, l'utilisateur doit taper la commande suivante : "edit nom_de_la_note" ou "e nom_de_la_note" 
 
+Il a aussi la possibilité de rajouter 2 options qui sont les suivantes :
+
+-p : Pour spécifier un project
+-c : Pour spécifier un contexte
+
+Par exemple l'utilisateur peut taper ceci : "edit nom_de_la_note -c uvsq" ou "e nom_de_la_note -p notes" ou "edit nom_de_la_note -c uvsq -p notes"
+
+L'ordre des options n'a pas d'importance et on peut utiliser l'une sans l'autre.
+
 ###3)Visualiser une note
 
 Pour visualiser une note, l'utilisateur doit taper la commande suivante : "view nom_de_la_note" ou "v nom_de_la_note" 
@@ -49,7 +58,13 @@ Pour supprimer une note, l'utilisateur doit taper la commande suivante : "delete
 
 ###6)Rechercher un mot-clé
 
-Remarque : l'utilisateur peut aussi effectuer toutes ces actions en ligne de commande direct à l'exécution du programme par exemple : "java -jar target/notes-1.0-SNAPSHOT.jar edit Test" exécutera la commande edit .
+Pour rechercher un mot-clé, l'utilisateur doit taper la commande suivante : "search mot-clé" ou "s mot-clé".
+On peut par exemple rechercher aussi deux mots à la suite ou une phrase etc... comme ceci :
+"search test mot clé" ou "s test mot clé"
+
+###Remarque:
+
+l'utilisateur peut aussi effectuer toutes ces actions en ligne de commande direct à l'exécution du programme par exemple : "java -jar target/notes-1.0-SNAPSHOT.jar edit Test" exécutera la commande edit .
 
 ##III]Manuel Technique
 
