@@ -12,12 +12,12 @@ public class ListNotesCommand implements Command {
 	private GestionNotes gestionNotes;
 	
 	/**
-	 * Constructeur par défaut qui prend en argument App
-	 * @param a qui prend en paramètre App
+	 * Constructeur par défaut qui prend en argument GestionNotes
+	 * @param g qui prend en paramètre App
 	 */
-	public ListNotesCommand(GestionNotes a)
+	public ListNotesCommand(GestionNotes g)
 	{
-		this.gestionNotes = a;
+		this.gestionNotes = g;
 	}
 	
 	/**

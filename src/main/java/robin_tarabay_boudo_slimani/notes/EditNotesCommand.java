@@ -14,12 +14,12 @@ public class EditNotesCommand implements Command {
 	
 	/**
 	 * Constructeur par défaut
-	 * @param a qui prend en paramètre App
+	 * @param g qui prend en paramètre GestionNotes
 	 * @param n qui prend en paramètre un nom
 	 */
-	public EditNotesCommand(GestionNotes a,String n)
+	public EditNotesCommand(GestionNotes g,String n)
 	{
-		this.gestionNotes = a;
+		this.gestionNotes = g;
 		this.nom = n;
 	}
 

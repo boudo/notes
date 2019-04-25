@@ -2,6 +2,10 @@ package robin_tarabay_boudo_slimani.notes;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 
 
@@ -24,6 +28,26 @@ public class TestNotes {
 	}
 	
 	@Test
+	public void TestBuilderDefault2() {
+		
+		Notes test = new Notes.NoteBuilder("Ma première Note").build();
+		
+		assertEquals("", test.getContenu());
+	}
+	
+//	@Test
+//	public void TestBuilderDate() throws ParseException {
+//		
+//		Date d = null;
+//		String index = "22/06/1992";
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//    	d = sdf.parse(index);
+//		Notes test = new Notes.NoteBuilder("Ma première Note").date(d).build();
+//		
+//		assertEquals("Mon Jun 22 00:00:00 CEST 1992", test.getDate());
+//	}
+	
+	@Test
 	public void TestBuilderProject() {
 		
 		Notes test = new Notes.NoteBuilder("Ma première Note").project("work").build();
@@ -40,11 +64,20 @@ public class TestNotes {
 	}
 	
 	@Test
-	public void TestBuilderComplet() {
+	public void TestBuilderContenu() {
 		
-		Notes test = new Notes.NoteBuilder("Ma première Note").project("work").context("cds").build();
+		Notes test = new Notes.NoteBuilder("Ma première Note").contenu("contenu").build();
 		
-		assertEquals("Notes [nom=" + test.getNom() + ", project=" + test.getProject() + ", context=" + test.getContext() + "]", test.toString());
+		assertEquals("contenu", test.getContenu());
 	}
+	
+//	@Test
+//	public void TestBuilderComplet() {
+//		
+//		Notes test = new Notes.NoteBuilder("Ma première Note").date(d).project("work").context("cds").contenu("contenu").build();
+//		
+//		assertEquals("Notes [nom=" + test.getNom() + ",date=" + test.getDate() +", project=" + test.getProject() + ", context=" + test.getContext() + ", contenu="
+//				+ test.getContenu() + "]", test.toString());
+//	}
 
 }

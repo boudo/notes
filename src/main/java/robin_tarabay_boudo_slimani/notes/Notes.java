@@ -89,7 +89,7 @@ public static class NoteBuilder{
 		/**
 		 * Permet d'ajouter un contenu à une note
 		 * @param ctn qui représente le contenu de la note
-		 * @return this qui retourne la note avec sontenu
+		 * @return this qui retourne la note avec son contenu
 		 */
 		public NoteBuilder contenu(String ctn)
 		{
@@ -141,8 +141,8 @@ public Date getDate() {
 }
 
 /**
- * Récupère le contexte
- * @return context : qui renvoie le context 
+ * Récupère le contenu
+ * @return contenu : qui renvoie le contenu 
  */
 public String getContenu() {
 	return contenu;
@@ -154,7 +154,8 @@ public String getContenu() {
  */
 @Override
 public String toString() {
-	return "Notes [nom=" + nom + ", project=" + project + ", context=" + context + "]";
+	return "Notes [nom=" + nom + ", date=" + date + ", project=" + project + ", context=" + context + ", contenu="
+			+ contenu + "]";
 }
 
 }

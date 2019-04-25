@@ -1,7 +1,5 @@
 package robin_tarabay_boudo_slimani.notes;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -11,7 +9,6 @@ import java.util.*;
  * @version 1.0
  */
 
-
 public class SaisieCommand {
 	
 	private Scanner saisie;
@@ -20,13 +17,13 @@ public class SaisieCommand {
 	
 	/**
 	 * Constructeur par défaut
-	 * @param a qui prend en paramètre App
+	 * @param g qui prend en paramètre GestionNotes
 	 */
-	public SaisieCommand(GestionNotes a)
+	public SaisieCommand(GestionNotes g)
 	{
 		this.saisie = new Scanner(System.in);
 		this.commands = new HashMap<>();
-		this.gestionNotes = a;
+		this.gestionNotes = g;
 	}
 	
 	/**
@@ -69,6 +66,9 @@ public class SaisieCommand {
 		System.out.println("Que souhaitez-vous faire? ");
 	}
 	
+	/**
+	 * Permet d'afficher le design
+	 */
 	public void design()
 	{
 		System.out.println("\n" + 
@@ -89,6 +89,9 @@ public class SaisieCommand {
 				"");
 	}
 	
+	/**
+	 * Permet d'afficher le design1
+	 */
 	public void design1()
 	{
 		System.out.println("\n" + "\n" +
@@ -102,6 +105,9 @@ public class SaisieCommand {
 		"\n" + "\n");
 	}
 	
+	/**
+	 * Permet d'afficher le design2
+	 */
 	public void design2()
 	{
 		System.out.println("\n" + "\n" +
@@ -121,6 +127,9 @@ public class SaisieCommand {
 		"\n");
 	}
 	
+	/**
+	 * Permet d'afficher le design3
+	 */
 	public void design3()
 	{
 		System.out.println("\n" + "\n" +
@@ -139,6 +148,9 @@ public class SaisieCommand {
 		"\n");
 	}
 	
+	/**
+	 * Permet d'afficher le design4
+	 */
 	public void design4()
 	{
 		System.out.println("\n" + "\n" +

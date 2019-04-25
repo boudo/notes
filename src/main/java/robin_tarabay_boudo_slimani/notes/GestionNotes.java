@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 
 
 /**
- * GestionNotes.java : classe principale qui exécute le programme
+ * GestionNotes.java : Classe qui permet de gérer les différentes notes contenues dans le dossier Document
  * 
  * @author robin_tarabay_boudo_slimani
  * @version 1.0
@@ -20,10 +20,6 @@ import java.text.SimpleDateFormat;
 
 public class GestionNotes 
 {
-	/**
-	 * Fonction principale du programme 
-	 * @param args pour récupérer les commandes saisies par l'utilisateur
-	 */
 	private Map<String,Notes> notes;
 	private String repertoire = "Document";
 	
@@ -50,6 +46,10 @@ public class GestionNotes
 		}
 	}
 	
+	/**
+	 * Permet de récupérer les notes
+	 * @return notes qui renvoie les notes
+	 */
 	public Map<String, Notes> getNotes() {
 		return notes;
 	}
@@ -190,6 +190,10 @@ public class GestionNotes
 		
 	}
 	
+	/**
+	 * Fonction qui permet de rechercher un mot
+	 * @param mot qui prend en paramètre un mot à rechercher
+	 */
 	public void search(String mot)
 	{
 		System.out.println("le mot =" + mot);
@@ -209,6 +213,9 @@ public class GestionNotes
 		}
 	}
 		
+	/**
+	 * Fonction qui permet d'actualiser le contenu de la liste de notes en fonction du contenu du dossier
+	 */
 	public void actualiserNotes() {
 		try {
 //			this.notes.clear();
@@ -279,7 +286,7 @@ public class GestionNotes
 //					                    System.out.println("\n fin if");
 					                }
 //		                        	System.out.println("\n fin de boucle");
-					        		System.out.println("\n la note contien: \n" + "\n" + s);
+					        		System.out.println("\n la note contient: \n" + "\n" + s);
 					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre.substring(1, titre.length()))
 					        																			.date(date)
 					        																			.context(contexte)
@@ -303,6 +310,10 @@ public class GestionNotes
 
 	}
 
+	/**
+	 * Fonction qui permet d'initialiser une note à partir du dossier Document
+	 * @param note qui prend en paramètre une note
+	 */
 	public void initialiser(String note)
 	{
 		try {
@@ -398,6 +409,9 @@ public class GestionNotes
 
 	}
 	
+	/**
+	 * Fonction qui permet de mettre à jour l'application pour vérifier que tout est fonctionnel.
+	 */
 	public boolean miseAJour()
 	{
 		boolean misAjour = false;
