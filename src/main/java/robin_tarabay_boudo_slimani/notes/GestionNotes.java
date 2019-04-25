@@ -243,7 +243,7 @@ public class GestionNotes
 					                        if(index.equals("=") && b)
 					                        {
 					                        	titre = scanner.nextLine();
-//					                        	System.out.println("titre = " + titre);
+//					             bd8304e           	System.out.println("titre = " + titre);
 					                        	b = false;
 					                        }
 					                        else if(m.find()) {
@@ -291,7 +291,7 @@ public class GestionNotes
 					    }
 			}
 			else {
-				
+				 
 			}
 		}
 		catch(Exception e)
