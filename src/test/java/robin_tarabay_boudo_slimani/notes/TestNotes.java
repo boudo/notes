@@ -40,11 +40,11 @@ public class TestNotes {
 //		
 //		Date d = null;
 //		String index = "22/06/1992";
-//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 //    	d = sdf.parse(index);
 //		Notes test = new Notes.NoteBuilder("Ma première Note").date(d).build();
 //		
-//		assertEquals("Mon Jun 22 00:00:00 CEST 1992", test.getDate());
+//		assertEquals("22/06/1992", test.getDate());
 //	}
 	
 	@Test
