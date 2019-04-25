@@ -4,11 +4,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.Desktop;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 
@@ -40,11 +38,13 @@ public class GestionNotes
 			String path = fichier.getCanonicalPath();
 			path = path.substring(0, path.length() - 2);
 			
-			File rep = new File (path + repertoire);
+			File rep = new File (path, repertoire);
 			rep.mkdirs();
-			System.out.println("rep = "+rep.getCanonicalPath());
-			path += repertoire;
-			this.repertoire = path;
+//			System.out.println("rep = " + rep.getCanonicalPath());
+			this.repertoire = rep.getCanonicalPath();
+//			System.out.println("repert = " + repertoire);
+			actualiserNotes();
+			System.out.println(notes.toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -190,7 +190,9 @@ public class GestionNotes
 		
 	}
 	
-	public void search(String mot) {
+	public void search(String mot)
+	{
+		System.out.println("le mot =" + mot);
 		Set<String> list = this.notes.keySet();
 		Iterator<String> iterator = list.iterator();
 		while(iterator.hasNext())
@@ -207,9 +209,9 @@ public class GestionNotes
 		}
 	}
 		
-	public void actualiserTable() {
+	public void actualiserNotes() {
 		try {
-			this.notes.clear();
+//			this.notes.clear();
 			File dossier = new File(repertoire);
 			
 			if(dossier.exists() && dossier.isDirectory())
@@ -277,8 +279,8 @@ public class GestionNotes
 //					                    System.out.println("\n fin if");
 					                }
 //		                        	System.out.println("\n fin de boucle");
-//					        		System.out.println("\n la note contien: \n" + "\n" + s);
-					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre)
+					        		System.out.println("\n la note contien: \n" + "\n" + s);
+					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre.substring(1, titre.length()))
 					        																			.date(date)
 					        																			.context(contexte)
 					        																			.project(project)
@@ -299,6 +301,163 @@ public class GestionNotes
 			e.getMessage();
 		}
 
+	}
+
+	public void initialiser(String note)
+	{
+		try {
+//			this.notes.clear();
+			File dossier = new File(repertoire);
+			
+			if(dossier.exists() && dossier.isDirectory())
+			{
+				String s = "";
+				String index = "";
+				String titre = "";
+				Date date = null;
+				String project = "";
+				String contexte = "";
+				boolean b = true;
+			    String liste[] = dossier.list();      
+				
+					    if (liste != null && liste.length != 0) {         
+					        for (int i = 0; i < liste.length; i++)
+					        {
+					        	if(liste[i].contains(".adoc") && liste[i].substring(0, liste[i].length()-5).equals(note))
+					        	{
+//					        		System.out.println(liste[i]);
+					        		try( FileInputStream fs = new FileInputStream (new File(repertoire, liste[i]));
+					                        Scanner scanner = new Scanner(fs))
+					                {
+					        			Pattern p = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{4}");
+					        			
+//					        			System.out.println(repertoire + "/"+liste[i]);
+					                    while(scanner.hasNext())
+					                    {
+//					                    	System.out.println("while");
+					                        index = scanner.next();
+					                        Matcher m = p.matcher(index);
+					                        if(index.equals("=") && b)
+					                        {
+					                        	titre = scanner.nextLine();
+//					                        	System.out.println("titre = " + titre);
+					                        	b = false;
+					                        }
+					                        else if(m.find()) {
+					                        	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+					                        	date = sdf.parse(index);
+					                        }
+					                        else if(index.equals(":context:"))
+					                        {
+					                        	contexte = scanner.nextLine();
+//					                        	System.out.println("contexte = " + project);
+					                        }
+					                        else if(index.equals(":project:"))
+					                        {
+					                        	project = scanner.nextLine();
+//					                        	System.out.println("project = " + project);
+					                        }
+					                        else
+					                        {
+					                        	s += index;
+					                        	if(scanner.hasNext())
+					                        	{
+					                        		s += scanner.nextLine() + "\n";
+					                        	}
+//					                        	System.out.println("la note contien: \n" + "\n" + s);
+//					                        	System.out.println("else");
+					                        }
+					                        
+					                    }
+					                    fs.close();
+					                    scanner.close();
+//					                    System.out.println("\n fin if");
+					                }
+//		                        	System.out.println("\n fin de boucle");
+//					        		System.out.println("\n la note contien: \n" + "\n" + s);
+//					        		System.out.println("titre =" + titre);
+					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre.substring(1, titre.length()))
+					        																			.date(date)
+					        																			.context(contexte)
+					        																			.project(project)
+					        																			.contenu(s)
+					        																			.build());
+					        		break;
+					        	}
+					        }
+					    }
+			}
+			else {
+				
+			}
+		}
+		catch(Exception e)
+		{
+			e.getMessage();
+		}
+
+	}
+	
+	public boolean miseAJour()
+	{
+		boolean misAjour = false;
+//		System.out.println(repertoire);
+		File dossier = new File(repertoire);
+		
+		if(dossier.exists() && dossier.isDirectory())
+		{
+//			System.out.println("dans if 1");
+//			System.out.println(this.notes.toString());
+			String liste[] = dossier.list();
+			if(liste != null && liste.length != 0 && !this.notes.isEmpty())
+			{
+				List<String> listeDyn = new ArrayList<String>();
+				for(int i = 0; i < liste.length; i++)
+				{
+					if(liste[i].contains(".adoc"))
+		        	{
+						listeDyn.add(liste[i].substring(0, liste[i].length()-5));
+		        	}
+				}
+//				System.out.println("après for");
+				Map<String,Notes> tmp = new HashMap<> ();
+				tmp.putAll(notes);
+				Set<String> list = tmp.keySet();
+				Iterator<String> iterator = list.iterator();
+				String note = "";
+//				System.out.println("debut while");
+				while(iterator.hasNext())
+				{
+					Object key = iterator.next();
+					note = tmp.get(key).getNom();
+//					System.out.println("note =" + note);
+					if(!listeDyn.contains(note))
+					{
+//						System.out.println("debut if 2");
+						Notes o  = (Notes) this.notes.remove(note);
+						File html = new File (repertoire, note +".html");
+						if(html.exists() && html.isFile())
+						{
+							html.delete();
+						}
+						misAjour = true;
+						System.out.println( o.getNom() + " a été supprimer manuellement dans " + repertoire );
+						
+					}
+//					System.out.println("fin if 2");
+				}
+//				System.out.println("après while");
+			}
+			else
+			{
+				this.notes.clear();
+			}
+		}
+		else
+		{
+			this.notes.clear();
+		}
+		return misAjour;
 	}
 	
 }
