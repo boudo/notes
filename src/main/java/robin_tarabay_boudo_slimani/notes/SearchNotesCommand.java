@@ -12,11 +12,19 @@ public class SearchNotesCommand implements Command {
 	private GestionNotes gestionNotes;
 	private String mot;
 	
-	
-	public SearchNotesCommand(GestionNotes a,String n) {
-		this.gestionNotes = a;
+	/**
+	 * Constructeur par défaut 
+	 * @param g qui prend en paramètre GestionNotes
+	 * @param n qui prend en paramètre String
+	 */
+	public SearchNotesCommand(GestionNotes g,String n) {
+		this.gestionNotes = g;
 		this.mot = n;
 	}
+	
+	/**
+	 * Permet d'exécuter la commande de recherche
+	 */
 	public void execute() {
 		gestionNotes.search(mot);
 	}

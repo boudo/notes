@@ -15,12 +15,12 @@ public class ViewNotesCommand implements Command {
 	
 	/**
 	 * Constructeur ViewNotesCommand
-	 * @param a qui prend en paramètre App
+	 * @param g qui prend en paramètre GestionNotes
 	 * @param n qui prend en paramètre un nom
 	 */
-	public ViewNotesCommand(GestionNotes a,String n)
+	public ViewNotesCommand(GestionNotes g,String n)
 	{
-		this.gestionNotes = a;
+		this.gestionNotes = g;
 		this.nom = n;
 	}
 	

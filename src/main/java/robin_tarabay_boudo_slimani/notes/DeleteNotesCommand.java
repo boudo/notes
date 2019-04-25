@@ -15,12 +15,12 @@ public class DeleteNotesCommand implements Command {
 	
 	/**
 	 * Constructeur par défaut
-	 * @param a qui prend en paramètre App
+	 * @param g qui prend en paramètre GestionNotes
 	 * @param n qui prend en paramètre un nom
 	 */
-	public DeleteNotesCommand(GestionNotes a,String n)
+	public DeleteNotesCommand(GestionNotes g,String n)
 	{
-		this.gestionNotes = a;
+		this.gestionNotes = g;
 		this.nom = n;
 	}
 	

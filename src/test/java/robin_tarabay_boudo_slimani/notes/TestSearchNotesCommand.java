@@ -6,14 +6,14 @@ import org.junit.Test;
 
 public class TestSearchNotesCommand {
 
-//	@Test
-//	public void TestInstanceSearch() {
-//		
-//		App app = new App();
-//		String n = "test" ;
-//		SearchNotesCommand sea = new SearchNotesCommand(app,n);
-//		
-//		assertNotNull(sea);
-//	}
+	@Test
+	public void TestInstanceSearch() {
+		
+		GestionNotes gestionNotes = new GestionNotes();
+		String n = "test" ;
+		SearchNotesCommand sea = new SearchNotesCommand(gestionNotes,n);
+		
+		assertNotNull(sea);
+	}
 
 }

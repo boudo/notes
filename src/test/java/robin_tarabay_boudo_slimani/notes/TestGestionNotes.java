@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestApp {
+public class TestGestionNotes {
 
 	@Test
-	public void TestInstanceApp() {
+	public void TestInstanceGestionNotes() {
 		
 		GestionNotes gestionNotes = new GestionNotes();
 		
