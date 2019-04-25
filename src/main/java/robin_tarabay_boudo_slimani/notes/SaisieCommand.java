@@ -54,6 +54,7 @@ public class SaisieCommand {
 	 */
 	public void afficheInfo()
 	{
+		design();
 		design1();
 		design2();
 		design3();
@@ -66,6 +67,26 @@ public class SaisieCommand {
 		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier \n");
 		
 		System.out.println("Que souhaitez-vous faire? ");
+	}
+	
+	public void design()
+	{
+		System.out.println("\n" + 
+				"\n" + 
+				"		 __    __              __                         \n" + 
+				"		/  \\  /  |            /  |                        \n" + 
+				"		$$  \\ $$ |  ______   _$$ |_     ______    _______ \n" + 
+				"		$$$  \\$$ | /      \\ / $$   |   /      \\  /       |\n" + 
+				"		$$$$  $$ |/$$$$$$  |$$$$$$/   /$$$$$$  |/$$$$$$$/ \n" + 
+				"		$$ $$ $$ |$$ |  $$ |  $$ | __ $$    $$ |$$      \\ \n" + 
+				"		$$ |$$$$ |$$ \\__$$ |  $$ |/  |$$$$$$$$/  $$$$$$  |\n" + 
+				"		$$ | $$$ |$$    $$/   $$  $$/ $$       |/     $$/ \n" + 
+				"		$$/   $$/  $$$$$$/     $$$$/   $$$$$$$/ $$$$$$$/  \n" + 
+				"		                                                  \n" + 
+				"   		                                               \n" + 
+				"           		                                       \n" + 
+				"\n" + 
+				"");
 	}
 	
 	public void design1()
@@ -148,7 +169,8 @@ public class SaisieCommand {
 		boolean init = true;
 		while(!exit && !q)
 		{
-			this.gestionNotes.actualiserTable();
+//			this.gestionNotes.actualiserNotes();
+//			this.gestionNotes.MiseAJour();
 			if(args.length != 0 && init == true)
 			{
 				String cmd = args[0];
@@ -179,8 +201,12 @@ public class SaisieCommand {
 				}
 				init = false;
 				affiche = false;
-				
-					
+//				System.out.println("d note = " + note);
+//				note = note.substring(1, note.length());
+				if(this.gestionNotes.miseAJour())
+				{
+					this.commands.clear();
+				}
 				switch (cmd)
 				{
 					case "edit":
@@ -195,6 +221,7 @@ public class SaisieCommand {
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
+						this.gestionNotes.initialiser(note);
 						break;
 							
 					case "view":
@@ -240,6 +267,7 @@ public class SaisieCommand {
 							Command command = new DeleteNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
 						}
+						this.commands.remove(note+" "+cmd);
 						break;
 						
 					case "search":
