@@ -44,7 +44,7 @@ public class GestionNotes
 			this.repertoire = rep.getCanonicalPath();
 //			System.out.println("repert = " + repertoire);
 			actualiserNotes();
-			System.out.println(notes.toString());
+//			System.out.println(notes.toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -279,7 +279,7 @@ public class GestionNotes
 //					                    System.out.println("\n fin if");
 					                }
 //		                        	System.out.println("\n fin de boucle");
-					        		System.out.println("\n la note contien: \n" + "\n" + s);
+//					        		System.out.println("\n la note contien: \n" + "\n" + s);
 					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre.substring(1, titre.length()))
 					        																			.date(date)
 					        																			.context(contexte)
@@ -451,13 +451,17 @@ public class GestionNotes
 			else
 			{
 				this.notes.clear();
+				misAjour = true;
 			}
 		}
 		else
 		{
+			dossier.mkdirs();
 			this.notes.clear();
+			misAjour = true;
 		}
 		return misAjour;
 	}
+	
 	
 }

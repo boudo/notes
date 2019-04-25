@@ -167,10 +167,9 @@ public class SaisieCommand {
 		boolean q = false;
 		boolean affiche = true;
 		boolean init = true;
+		String tmpNote = "";
 		while(!exit && !q)
 		{
-//			this.gestionNotes.actualiserNotes();
-//			this.gestionNotes.MiseAJour();
 			if(args.length != 0 && init == true)
 			{
 				String cmd = args[0];
@@ -201,11 +200,14 @@ public class SaisieCommand {
 				}
 				init = false;
 				affiche = false;
-//				System.out.println("d note = " + note);
-//				note = note.substring(1, note.length());
 				if(this.gestionNotes.miseAJour())
 				{
 					this.commands.clear();
+				}
+				if(!tmpNote.equals(""))
+				{
+					this.gestionNotes.initialiser(tmpNote);
+					tmpNote = "";
 				}
 				switch (cmd)
 				{
@@ -214,14 +216,17 @@ public class SaisieCommand {
 						if(this.commands.containsKey(note+" "+cmd))
 						{
 							executeCommand(note+" "+cmd);
+							tmpNote = note;
 						}
 						else
 						{
 							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).date(new Date(System.currentTimeMillis())).context(context).project(projet).build());
 							Command command = new EditNotesCommand(gestionNotes,note);
 							storeAndExecute(note+" "+cmd, command);
+							tmpNote = note;
 						}
-						this.gestionNotes.initialiser(note);
+						
+//						System.out.println("tmpNote =" + tmpNote);
 						break;
 							
 					case "view":
@@ -297,7 +302,7 @@ public class SaisieCommand {
 					}
 				}
 			else
-			{
+			{   
 				if(affiche)
 				{
 					afficheInfo();
