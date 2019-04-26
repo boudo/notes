@@ -433,6 +433,7 @@ public class GestionNotes
 	
 	/**
 	 * Fonction qui permet de mettre à jour l'application pour vérifier que tout est fonctionnel.
+	 * @return misajour renvoie true ou false
 	 */
 	public boolean miseAJour()
 	{
