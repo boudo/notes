@@ -22,6 +22,8 @@ public class GestionNotes
 {
 	private Map<String,Notes> notes;
 	private String repertoire = "Document";
+//	private String navigateur;
+//	private String editeur;
 	
 	/**
 	 * Constructeur par défaut
@@ -57,79 +59,89 @@ public class GestionNotes
 	/**
 	 * Fonction qui permet de lister le contenu du dossier Document
 	 */
-	public void liste() {
+	public String liste() {
 		// foction de vérification
-		
+		String listeNote = "";
 		if(!this.notes.isEmpty()) {
 		
 			Set<String> list = this.notes.keySet();
 			Iterator<String> iterator = list.iterator();
-			System.out.println("--------------------------------------------------------------------------------");
-			System.out.println("Voici la liste de vos notes:\n");
+			listeNote = "--------------------------------------------------------------------------------\n";
+//			System.out.println("--------------------------------------------------------------------------------");
+			listeNote += "Voici la liste de vos notes:\n" + "\n";
+//			System.out.println("Voici la liste de vos notes:\n");
 			while(iterator.hasNext())
 			{
 				Object key = iterator.next();
-				System.out.println("+ " + this.notes.get(key).getNom());
+				listeNote += "+ " + this.notes.get(key).getNom() + "\n";
+//				System.out.println("+ " + this.notes.get(key).getNom());
 				
 			}
-			System.out.println("--------------------------------------------------------------------------------");
+			listeNote += "--------------------------------------------------------------------------------";
+//			System.out.println("--------------------------------------------------------------------------------");
 		}
 		else
 		{
 //			System.out.println(this.notes.size());
+			listeNote = "Il n'y a aucune notes";
 			System.out.println("Il n'y a aucune notes");
 		}
+		return listeNote;
 	}
 	
 	/**
 	 * Fonction qui permet de visualiser une note
 	 * @param nom qui prend en paramètre un nom
 	 */
-	public void view(String nom) {
-		
-	if(this.notes.containsKey(nom))
+	public String view(String nom)
 	{
-		System.out.println("Lecture de: " + nom + "....");
-		try
-		{	
-//			String nomDuSystem = System.getProperty("os.name");
-//			System.out.println(nomDuSystem);
-			
-			Runtime proc1 = Runtime.getRuntime();
-			File noteAdoc = new File (repertoire, nom +".adoc");
-			String laNoteAdoc = noteAdoc.getCanonicalPath();
-			proc1.exec("asciidoctor " + laNoteAdoc);
-			
-			File f = new File(repertoire, nom + ".html");
-			while(!f.exists() && !f.isFile())
-			{
-				
-			}
-			File noteHtml = new File (repertoire, nom +".html");
-//			String laNoteHtml = noteHtml.getCanonicalPath();
-			
-//			proc1.exec("firefox "+ path + repertoire + "/" + nom + ".html");
-//			proc1.exec("xdg-open " + laNoteHtml);
-			Desktop.getDesktop().browse(noteHtml.toURI());
-			
-		}catch (Exception e)
+		String lecture = "";
+		if(this.notes.containsKey(nom))
 		{
-			e.getMessage();
+			lecture = "Lecture de: " + nom + "....";
+//			System.out.println("Lecture de: " + nom + "....");
+			try
+			{	
+	//			String nomDuSystem = System.getProperty("os.name");
+	//			System.out.println(nomDuSystem);
+				
+				Runtime proc1 = Runtime.getRuntime();
+				File noteAdoc = new File (repertoire, nom +".adoc");
+				String laNoteAdoc = noteAdoc.getCanonicalPath();
+				proc1.exec("asciidoctor " + laNoteAdoc);
+				
+				File f = new File(repertoire, nom + ".html");
+				while(!f.exists() && !f.isFile())
+				{
+					
+				}
+				File noteHtml = new File (repertoire, nom +".html");
+	//			String laNoteHtml = noteHtml.getCanonicalPath();
+				
+	//			proc1.exec("firefox "+ path + repertoire + "/" + nom + ".html");
+	//			proc1.exec("xdg-open " + laNoteHtml);
+				Desktop.getDesktop().browse(noteHtml.toURI());
+				
+				
+			}catch (Exception e)
+			{
+				e.getMessage();
+			}
 		}
-	}
-		
-	else {
 			
-		System.out.println("Cette note n'existe pas");
-	}
-		
+		else
+		{
+			lecture = "Cette note n'existe pas";
+//			System.out.println("Cette note n'existe pas");
+		}
+		return lecture;
 	}
 	
 	/**
 	 * Fonction qui permet d'éditer une note ou d'en créer une
 	 * @param nom qui prend en paramètre un nom
 	 */
-	public void edit(String nom) {
+	public String edit(String nom) {
 		
 
 //		if(!this.notes.containsKey(nom))
@@ -137,10 +149,11 @@ public class GestionNotes
 //			this.notes.put(nom,new Notes.NoteBuilder(nom).build());
 ////			System.out.println(this.notes.toString());
 //		}
-
+		String edition = "";
 		try
 		{
-			System.out.println("Edition de: " + nom + "....");
+			edition = "Edition de: " + nom + "....";
+//			System.out.println("Edition de: " + nom + "....");
 			File note = new File (repertoire, nom +".adoc");
 			String laNote = note.getCanonicalPath();
 			if (!note.exists())
@@ -158,17 +171,20 @@ public class GestionNotes
 		{
 			e.getMessage();
 		}
+		return edition;
 	}
 	
 	/**
 	 * Fonction qui permet de supprimer une note 
 	 * @param nom qui prend en paramètre un nom
 	 */
-	public void delete(String nom) {
-		
+	public String delete(String nom)
+	{
+		String del = "";
 		if(!this.notes.containsKey(nom))
 		{
-			System.out.println("Ce Fichier n'existe pas");
+			del = "Ce Fichier n'existe pas";
+//			System.out.println("Ce Fichier n'existe pas");
 		}
 		
 		else {
@@ -179,24 +195,26 @@ public class GestionNotes
 				adoc.delete();
 				html.delete();
 				Notes o  = (Notes) this.notes.remove(nom);
-				System.out.println( o.getNom() + " a été supprimer" );
+				del = o.getNom() + " a été supprimer";
+//				System.out.println( o.getNom() + " a été supprimer" );
 			}catch (Exception e)
 			{
 				e.getMessage();
 			}
 			
 		}
-		
-		
+		return del;
 	}
 	
 	/**
 	 * Fonction qui permet de rechercher un mot
 	 * @param mot qui prend en paramètre un mot à rechercher
 	 */
-	public void search(String mot)
+	public String search(String mot)
 	{
-		System.out.println("le mot =" + mot);
+//		System.out.println("le mot =" + mot);
+		String sear = "--------------------------------------------------------------------------------\n";
+		sear += "Voici le resultat de la recherche:\n" + "\n";
 		Set<String> list = this.notes.keySet();
 		Iterator<String> iterator = list.iterator();
 		while(iterator.hasNext())
@@ -206,11 +224,15 @@ public class GestionNotes
 			   this.notes.get(key).getContext().contains(mot)     ||
 			   this.notes.get(key).getProject().contains(mot)     ||
 			   this.notes.get(key).getContenu().contains(mot)
-					) {
-				System.out.println(this.notes.get(key).getNom());
+					)
+			{
+				sear += "+ " + this.notes.get(key).getNom() + "\n";
+//				System.out.println(this.notes.get(key).getNom());
 			}
 			
 		}
+		sear += "--------------------------------------------------------------------------------";
+		return sear;
 	}
 		
 	/**
@@ -252,7 +274,7 @@ public class GestionNotes
 					                        if(index.equals("=") && b)
 					                        {
 					                        	titre = scanner.nextLine();
-//					             bd8304e           	System.out.println("titre = " + titre);
+//					                        	System.out.println("titre = " + titre);
 					                        	b = false;
 					                        }
 					                        else if(m.find()) {

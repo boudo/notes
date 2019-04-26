@@ -27,9 +27,9 @@ public class DeleteNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande de suppression
 	 */
-	public void execute() {
+	public String execute() {
 		
-		gestionNotes.delete(nom);
+		return gestionNotes.delete(nom);
 		
 	}
 

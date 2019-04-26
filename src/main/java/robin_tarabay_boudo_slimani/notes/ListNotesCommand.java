@@ -23,8 +23,8 @@ public class ListNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande de liste
 	 */
-	public void execute() {
-		gestionNotes.liste();
+	public String execute() {
+		return gestionNotes.liste();
 		
 	}
 

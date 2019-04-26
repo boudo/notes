@@ -27,9 +27,9 @@ public class ViewNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande de view qui affiche une note
 	 */
-	public void execute()
+	public String execute()
 	{
-		gestionNotes.view(nom);
+		return gestionNotes.view(nom);
 	}
 		
 }

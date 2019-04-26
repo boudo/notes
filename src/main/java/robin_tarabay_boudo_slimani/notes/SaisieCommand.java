@@ -31,19 +31,19 @@ public class SaisieCommand {
 	 * @param nom qui permet de passer un nom en paramètre
 	 * @param cmd qui permet de passer une cmd en paramètre
 	 */
-	public void storeAndExecute(String nom, Command cmd)
+	public String storeAndExecute(String nom, Command cmd)
 	{
 		this.commands.put(nom, cmd);
-	    this.commands.get(nom).execute();   
+	    return this.commands.get(nom).execute();   
 	}
 	
 	/**
 	 * Permet d'executer la commande
 	 * @param nom qui permet de passer un nom en paramètre
 	 */
-	public void executeCommand(String nom)
+	public String executeCommand(String nom)
 	{
-		this.commands.get(nom).execute();       
+		return this.commands.get(nom).execute();       
 	}
 	
 	/**
@@ -227,14 +227,14 @@ public class SaisieCommand {
 					case "e":
 						if(this.commands.containsKey(note+" "+cmd))
 						{
-							executeCommand(note+" "+cmd);
+							System.out.println( executeCommand(note+" "+cmd) );
 							tmpNote = note;
 						}
 						else
 						{
 							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).date(new Date(System.currentTimeMillis())).context(context).project(projet).build());
 							Command command = new EditNotesCommand(gestionNotes,note);
-							storeAndExecute(note+" "+cmd, command);
+							System.out.println( storeAndExecute(note+" "+cmd, command) );
 							tmpNote = note;
 						}
 						
@@ -246,13 +246,13 @@ public class SaisieCommand {
 						if(this.commands.containsKey(note+" "+cmd))
 						{
 //							System.out.println("if");
-							executeCommand(note+" "+cmd);
+							System.out.println( executeCommand(note+" "+cmd) );
 						}
 						else
 						{
 //							System.out.println("else");
 							Command command = new ViewNotesCommand(gestionNotes,note);
-							storeAndExecute(note+" "+cmd, command);
+							System.out.println( storeAndExecute(note+" "+cmd, command) );
 						}
 						break;
 						
@@ -261,13 +261,13 @@ public class SaisieCommand {
 						if(this.commands.containsKey(cmd))
 						{
 //							System.out.println("if");
-							executeCommand(cmd);
+							System.out.println( executeCommand(cmd) );
 						}
 						else
 						{
 //							System.out.println("else");
 							Command command = new ListNotesCommand(gestionNotes);
-							storeAndExecute(cmd, command);
+							System.out.println( storeAndExecute(cmd, command) );
 						}
 						break;
 						
@@ -276,13 +276,13 @@ public class SaisieCommand {
 						if(this.commands.containsKey(note+" "+cmd))
 						{
 //							System.out.println("if");
-							executeCommand(note+" "+cmd);
+							System.out.println( executeCommand(note+" "+cmd) );
 						}
 						else
 						{
 //							System.out.println("else");
 							Command command = new DeleteNotesCommand(gestionNotes,note);
-							storeAndExecute(note+" "+cmd, command);
+							System.out.println( storeAndExecute(note+" "+cmd, command) );
 						}
 						this.commands.remove(note+" "+cmd);
 						break;
@@ -292,13 +292,13 @@ public class SaisieCommand {
 						if(this.commands.containsKey(note+" "+cmd))
 						{
 //							System.out.println("if");
-							executeCommand(note+" "+cmd);
+							System.out.println( executeCommand(note+" "+cmd) );
 						}
 						else
 						{
 //							System.out.println("else");
 							Command command = new SearchNotesCommand(gestionNotes,avecEspace);
-							storeAndExecute(note+" "+cmd, command);
+							System.out.println( storeAndExecute(note+" "+cmd, command) );
 						}
 						break;
 						

@@ -27,9 +27,9 @@ public class EditNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande d'édition
 	 */
-	public void execute()
+	public String execute()
 	{
-		gestionNotes.edit(nom);
+		return gestionNotes.edit(nom);
 	}
 
 }

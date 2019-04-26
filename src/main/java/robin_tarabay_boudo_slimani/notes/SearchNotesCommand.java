@@ -25,8 +25,8 @@ public class SearchNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande de recherche
 	 */
-	public void execute() {
-		gestionNotes.search(mot);
+	public String execute() {
+		return gestionNotes.search(mot);
 	}
 
 }
