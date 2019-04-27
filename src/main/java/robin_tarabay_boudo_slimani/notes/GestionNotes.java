@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 
@@ -505,5 +506,16 @@ public class GestionNotes
 		return misAjour;
 	}
 	
+	public String javadoc()
+	{
+		Runtime proc1 = Runtime.getRuntime();
+		try
+		{
+			proc1.exec("firefox "+ "target/apidocs/" + "index.html");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Lecture de la documentation java de l'application...\n";
+	}
 	
 }

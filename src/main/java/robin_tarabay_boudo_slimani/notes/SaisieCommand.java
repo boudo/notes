@@ -309,6 +309,21 @@ public class SaisieCommand {
 						}
 						break;
 						
+					case "javadoc":
+					case "doc":
+						if(this.commands.containsKey(cmd))
+						{
+//							System.out.println("if");
+							System.out.println( executeCommand(cmd) );
+						}
+						else
+						{
+//							System.out.println("else");
+							Command command = new JavadocCommand(gestionNotes);
+							System.out.println( storeAndExecute(cmd, command) );
+						}
+						break;
+						
 					case "exit":
 					case "q":
 						exit = true;
@@ -337,5 +352,6 @@ public class SaisieCommand {
 		
 
 	}
+	
 	
 }
