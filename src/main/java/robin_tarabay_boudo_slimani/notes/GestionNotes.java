@@ -21,6 +21,8 @@ import java.text.SimpleDateFormat;
 
 public class GestionNotes 
 {
+
+
 	private Map<String,Notes> notes;
 	private String repertoire = "Document";
 //	private String navigateur;
@@ -56,7 +58,9 @@ public class GestionNotes
 	public Map<String, Notes> getNotes() {
 		return notes;
 	}
-
+	public String getRepertoire() {
+		return repertoire;
+	}
 	/**
 	 * Fonction qui permet de lister le contenu du dossier Document
 	 * @return le nom des notes présentes ou un message d'erreur
