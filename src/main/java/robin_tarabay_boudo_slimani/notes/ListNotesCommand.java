@@ -22,6 +22,7 @@ public class ListNotesCommand implements Command {
 	
 	/**
 	 * Permet d'exécuter la commande de liste
+	 * @return le nom des notes présentes ou un message d'erreur
 	 */
 	public String execute() {
 		return gestionNotes.liste();

@@ -24,6 +24,7 @@ public class SearchNotesCommand implements Command {
 	
 	/**
 	 * Permet d'exécuter la commande de recherche
+	 * @return la liste des fichiers contenant le mot-clé ou la phrase demandée
 	 */
 	public String execute() {
 		return gestionNotes.search(mot);

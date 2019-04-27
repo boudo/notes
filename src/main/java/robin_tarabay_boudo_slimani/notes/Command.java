@@ -10,6 +10,7 @@ package robin_tarabay_boudo_slimani.notes;
 public interface Command {
 	/**
 	 * Permet d'exécuter une commande
+	 * @return un string
 	 */
 	String execute();
 }

@@ -58,6 +58,7 @@ public class GestionNotes
 
 	/**
 	 * Fonction qui permet de lister le contenu du dossier Document
+	 * @return le nom des notes présentes ou un message d'erreur
 	 */
 	public String liste() {
 		// foction de vérification
@@ -84,7 +85,7 @@ public class GestionNotes
 		{
 //			System.out.println(this.notes.size());
 			listeNote = "Il n'y a aucune notes";
-			System.out.println("Il n'y a aucune notes");
+			//System.out.println("Il n'y a aucune notes");
 		}
 		return listeNote;
 	}
@@ -92,6 +93,7 @@ public class GestionNotes
 	/**
 	 * Fonction qui permet de visualiser une note
 	 * @param nom qui prend en paramètre un nom
+	 * @return le nom de la note consultée
 	 */
 	public String view(String nom)
 	{
@@ -140,6 +142,7 @@ public class GestionNotes
 	/**
 	 * Fonction qui permet d'éditer une note ou d'en créer une
 	 * @param nom qui prend en paramètre un nom
+	 * @return le nom de la note editée
 	 */
 	public String edit(String nom) {
 		
@@ -177,6 +180,7 @@ public class GestionNotes
 	/**
 	 * Fonction qui permet de supprimer une note 
 	 * @param nom qui prend en paramètre un nom
+	 * @return le nom de la note supprimée ou un message d'erreur
 	 */
 	public String delete(String nom)
 	{
@@ -209,6 +213,7 @@ public class GestionNotes
 	/**
 	 * Fonction qui permet de rechercher un mot
 	 * @param mot qui prend en paramètre un mot à rechercher
+	 * @return la liste des fichiers contenant le mot-clé ou la phrase demandée
 	 */
 	public String search(String mot)
 	{

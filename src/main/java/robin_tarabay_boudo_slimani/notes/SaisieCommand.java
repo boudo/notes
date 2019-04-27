@@ -30,6 +30,7 @@ public class SaisieCommand {
 	 * Permet de stocker et d'exécuter la commande
 	 * @param nom qui permet de passer un nom en paramètre
 	 * @param cmd qui permet de passer une cmd en paramètre
+	 * @return  le nom de la commande stockée et l'exécute
 	 */
 	public String storeAndExecute(String nom, Command cmd)
 	{
@@ -40,6 +41,7 @@ public class SaisieCommand {
 	/**
 	 * Permet d'executer la commande
 	 * @param nom qui permet de passer un nom en paramètre
+	 * @return  le nom de la commande exécutée
 	 */
 	public String executeCommand(String nom)
 	{
@@ -51,17 +53,22 @@ public class SaisieCommand {
 	 */
 	public void afficheInfo()
 	{
-		design();
+//		design();
 		design1();
-		design2();
-		design3();
-		design4();
+//		design2();
+//		design3();
+//		design4();
 		System.out.println("Bienvenue sur notre application de prises de Notes !\n\n"+
 		"	Voici les différentes commandes que vous pouvez effectuer:\n\n"+
 		"		-Créer ou éditer un Fichier: Tapez e ou edit suivi du nom de votre Fichier \n"+
+		"		-Créer ou éditer un Fichier avec un project et/ou contexte: Tapez e ou edit suivi du nom de votre Fichier suivi de -p nom de votre project et/ou -c nom de votre contexte(Ordre sans importance) \n"+
 		"		-Visualiser un Fichier: Tapez v ou view suivi du nom de votre Fichier\n"+
 		"		-Lister le contenu du répertoire Document: Tapez ls ou list\n"+
-		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier \n");
+		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
+		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
+		"		-Rechercher un mot-clé: Tapez s ou search suivi du mot ou de la phrase que vous recherchez dasn les notes présentes\n"+
+		"		-Quitter le programme: Tapez q ou exit pour fermer l'application\n\n"+
+		"		-Remarque: Toutes ces commandes sont aussi directement disponibles en ligne de commandes ! :)\n");
 		
 		System.out.println("Que souhaitez-vous faire? ");
 	}

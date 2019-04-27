@@ -26,6 +26,7 @@ public class DeleteNotesCommand implements Command {
 	
 	/**
 	 * Permet d'exécuter la commande de suppression
+	 * @return le nom de la note supprimée
 	 */
 	public String execute() {
 		

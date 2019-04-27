@@ -62,6 +62,18 @@ Pour rechercher un mot-clé, l'utilisateur doit taper la commande suivante : "se
 On peut par exemple rechercher aussi deux mots à la suite ou une phrase etc... comme ceci :
 "search test mot clé" ou "s test mot clé"
 
+###7)Quitter le programme
+
+Pour quitter l'application,l'utilisateur doit taper la commande suivante : "q" ou "exit".
+
+###8)Fichier index.adoc
+
+
+
+###9)Fichier de configuration
+
+
+
 ###Remarque:
 
 l'utilisateur peut aussi effectuer toutes ces actions en ligne de commande direct à l'exécution du programme par exemple : "java -jar target/notes-1.0-SNAPSHOT.jar edit Test" exécutera la commande edit .
