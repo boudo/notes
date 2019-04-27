@@ -95,9 +95,10 @@ public class GestionNotes
 	 * Fonction qui permet de visualiser une note
 	 * @param nom qui prend en paramètre un nom
 	 * @return le nom de la note consultée
+	 * @throws NoteManquantException une exception
 	 */
-	public String view(String nom)
-	{
+	public String view(String nom) throws NoteManquantException
+	{	
 		String lecture = "";
 		if(this.notes.containsKey(nom))
 		{
@@ -128,7 +129,7 @@ public class GestionNotes
 				
 			}catch (Exception e)
 			{
-				e.getMessage();
+				return e.getMessage();
 			}
 		}
 			
@@ -143,9 +144,12 @@ public class GestionNotes
 	/**
 	 * Fonction qui permet d'éditer une note ou d'en créer une
 	 * @param nom qui prend en paramètre un nom
+	 * @param projet qui prend en paramètre un attribut projet
+	 * @param context qui prend en paramètre un attribut contexte
 	 * @return le nom de la note editée
+	 * @throws NoteManquantException une exception
 	 */
-	public String edit(String nom) {
+	public String edit(String nom, String context, String projet) throws NoteManquantException {
 		
 
 //		if(!this.notes.containsKey(nom))
@@ -153,6 +157,7 @@ public class GestionNotes
 //			this.notes.put(nom,new Notes.NoteBuilder(nom).build());
 ////			System.out.println(this.notes.toString());
 //		}
+		
 		String edition = "";
 		try
 		{
@@ -165,7 +170,9 @@ public class GestionNotes
 				note.createNewFile();
 				FileWriter fw = new FileWriter(laNote);
 				BufferedWriter bw = new BufferedWriter(fw);
-				bw.write("= "+this.notes.get(nom).getNom()+"\n"+new SimpleDateFormat("dd/MM/yyyy").format(new Date())+"\n"+":context: "+this.notes.get(nom).getContext()+"\n"+":project: "+this.notes.get(nom).getProject());
+				bw.write("= "+ nom +"\n"+new SimpleDateFormat("dd/MM/yyyy").format(new Date())+"\n"+
+							":context: "+ context +"\n"+
+							":project: "+ projet);
 				bw.close();
 			}
 			
@@ -182,8 +189,9 @@ public class GestionNotes
 	 * Fonction qui permet de supprimer une note 
 	 * @param nom qui prend en paramètre un nom
 	 * @return le nom de la note supprimée ou un message d'erreur
+	 * @throws NoteManquantException une exception
 	 */
-	public String delete(String nom)
+	public String delete(String nom) throws NoteManquantException
 	{
 		String del = "";
 		if(!this.notes.containsKey(nom))
@@ -215,10 +223,11 @@ public class GestionNotes
 	 * Fonction qui permet de rechercher un mot
 	 * @param mot qui prend en paramètre un mot à rechercher
 	 * @return la liste des fichiers contenant le mot-clé ou la phrase demandée
+	 * @throws NoteManquantException une exception
 	 */
-	public String search(String mot)
+	public String search(String mot) throws NoteManquantException
 	{
-//		System.out.println("le mot =" + mot);
+//		System.out.println("le mot =" + mot);		
 		String sear = "--------------------------------------------------------------------------------\n";
 		sear += "Voici le resultat de la recherche:\n" + "\n";
 		Set<String> list = this.notes.keySet();

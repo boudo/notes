@@ -31,8 +31,9 @@ public class SaisieCommand {
 	 * @param nom qui permet de passer un nom en paramètre
 	 * @param cmd qui permet de passer une cmd en paramètre
 	 * @return  le nom de la commande stockée et l'exécute
+	 * @throws NoteManquantException une exception
 	 */
-	public String storeAndExecute(String nom, Command cmd)
+	public String storeAndExecute(String nom, Command cmd) throws NoteManquantException
 	{
 		this.commands.put(nom, cmd);
 	    return this.commands.get(nom).execute();   
@@ -42,8 +43,9 @@ public class SaisieCommand {
 	 * Permet d'executer la commande
 	 * @param nom qui permet de passer un nom en paramètre
 	 * @return  le nom de la commande exécutée
+	 * @throws NoteManquantException une exception
 	 */
-	public String executeCommand(String nom)
+	public String executeCommand(String nom) throws NoteManquantException
 	{
 		return this.commands.get(nom).execute();       
 	}
@@ -189,163 +191,169 @@ public class SaisieCommand {
 		String tmpNote = "";
 		while(!exit && !q)
 		{
-			if(args.length != 0 && init == true)
+			try
 			{
-				String cmd = args[0];
-				String note = "";
-				String avecEspace = "";
-				String projet = "";
-				String context = "";
-				if(args.length > 1) {
-					note = note + args[1];
-					avecEspace = avecEspace + args[1];
-					int i = 2;
-					while(i<args.length && !(args[i].equals("-c") || args[i].equals("-p"))) {
-						note = note + args[i];
-						avecEspace = avecEspace + " " + args[i];
-						i=i+1;
-					}
-					while(i<args.length) {
-						if(args[i].equals("-c")) {
+				if(args.length != 0 && init == true)
+				{
+					String cmd = args[0];
+					String note = "";
+					String avecEspace = "";
+					String projet = "";
+					String context = "";
+					if(args.length > 1) {
+						note = note + args[1];
+						avecEspace = avecEspace + args[1];
+						int i = 2;
+						while(i<args.length && !(args[i].equals("-c") || args[i].equals("-p"))) {
+							note = note + args[i];
+							avecEspace = avecEspace + " " + args[i];
+							i=i+1;
+						}
+						while(i<args.length) {
+							if(args[i].equals("-c")) {
+								i++;
+								context = args[i];
+							} 
+							if(args[i].equals("-p")) {
+								i++;
+								projet = args[i];
+							}
 							i++;
-							context = args[i];
-						} 
-						if(args[i].equals("-p")) {
-							i++;
-							projet = args[i];
 						}
-						i++;
 					}
-				}
-				init = false;
-				affiche = false;
-				if(this.gestionNotes.miseAJour())
-				{
-					this.commands.clear();
-				}
-				if(!tmpNote.equals(""))
-				{
-					this.gestionNotes.initialiser(tmpNote);
-					tmpNote = "";
-				}
-				switch (cmd)
-				{
-					case "edit":
-					case "e":
-						if(this.commands.containsKey(note+" "+cmd))
-						{
-							System.out.println( executeCommand(note+" "+cmd) );
-							tmpNote = note;
-						}
-						else
-						{
-							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).date(new Date(System.currentTimeMillis())).context(context).project(projet).build());
-							Command command = new EditNotesCommand(gestionNotes,note);
-							System.out.println( storeAndExecute(note+" "+cmd, command) );
-							tmpNote = note;
-						}
-						
-//						System.out.println("tmpNote =" + tmpNote);
-						break;
-							
-					case "view":
-					case "v":
-						if(this.commands.containsKey(note+" "+cmd))
-						{
-//							System.out.println("if");
-							System.out.println( executeCommand(note+" "+cmd) );
-						}
-						else
-						{
-//							System.out.println("else");
-							Command command = new ViewNotesCommand(gestionNotes,note);
-							System.out.println( storeAndExecute(note+" "+cmd, command) );
-						}
-						break;
-						
-					case "list":
-					case "ls":
-						if(this.commands.containsKey(cmd))
-						{
-//							System.out.println("if");
-							System.out.println( executeCommand(cmd) );
-						}
-						else
-						{
-//							System.out.println("else");
-							Command command = new ListNotesCommand(gestionNotes);
-							System.out.println( storeAndExecute(cmd, command) );
-						}
-						break;
-						
-					case "delete":
-					case "d":
-						if(this.commands.containsKey(note+" "+cmd))
-						{
-//							System.out.println("if");
-							System.out.println( executeCommand(note+" "+cmd) );
-						}
-						else
-						{
-//							System.out.println("else");
-							Command command = new DeleteNotesCommand(gestionNotes,note);
-							System.out.println( storeAndExecute(note+" "+cmd, command) );
-						}
-						this.commands.remove(note+" "+cmd);
-						break;
-						
-					case "search":
-					case "s":
-						if(this.commands.containsKey(note+" "+cmd))
-						{
-//							System.out.println("if");
-							System.out.println( executeCommand(note+" "+cmd) );
-						}
-						else
-						{
-//							System.out.println("else");
-							Command command = new SearchNotesCommand(gestionNotes,avecEspace);
-							System.out.println( storeAndExecute(note+" "+cmd, command) );
-						}
-						break;
-						
-					case "javadoc":
-					case "doc":
-						if(this.commands.containsKey(cmd))
-						{
-//							System.out.println("if");
-							System.out.println( executeCommand(cmd) );
-						}
-						else
-						{
-//							System.out.println("else");
-							Command command = new JavadocCommand(gestionNotes);
-							System.out.println( storeAndExecute(cmd, command) );
-						}
-						break;
-						
-					case "exit":
-					case "q":
-						exit = true;
-						break;
-						
-						
-
-					default:
-						break;
-					}
-				}
-			else
-			{   
-				if(affiche)
-				{
-					afficheInfo();
+					init = false;
 					affiche = false;
+					if(this.gestionNotes.miseAJour())
+					{
+						this.commands.clear();
+					}
+					if(!tmpNote.equals(""))
+					{
+						this.gestionNotes.initialiser(tmpNote);
+						tmpNote = "";
+					}
+					switch (cmd)
+					{
+						case "edit":
+						case "e":
+							if(this.commands.containsKey(note+" "+cmd))
+							{
+								System.out.println( executeCommand(note+" "+cmd) );
+								tmpNote = note;
+							}
+							else
+							{
+//								this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).date(new Date(System.currentTimeMillis())).context(context).project(projet).build());
+								Command command = new EditNotesCommand(gestionNotes,note, context, projet);
+								System.out.println( storeAndExecute(note+" "+cmd, command) );
+								tmpNote = note;
+							}
+							
+	//						System.out.println("tmpNote =" + tmpNote);
+							break;
+								
+						case "view":
+						case "v":
+							if(this.commands.containsKey(note+" "+cmd))
+							{
+	//							System.out.println("if");
+								System.out.println( executeCommand(note+" "+cmd) );
+							}
+							else
+							{
+	//							System.out.println("else");
+								Command command = new ViewNotesCommand(gestionNotes,note);
+								System.out.println( storeAndExecute(note+" "+cmd, command) );
+							}
+							break;
+							
+						case "list":
+						case "ls":
+							if(this.commands.containsKey(cmd))
+							{
+	//							System.out.println("if");
+								System.out.println( executeCommand(cmd) );
+							}
+							else
+							{
+	//							System.out.println("else");
+								Command command = new ListNotesCommand(gestionNotes);
+								System.out.println( storeAndExecute(cmd, command) );
+							}
+							break;
+							
+						case "delete":
+						case "d":
+							if(this.commands.containsKey(note+" "+cmd))
+							{
+	//							System.out.println("if");
+								System.out.println( executeCommand(note+" "+cmd) );
+							}
+							else
+							{
+	//							System.out.println("else");
+								Command command = new DeleteNotesCommand(gestionNotes,note);
+								System.out.println( storeAndExecute(note+" "+cmd, command) );
+							}
+							this.commands.remove(note+" "+cmd);
+							break;
+							
+						case "search":
+						case "s":
+							if(this.commands.containsKey(note+" "+cmd))
+							{
+	//							System.out.println("if");
+								System.out.println( executeCommand(note+" "+cmd) );
+							}
+							else
+							{
+	//							System.out.println("else");
+								Command command = new SearchNotesCommand(gestionNotes,avecEspace);
+								System.out.println( storeAndExecute(note+" "+cmd, command) );
+							}
+							break;
+							
+						case "javadoc":
+						case "doc":
+							if(this.commands.containsKey(cmd))
+							{
+	//							System.out.println("if");
+								System.out.println( executeCommand(cmd) );
+							}
+							else
+							{
+	//							System.out.println("else");
+								Command command = new JavadocCommand(gestionNotes);
+								System.out.println( storeAndExecute(cmd, command) );
+							}
+							break;
+							
+						case "exit":
+						case "q":
+							exit = true;
+							break;
+							
+							
+	
+						default:
+							break;
+						}
+					}
+				else
+				{   
+					if(affiche)
+					{
+						afficheInfo();
+						affiche = false;
+					}
+					String phrase = saisie.nextLine();
+					String delims = "[ ]+";
+					args = phrase.split(delims);
+					init = true;
 				}
-				String phrase = saisie.nextLine();
-				String delims = "[ ]+";
-				args = phrase.split(delims);
-				init = true;
+			}catch(NoteManquantException e)
+			{
+				System.out.println(e.getMessage());
 			}
 		}
 		saisie.close();

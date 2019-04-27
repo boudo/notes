@@ -27,8 +27,14 @@ public class DeleteNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande de suppression
 	 * @return le nom de la note supprimée
+	 * @throws NoteManquantException une exception
 	 */
-	public String execute() {
+	public String execute() throws NoteManquantException
+	{
+		if(nom.equals("") || nom.equals(" ") || nom == null)
+		{
+			throw new NoteManquantException("cette commande doit s'appliquer a une note\n");
+		}
 		
 		return gestionNotes.delete(nom);
 		

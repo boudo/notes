@@ -11,6 +11,7 @@ public interface Command {
 	/**
 	 * Permet d'exécuter une commande
 	 * @return un string
+	 * @throws NoteManquantException une exception
 	 */
-	String execute();
+	String execute() throws NoteManquantException;
 }

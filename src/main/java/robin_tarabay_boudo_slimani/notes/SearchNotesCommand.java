@@ -25,8 +25,15 @@ public class SearchNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande de recherche
 	 * @return la liste des fichiers contenant le mot-clé ou la phrase demandée
+	 * @throws NoteManquantException une exception
 	 */
-	public String execute() {
+	public String execute() throws NoteManquantException
+	{
+		if(mot.equals("") || mot.equals(" ") || mot == null)
+		{
+			throw new NoteManquantException("cette commande doit s'appliquer a une note\n");
+		}
+		
 		return gestionNotes.search(mot);
 	}
 

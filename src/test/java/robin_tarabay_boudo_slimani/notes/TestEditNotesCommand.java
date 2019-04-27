@@ -11,7 +11,7 @@ public class TestEditNotesCommand {
 		
 		GestionNotes gestionNotes = new GestionNotes();
 		String n = "test" ;
-		EditNotesCommand e = new EditNotesCommand(gestionNotes,n);
+		EditNotesCommand e = new EditNotesCommand(gestionNotes,n, null, null);
 		
 		assertNotNull(e);
 	}
