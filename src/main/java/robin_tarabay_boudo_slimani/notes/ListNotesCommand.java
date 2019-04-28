@@ -13,7 +13,7 @@ public class ListNotesCommand implements Command {
 	
 	/**
 	 * Constructeur par défaut qui prend en argument GestionNotes
-	 * @param g qui prend en paramètre App
+	 * @param g qui prend en paramètre GestionNotes
 	 */
 	public ListNotesCommand(GestionNotes g)
 	{

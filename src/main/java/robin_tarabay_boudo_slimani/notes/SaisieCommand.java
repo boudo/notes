@@ -68,7 +68,8 @@ public class SaisieCommand {
 		"		-Lister le contenu du répertoire Document: Tapez ls ou list\n"+
 		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
 		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
-		"		-Rechercher un mot-clé: Tapez s ou search suivi du mot ou de la phrase que vous recherchez dasn les notes présentes\n"+
+		"		-Rechercher un mot-clé: Tapez s ou search suivi du mot ou de la phrase que vous recherchez dans les notes présentes\n"+
+		"		-Consulter le manuel technique: Tapez doc ou javadoc pour consulter le manuel technique\n"+
 		"		-Quitter le programme: Tapez q ou exit pour fermer l'application\n\n"+
 		"		-Remarque: Toutes ces commandes sont aussi directement disponibles en ligne de commandes ! :)\n");
 		
