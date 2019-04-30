@@ -250,11 +250,63 @@ public class GestionNotes
 		Runtime proc1 = Runtime.getRuntime();
 		try
 		{
-			proc1.exec("firefox "+ "target/apidocs/" + "index.html");
+			proc1.exec(this.navigateur+ " target/apidocs/" + "index.html");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return "Lecture de la documentation java de l'application...\n";
+	}
+	
+	public String config()
+	{
+		
+		String conf = "";
+		try
+		{
+			conf = "Edition de: " + ".configuration" + "....";
+//			System.out.println("Edition de: " + nom + "....");
+			File note = new File (".configuration");
+			String laNote = note.getCanonicalPath();
+			
+			Runtime proc1 = Runtime.getRuntime();
+			proc1.exec(this.editeur + " " + laNote);
+		}catch (Exception e)
+		{
+			e.getMessage();
+		}
+		return conf;
+	}
+	
+	public String index()
+	{
+		String conf = "";
+		try
+		{
+			conf = "Lecture de: " + "index" + "....";
+			File test = new File ("index.html");
+			if(test.exists() && test.isFile())
+			{
+				test.delete();
+			}
+			Runtime proc1 = Runtime.getRuntime();
+			File noteAdoc = new File ("index.adoc");
+			String laNoteAdoc = noteAdoc.getCanonicalPath();
+			proc1.exec("asciidoctor " + laNoteAdoc);
+			
+			File f = new File("index.html");
+			while(!f.exists() && !f.isFile())
+			{
+				
+			}
+			File noteHtml = new File ("index.html");
+			String laNoteHtml = noteHtml.getCanonicalPath();
+			
+			proc1.exec(this.navigateur + " " + laNoteHtml);
+		}catch (Exception e)
+		{
+			e.getMessage();
+		}
+		return conf;
 	}
 
 
@@ -528,8 +580,8 @@ public class GestionNotes
 	
 	public void configGestionnaire()
 	{
-		System.out.println("\nsui dans sonfig\n");
-		try( FileInputStream fs = new FileInputStream (new File("configuration.conf"));
+//		System.out.println("\n sui dans sonfig\n");
+		try( FileInputStream fs = new FileInputStream (new File(".configuration"));
                 Scanner scanner = new Scanner(fs))
         {
 			String index ="";
@@ -542,19 +594,19 @@ public class GestionNotes
 				if(index.equals("REPERTOIRE:"))
 				{
 					rep = scanner.next();
-					System.out.println("rep =" + rep);
+//					System.out.println("rep =" + rep);
 					setRepertoire(rep);
 				}
 				else if(index.equals("EDITEUR:"))
 				{
 					editeur = scanner.next();
-					System.out.println("editeur =" + editeur);
+//					System.out.println("editeur =" + editeur);
 					setEditeur(editeur);
 				}
 				else if(index.equals("NAVIGATEUR:"))
 				{
 					navig = scanner.next();
-					System.out.println("navig =" + navig);
+//					System.out.println("navig =" + navig);
 					setNavigateur(navig);
 				}
 			}
@@ -598,7 +650,9 @@ public class GestionNotes
 		
 	}
 	
-	public void trier() throws IOException {
+	public void trier()
+	{
+		System.out.println("\n Tri \n");
 		List<Notes> listnotes = new ArrayList<Notes>();
 		Set<String> list = this.notes.keySet();
 		Iterator<String> iterator = list.iterator();
@@ -640,6 +694,7 @@ public class GestionNotes
 			}
 			FileWriter fw = new FileWriter(laNote);
 			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("= Index" + "\n" + "\n");
 			for(int i=0; i<listnotes.size(); i++) {
 				if(i == 0 || listnotes.get(i-1).getContext().compareTo(listnotes.get(i).getContext()) != 0) {
 					bw.write(". Context: "+listnotes.get(i).getContext()+"\n");

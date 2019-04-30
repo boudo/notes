@@ -1,6 +1,5 @@
 package robin_tarabay_boudo_slimani.notes;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -234,6 +233,7 @@ public class SaisieCommand {
 					if(!tmpNote.equals(""))
 					{
 						this.gestionNotes.initialiser(tmpNote);
+						gestionNotes.trier();
 						tmpNote = "";
 					}
 					switch (cmd)
@@ -332,6 +332,35 @@ public class SaisieCommand {
 							}
 							break;
 							
+						case "configuration":
+						case "conf":
+							if(this.commands.containsKey(cmd))
+							{
+	//							System.out.println("if");
+								System.out.println( executeCommand(cmd) );
+							}
+							else
+							{
+	//							System.out.println("else");
+								Command command = new ConfigurationCommand(gestionNotes);
+								System.out.println( storeAndExecute(cmd, command) );
+							}
+							break;
+							
+						case "index":
+							if(this.commands.containsKey(cmd))
+							{
+	//							System.out.println("if");
+								System.out.println( executeCommand(cmd) );
+							}
+							else
+							{
+	//							System.out.println("else");
+								Command command = new IndexCommand(gestionNotes);
+								System.out.println( storeAndExecute(cmd, command) );
+							}
+							break;
+							
 						case "exit":
 						case "q":
 							exit = true;
@@ -358,9 +387,6 @@ public class SaisieCommand {
 			}catch(NoteManquantException e)
 			{
 				System.out.println(e.getMessage());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 		saisie.close();
