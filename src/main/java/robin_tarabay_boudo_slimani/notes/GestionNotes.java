@@ -3,10 +3,11 @@ package robin_tarabay_boudo_slimani.notes;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.awt.Desktop;
+//import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -22,9 +23,9 @@ import java.text.SimpleDateFormat;
 public class GestionNotes 
 {
 	private Map<String,Notes> notes;
-	private String repertoire = "Document";
-//	private String navigateur;
-//	private String editeur;
+	private String repertoire;// = "Document";
+	private String navigateur;
+	private String editeur;
 	
 	/**
 	 * Constructeur par défaut
@@ -32,6 +33,7 @@ public class GestionNotes
 	public GestionNotes()
 	{
 		this.notes = new HashMap<> ();
+		configGestionnaire();
 		try {
 			File fichier = new File("fc");
 			String path = fichier.getCanonicalPath();
@@ -49,14 +51,8 @@ public class GestionNotes
 		}
 	}
 	
-	/**
-	 * Permet de récupérer les notes
-	 * @return notes qui renvoie les notes
-	 */
-	public Map<String, Notes> getNotes() {
-		return notes;
-	}
-
+/******************************************* COMMAND ************************************************/
+	
 	/**
 	 * Fonction qui permet de lister le contenu du dossier Document
 	 * @return le nom des notes présentes ou un message d'erreur
@@ -120,11 +116,10 @@ public class GestionNotes
 					
 				}
 				File noteHtml = new File (repertoire, nom +".html");
-	//			String laNoteHtml = noteHtml.getCanonicalPath();
+				String laNoteHtml = noteHtml.getCanonicalPath();
 				
-	//			proc1.exec("firefox "+ path + repertoire + "/" + nom + ".html");
-	//			proc1.exec("xdg-open " + laNoteHtml);
-				Desktop.getDesktop().browse(noteHtml.toURI());
+				proc1.exec(this.navigateur + " " + laNoteHtml);
+//				Desktop.getDesktop().browse(noteHtml.toURI());
 				
 				
 			}catch (Exception e)
@@ -177,7 +172,7 @@ public class GestionNotes
 			}
 			
 			Runtime proc1 = Runtime.getRuntime();
-			proc1.exec("code " + laNote);
+			proc1.exec(this.editeur + " " + laNote);
 		}catch (Exception e)
 		{
 			e.getMessage();
@@ -249,7 +244,22 @@ public class GestionNotes
 		sear += "--------------------------------------------------------------------------------";
 		return sear;
 	}
-		
+	
+	public String javadoc()
+	{
+		Runtime proc1 = Runtime.getRuntime();
+		try
+		{
+			proc1.exec("firefox "+ "target/apidocs/" + "index.html");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Lecture de la documentation java de l'application...\n";
+	}
+
+
+/******************************************* INITIALISATION ************************************************/
+
 	/**
 	 * Fonction qui permet d'actualiser le contenu de la liste de notes en fonction du contenu du dossier
 	 */
@@ -515,16 +525,77 @@ public class GestionNotes
 		return misAjour;
 	}
 	
-	public String javadoc()
+	
+	public void configGestionnaire()
 	{
-		Runtime proc1 = Runtime.getRuntime();
-		try
+		System.out.println("\nsui dans sonfig\n");
+		try( FileInputStream fs = new FileInputStream (new File("configuration.conf"));
+                Scanner scanner = new Scanner(fs))
+        {
+			String index ="";
+			String rep ="";
+			String editeur = "";
+			String navig ="";
+			while(scanner.hasNext())
+			{
+				index = scanner.next();
+				if(index.equals("REPERTOIRE:"))
+				{
+					rep = scanner.next();
+					System.out.println("rep =" + rep);
+					setRepertoire(rep);
+				}
+				else if(index.equals("EDITEUR:"))
+				{
+					editeur = scanner.next();
+					System.out.println("editeur =" + editeur);
+					setEditeur(editeur);
+				}
+				else if(index.equals("NAVIGATEUR:"))
+				{
+					navig = scanner.next();
+					System.out.println("navig =" + navig);
+					setNavigateur(navig);
+				}
+			}
+			
+        } catch (FileNotFoundException e)
 		{
-			proc1.exec("firefox "+ "target/apidocs/" + "index.html");
-		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (IOException e)
+		{
 			e.printStackTrace();
 		}
-		return "Lecture de la documentation java de l'application...\n";
+	}
+	
+	
+/******************************************* GET ET SET ************************************************/
+	
+	/**
+	 * Permet de récupérer les notes
+	 * @return notes qui renvoie les notes
+	 */
+	public Map<String, Notes> getNotes() {
+		return notes;
+	}
+	
+
+	public void setRepertoire(String rep)
+	{
+		this.repertoire = rep;
+		
+	}
+
+	public void setEditeur(String editeur)
+	{
+		this.editeur = editeur;
+		
+	}
+
+	public void setNavigateur(String navig)
+	{
+		this.navigateur = navig;
+		
 	}
 	
 }

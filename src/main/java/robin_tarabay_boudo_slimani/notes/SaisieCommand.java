@@ -26,6 +26,7 @@ public class SaisieCommand {
 		this.gestionNotes = g;
 	}
 	
+	
 	/**
 	 * Permet de stocker et d'exécuter la commande
 	 * @param nom qui permet de passer un nom en paramètre
