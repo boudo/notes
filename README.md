@@ -73,11 +73,14 @@ Pour quitter l'application,l'utilisateur doit taper la commande suivante : "q" o
 
 ###9)Fichier index.adoc
 
-
+Pour consulter le fichier index.adoc dans le navigateur, l'utilisateur doit taper la commande suivante : "index".
+Cette commande va donc ouvrir dans le navigateur le fichier index.html et dans celui-ci 
+se trouve les notes triées par Contexte et Project.
 
 ###10)Fichier de configuration
 
-
+Pour modifier le fichier de configuration, l'utilisateur doit taper la commande suivante : "conf" ou "configuration".
+L'utilisateur pourra donc choisir le nom du répertoire dans lequel ses notes seront stockées,le navigateur par défaut qu'il souhaite utiliser et aussi l'éditeur qu'il souhaite utiliser.
 
 ###Remarque:
 
@@ -89,7 +92,3 @@ l'utilisateur peut aussi effectuer toutes ces actions en ligne de commande direc
 L'utilisateur doit se mettre dans le dossier "target/apidocs/" puis ouvrir index.html.
 Ou sinon il peut aussi accéder directement au manuel technique via l'application en tapant la commande suivante : "javadoc" ou "doc".
 Le détail de chaque méthode de chaque classe et le détail des classes seront présentes.
-
-  
-
-

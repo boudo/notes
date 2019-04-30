@@ -71,6 +71,8 @@ public class SaisieCommand {
 		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
 		"		-Rechercher un mot-clé: Tapez s ou search suivi du mot ou de la phrase que vous recherchez dans les notes présentes\n"+
 		"		-Consulter le manuel technique: Tapez doc ou javadoc pour consulter le manuel technique\n"+
+		"		-Consulter le fichier index: Tapez index pour afficher les notes triées par context,project et date \n"+
+		"		-Modifier le fichier de configuration: Tapez conf ou configuration pour pouvoir modifier le fichier de configuration selon vos préférences\n"+
 		"		-Quitter le programme: Tapez q ou exit pour fermer l'application\n\n"+
 		"		-Remarque: Toutes ces commandes sont aussi directement disponibles en ligne de commandes ! :)\n");
 		
