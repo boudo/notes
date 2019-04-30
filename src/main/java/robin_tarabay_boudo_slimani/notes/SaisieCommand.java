@@ -1,5 +1,6 @@
 package robin_tarabay_boudo_slimani.notes;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -227,6 +228,7 @@ public class SaisieCommand {
 					if(this.gestionNotes.miseAJour())
 					{
 						this.commands.clear();
+						gestionNotes.trier();
 					}
 					if(!tmpNote.equals(""))
 					{
@@ -355,6 +357,9 @@ public class SaisieCommand {
 			}catch(NoteManquantException e)
 			{
 				System.out.println(e.getMessage());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		saisie.close();
