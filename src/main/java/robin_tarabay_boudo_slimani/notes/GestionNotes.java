@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 public class GestionNotes 
 {
 	private Map<String,Notes> notes;
+	private String repRacine;
 	private String repertoire;// = "Document";
 	private String navigateur;
 	private String editeur;
@@ -34,21 +35,22 @@ public class GestionNotes
 	{
 		this.notes = new HashMap<> ();
 		configGestionnaire();
-		try {
-			File fichier = new File("fc");
-			String path = fichier.getCanonicalPath();
-			path = path.substring(0, path.length() - 2);
-			
-			File rep = new File (path, repertoire);
-			rep.mkdirs();
-//			System.out.println("rep = " + rep.getCanonicalPath());
-			this.repertoire = rep.getCanonicalPath();
-//			System.out.println("repert = " + repertoire);
+		creerRepertoire();
+//		try {
+//			File fichier = new File("fc");
+//			String path = fichier.getCanonicalPath();
+//			path = path.substring(0, path.length() - 2);
+//			
+//			File rep = new File (path, repertoire);
+//			rep.mkdirs();
+////			System.out.println("rep = " + rep.getCanonicalPath());
+//			this.repertoire = rep.getCanonicalPath();
+////			System.out.println("repert = " + repertoire);
 			actualiserNotes();
-//			System.out.println(notes.toString());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+////			System.out.println(notes.toString());
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 	}
 	
 /******************************************* COMMAND ************************************************/
@@ -311,7 +313,33 @@ public class GestionNotes
 
 
 /******************************************* INITIALISATION ************************************************/
-
+	
+	
+	/**
+	 * Fonction qui permet de creer le dossier
+	 */
+	public void creerRepertoire()
+	{
+		try {
+			File fichier = new File("","fc");
+//			System.out.println(fichier.getAbsolutePath()); 
+			String path = fichier.getCanonicalPath();
+			path = path.substring(0, path.length() - 2);
+			
+			File repRacin = new File (path, this.repRacine);
+			String path1 = repRacin.getCanonicalPath();
+			File rep = new File (path1, this.repertoire);
+			rep.mkdirs();
+			this.repertoire = rep.getCanonicalPath();
+			actualiserNotes();
+		} catch (Exception e)
+		{
+			
+		}
+	}
+	
+	
+	
 	/**
 	 * Fonction qui permet d'actualiser le contenu de la liste de notes en fonction du contenu du dossier
 	 */
@@ -515,6 +543,7 @@ public class GestionNotes
 	public boolean miseAJour()
 	{
 		boolean misAjour = false;
+//		System.out.println("mise ajour");
 //		System.out.println(repertoire);
 		File dossier = new File(repertoire);
 		
@@ -570,7 +599,8 @@ public class GestionNotes
 		}
 		else
 		{
-			dossier.mkdirs();
+			creerRepertoire();
+//			dossier.mkdirs();
 			this.notes.clear();
 			misAjour = true;
 		}
@@ -578,20 +608,28 @@ public class GestionNotes
 	}
 	
 	
-	public void configGestionnaire()
+	public boolean configGestionnaire()
 	{
+		boolean configG = false;
 //		System.out.println("\n sui dans sonfig\n");
 		try( FileInputStream fs = new FileInputStream (new File(".configuration"));
                 Scanner scanner = new Scanner(fs))
         {
 			String index ="";
 			String rep ="";
+			String repRacin ="";
 			String editeur = "";
 			String navig ="";
 			while(scanner.hasNext())
 			{
 				index = scanner.next();
-				if(index.equals("REPERTOIRE:"))
+				if(index.equals("RACINE:"))
+				{
+					repRacin = scanner.next();
+//					System.out.println("repRacin =" + repRacin);
+					setRepRacine(repRacin);
+				}
+				else if(index.equals("REPERTOIRE:"))
 				{
 					rep = scanner.next();
 //					System.out.println("rep =" + rep);
@@ -611,6 +649,7 @@ public class GestionNotes
 				}
 			}
 			
+			configG = true;
         } catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
@@ -618,11 +657,13 @@ public class GestionNotes
 		{
 			e.printStackTrace();
 		}
+		return configG;
 	}
 	
 	
 /******************************************* GET ET SET ************************************************/
 	
+
 	/**
 	 * Permet de récupérer les notes
 	 * @return notes qui renvoie les notes
@@ -650,9 +691,14 @@ public class GestionNotes
 		
 	}
 	
+	public void setRepRacine(String repRacin)
+	{
+		this.repRacine = repRacin;
+	}
+	
 	public void trier()
 	{
-		System.out.println("\n Tri \n");
+//		System.out.println("\n Tri \n");
 		List<Notes> listnotes = new ArrayList<Notes>();
 		Set<String> list = this.notes.keySet();
 		Iterator<String> iterator = list.iterator();

@@ -230,7 +230,14 @@ public class SaisieCommand {
 						this.commands.clear();
 						gestionNotes.trier();
 					}
-					if(!tmpNote.equals(""))
+					if(tmpNote.equals("conf"))
+					{
+						this.gestionNotes.configGestionnaire();
+						this.gestionNotes.miseAJour();
+						tmpNote = "";
+					}
+					
+					else if(!tmpNote.equals("") && !tmpNote.equals("conf"))
 					{
 						this.gestionNotes.initialiser(tmpNote);
 						gestionNotes.trier();
@@ -344,7 +351,9 @@ public class SaisieCommand {
 	//							System.out.println("else");
 								Command command = new ConfigurationCommand(gestionNotes);
 								System.out.println( storeAndExecute(cmd, command) );
+								
 							}
+							tmpNote = "conf";
 							break;
 							
 						case "index":

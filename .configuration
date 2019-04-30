@@ -1,6 +1,8 @@
 /* Ceci est le fichier de configuration*/
 
-REPERTOIRE: Document
+RACINE: /home/babatche
+
+REPERTOIRE: /Bureau/UVSQ/UNIVERSITE/Veresailles/M1/S2/ProgGL/Projets/notes/Document
 
 EDITEUR: code
 
