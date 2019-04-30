@@ -62,15 +62,20 @@ Pour rechercher un mot-clé, l'utilisateur doit taper la commande suivante : "se
 On peut par exemple rechercher aussi deux mots à la suite ou une phrase etc... comme ceci :
 "search test mot clé" ou "s test mot clé"
 
-###7)Quitter le programme
+###7)Consulter le manuel technique
+
+Pour consulter le manuel technique, l'utilisateur doit taper la commande suivante : "javadoc" ou "doc".
+
+
+###8)Quitter le programme
 
 Pour quitter l'application,l'utilisateur doit taper la commande suivante : "q" ou "exit".
 
-###8)Fichier index.adoc
+###9)Fichier index.adoc
 
 
 
-###9)Fichier de configuration
+###10)Fichier de configuration
 
 
 
@@ -82,6 +87,7 @@ l'utilisateur peut aussi effectuer toutes ces actions en ligne de commande direc
 
   Pour cela,il faut consulter la JavaDoc de l'application.
 L'utilisateur doit se mettre dans le dossier "target/apidocs/" puis ouvrir index.html.
+Ou sinon il peut aussi accéder directement au manuel technique via l'application en tapant la commande suivante : "javadoc" ou "doc".
 Le détail de chaque méthode de chaque classe et le détail des classes seront présentes.
 
   

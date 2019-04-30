@@ -32,7 +32,7 @@ public class ViewNotesCommand implements Command {
 	{
 		if(nom.equals("") || nom.equals(" ") || nom == null)
 		{
-			throw new NoteManquantException("cette commande doit s'appliquer a une note\n");
+			throw new NoteManquantException("cette commande doit s'appliquer à une note\n");
 		}
 		
 		return gestionNotes.view(nom);

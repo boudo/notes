@@ -31,7 +31,7 @@ public class SearchNotesCommand implements Command {
 	{
 		if(mot.equals("") || mot.equals(" ") || mot == null)
 		{
-			throw new NoteManquantException("cette commande doit s'appliquer a une note\n");
+			throw new NoteManquantException("cette commande doit s'appliquer à un mot-clé,une phrase ou plusieurs mots.\n");
 		}
 		
 		return gestionNotes.search(mot);

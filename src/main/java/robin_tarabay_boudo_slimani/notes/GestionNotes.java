@@ -598,4 +598,62 @@ public class GestionNotes
 		
 	}
 	
+	public void trier() throws IOException {
+		List<Notes> listnotes = new ArrayList<Notes>();
+		Set<String> list = this.notes.keySet();
+		Iterator<String> iterator = list.iterator();
+		while(iterator.hasNext())
+		{
+			Object key = iterator.next();
+			listnotes.add(this.notes.get(key));
+		}
+		//System.out.println(listnotes.toString()+"\n\n");
+		Collections.sort(listnotes, new Comparator<Notes>() {
+		    @Override
+		    public int compare(Notes n1, Notes n2) {
+		    	return n1.getNom().compareTo(n2.getNom());
+		    }
+		});
+		Collections.sort(listnotes, new Comparator<Notes>() {
+		    @Override
+		    public int compare(Notes n1, Notes n2) {
+		    	if(n1.getContext().compareTo(n2.getContext()) == 0 && n1.getProject().compareTo(n2.getProject()) == 0){
+		    		Calendar calendar1 = new GregorianCalendar();
+			        calendar1.setTime(n1.getDate());
+			        Calendar calendar2 = new GregorianCalendar();
+			        calendar2.setTime(n2.getDate());
+		    		return calendar1.get(Calendar.MONTH) - calendar2.get(Calendar.MONTH);
+		    	} else if(n1.getContext().compareTo(n2.getContext()) == 0) {
+		    		return n1.getProject().compareTo(n2.getProject());
+		    	} else {
+		    		return n1.getContext().compareTo(n2.getContext());
+		    	}
+		    }
+		});
+		//System.out.println(listnotes.toString());
+		try {
+			File note = new File ("index.adoc");
+			String laNote = note.getCanonicalPath();
+			if (!note.exists())
+			{
+				note.createNewFile();
+			}
+			FileWriter fw = new FileWriter(laNote);
+			BufferedWriter bw = new BufferedWriter(fw);
+			for(int i=0; i<listnotes.size(); i++) {
+				if(i == 0 || listnotes.get(i-1).getContext().compareTo(listnotes.get(i).getContext()) != 0) {
+					bw.write(". Context: "+listnotes.get(i).getContext()+"\n");
+				}
+				if(i == 0 || listnotes.get(i-1).getProject().compareTo(listnotes.get(i).getProject()) != 0) {
+					bw.write(".. Project: "+listnotes.get(i).getProject()+"\n");
+				}
+				bw.write("*** "+listnotes.get(i).getNom()+"\n");
+			}
+			bw.close();
+		}catch (Exception e) {
+			e.getMessage();
+		}
+		
+	}
+	
 }

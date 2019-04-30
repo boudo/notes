@@ -1,5 +1,6 @@
 package robin_tarabay_boudo_slimani.notes;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -69,7 +70,8 @@ public class SaisieCommand {
 		"		-Lister le contenu du répertoire Document: Tapez ls ou list\n"+
 		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
 		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
-		"		-Rechercher un mot-clé: Tapez s ou search suivi du mot ou de la phrase que vous recherchez dasn les notes présentes\n"+
+		"		-Rechercher un mot-clé: Tapez s ou search suivi du mot ou de la phrase que vous recherchez dans les notes présentes\n"+
+		"		-Consulter le manuel technique: Tapez doc ou javadoc pour consulter le manuel technique\n"+
 		"		-Quitter le programme: Tapez q ou exit pour fermer l'application\n\n"+
 		"		-Remarque: Toutes ces commandes sont aussi directement disponibles en ligne de commandes ! :)\n");
 		
@@ -227,6 +229,7 @@ public class SaisieCommand {
 					if(this.gestionNotes.miseAJour())
 					{
 						this.commands.clear();
+						gestionNotes.trier();
 					}
 					if(!tmpNote.equals(""))
 					{
@@ -355,6 +358,9 @@ public class SaisieCommand {
 			}catch(NoteManquantException e)
 			{
 				System.out.println(e.getMessage());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		saisie.close();
