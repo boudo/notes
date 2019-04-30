@@ -245,6 +245,10 @@ public class GestionNotes
 		return sear;
 	}
 	
+	/**
+	 * Fonction qui permet d'afficher la javadoc
+	 * @return la javadoc dans le navigateur
+	 */
 	public String javadoc()
 	{
 		Runtime proc1 = Runtime.getRuntime();
@@ -257,6 +261,10 @@ public class GestionNotes
 		return "Lecture de la documentation java de l'application...\n";
 	}
 	
+	/**
+	 * Fonction qui permet de modifier le fichier de configuration
+	 * @return le fichier de configuration
+	 */
 	public String config()
 	{
 		
@@ -277,6 +285,10 @@ public class GestionNotes
 		return conf;
 	}
 	
+	/**
+	 * Fonction qui permet de visualiser le fichier index.adoc dans le navigateur
+	 * @return le fichier index dans le navigateur
+	 */
 	public String index()
 	{
 		String conf = "";
@@ -577,7 +589,9 @@ public class GestionNotes
 		return misAjour;
 	}
 	
-	
+	/**
+	 * Fonction qui permet de créer le fichier de configuration
+	 */
 	public void configGestionnaire()
 	{
 //		System.out.println("\n sui dans sonfig\n");
@@ -631,25 +645,39 @@ public class GestionNotes
 		return notes;
 	}
 	
-
+	/**
+	 * Permet de modifier le repertoire
+	 * @param rep qui prend un nom de repertoire en argument
+	 */
 	public void setRepertoire(String rep)
 	{
 		this.repertoire = rep;
 		
 	}
 
+	/**
+	 * Permet de modifier l'editeur
+	 * @param editeur qui prend un nom d'editeur en argument
+	 */
 	public void setEditeur(String editeur)
 	{
 		this.editeur = editeur;
 		
 	}
 
+	/**
+	 * Permet de modifier le navigateur
+	 * @param navig qui prend un nom de navigateur en argument
+	 */
 	public void setNavigateur(String navig)
 	{
 		this.navigateur = navig;
 		
 	}
 	
+	/**
+	 * Fonction qui permet de trier dans le fichier index.adoc
+	 */
 	public void trier()
 	{
 		System.out.println("\n Tri \n");

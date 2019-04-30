@@ -1,5 +1,12 @@
 package robin_tarabay_boudo_slimani.notes;
 
+/**
+ * ConfigurationCommand.java : Classe permettant de modifier le fichier de configuration
+ * 
+ * @author robin_tarabay_boudo_slimani
+ * @version 1.0
+ */
+
 public class ConfigurationCommand implements Command {
 	
 	private GestionNotes gestionNotes;
@@ -19,8 +26,7 @@ public class ConfigurationCommand implements Command {
 	 */
 	@Override
 	public String execute()
-	{
-		
+	{	
 		return this.gestionNotes.config();
 	}
 

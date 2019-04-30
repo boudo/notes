@@ -1,5 +1,12 @@
 package robin_tarabay_boudo_slimani.notes;
 
+/**
+ * IndexCommand.java : Classe permettant de visualiser le fichier index.adoc
+ * 
+ * @author robin_tarabay_boudo_slimani
+ * @version 1.0
+ */
+
 public class IndexCommand implements Command {
 
 private GestionNotes gestionNotes;
@@ -19,8 +26,7 @@ private GestionNotes gestionNotes;
 	 */
 	@Override
 	public String execute()
-	{
-		
+	{		
 		return this.gestionNotes.index();
 	}
 
