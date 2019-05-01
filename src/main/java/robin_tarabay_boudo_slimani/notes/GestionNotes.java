@@ -32,6 +32,22 @@ public class GestionNotes
 	private String navigateur;
 	private String editeur;
 	
+	public String getRepRacine() {
+		return repRacine;
+	}
+
+	public String getRepertoire() {
+		return repertoire;
+	}
+
+	public String getNavigateur() {
+		return navigateur;
+	}
+
+	public String getEditeur() {
+		return editeur;
+	}
+
 	/**
 	 * Constructeur par défaut
 	 */

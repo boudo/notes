@@ -437,6 +437,21 @@ public class SaisieCommand {
 		
 
 	}
+
+
+	public Scanner getSaisie() {
+		return saisie;
+	}
+
+
+	public Map<String, Command> getCommands() {
+		return commands;
+	}
+
+
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
+	}
 	
 	
 }
