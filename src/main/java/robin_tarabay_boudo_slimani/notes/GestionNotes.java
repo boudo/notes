@@ -3,6 +3,9 @@ package robin_tarabay_boudo_slimani.notes;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import robin_tarabay_boudo_slimani.Exception.NoteManquantException;
+
 //import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;

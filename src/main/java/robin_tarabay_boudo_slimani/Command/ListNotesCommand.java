@@ -1,4 +1,7 @@
-package robin_tarabay_boudo_slimani.notes;
+package robin_tarabay_boudo_slimani.Command;
+
+import robin_tarabay_boudo_slimani.Interface.Command;
+import robin_tarabay_boudo_slimani.notes.GestionNotes;
 
 /**
  * ListNotesCommand.java : Classe permettant de lister les notes

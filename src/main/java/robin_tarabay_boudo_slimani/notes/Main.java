@@ -1,5 +1,7 @@
 package robin_tarabay_boudo_slimani.notes;
 
+import robin_tarabay_boudo_slimani.Command.SaisieCommand;
+
 /**
  * Main.java : Classe principale du Programme
  * 

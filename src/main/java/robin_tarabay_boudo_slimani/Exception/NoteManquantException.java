@@ -1,4 +1,4 @@
-package robin_tarabay_boudo_slimani.notes;
+package robin_tarabay_boudo_slimani.Exception;
 
 /**
  * NoteManquantException.java : Classe permettant de lever une exception lorsque l'utilisateur essaye d'utiliser une commande qui nécessite un nom de note.

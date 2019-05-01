@@ -1,4 +1,6 @@
-package robin_tarabay_boudo_slimani.notes;
+package robin_tarabay_boudo_slimani.Interface;
+
+import robin_tarabay_boudo_slimani.Exception.NoteManquantException;
 
 /**
  * Command.java : Interface Command
