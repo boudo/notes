@@ -88,6 +88,21 @@ public class SaisieCommand {
 		System.out.println("Que souhaitez-vous faire? ");
 	}
 	
+	public Scanner getSaisie() {
+		return saisie;
+	}
+
+
+	public Map<String, Command> getCommands() {
+		return commands;
+	}
+
+
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
+	}
+
+
 	/**
 	 * Permet d'afficher le design
 	 */
