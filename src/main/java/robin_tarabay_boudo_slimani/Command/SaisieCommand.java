@@ -2,8 +2,10 @@ package robin_tarabay_boudo_slimani.Command;
 
 import java.util.*;
 
+import robin_tarabay_boudo_slimani.Exception.CommandInexistantException;
 import robin_tarabay_boudo_slimani.Exception.NoteOuMotCleManquantException;
 import robin_tarabay_boudo_slimani.Exception.NotesOuMotClesInexistantException;
+import robin_tarabay_boudo_slimani.Exception.TropDargumentException;
 import robin_tarabay_boudo_slimani.Interface.Command;
 import robin_tarabay_boudo_slimani.notes.GestionNotes;
 
@@ -204,6 +206,7 @@ public class SaisieCommand {
 		{
 			try
 			{
+				
 				if(args.length != 0 && init == true)
 				{
 					String cmd = args[0];
@@ -211,6 +214,13 @@ public class SaisieCommand {
 					String avecEspace = "";
 					String projet = "";
 					String context = "";
+					
+					//TEST BUG Trop d'arguments
+					if(args.length > 6)
+					{
+						throw new TropDargumentException("Trop d'arguments !\n");
+					}
+					
 					if(args.length > 1) {
 						note = note + args[1];
 						avecEspace = avecEspace + args[1];
@@ -387,7 +397,8 @@ public class SaisieCommand {
 							
 	
 						default:
-							break;
+							throw new CommandInexistantException("Commande invalide !\n");
+							
 						}
 					}
 				else
@@ -408,6 +419,15 @@ public class SaisieCommand {
 				System.out.println(e.getMessage());
 			}
 			catch(NotesOuMotClesInexistantException e)
+			{
+				System.out.println(e.getMessage());
+			}
+			catch(CommandInexistantException e)
+			{
+				System.out.println(e.getMessage());
+				
+			}
+			catch(TropDargumentException e)
 			{
 				System.out.println(e.getMessage());
 			}
