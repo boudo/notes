@@ -26,6 +26,18 @@ public class SaisieCommand {
 		this.gestionNotes = g;
 	}
 	
+	public Scanner getSaisie() {
+		return saisie;
+	}
+
+	public Map<String, Command> getCommands() {
+		return commands;
+	}
+
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
+	}
+
 	/**
 	 * Permet de stocker et d'exécuter la commande
 	 * @param nom qui permet de passer un nom en paramètre
@@ -234,6 +246,7 @@ public class SaisieCommand {
 					case "e":
 						if(this.commands.containsKey(note+" "+cmd))
 						{
+						
 							System.out.println( executeCommand(note+" "+cmd) );
 							tmpNote = note;
 						}
@@ -241,7 +254,9 @@ public class SaisieCommand {
 						{
 							this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).date(new Date(System.currentTimeMillis())).context(context).project(projet).build());
 							Command command = new EditNotesCommand(gestionNotes,note);
+						
 							System.out.println( storeAndExecute(note+" "+cmd, command) );
+							System.out.println(this.getCommands().toString());
 							tmpNote = note;
 						}
 						
