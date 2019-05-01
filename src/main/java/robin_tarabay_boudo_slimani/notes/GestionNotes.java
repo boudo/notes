@@ -346,7 +346,7 @@ public class GestionNotes
 			actualiserNotes();
 		} catch (Exception e)
 		{
-			
+			e.getMessage();
 		}
 	}
 	
@@ -713,6 +713,10 @@ public class GestionNotes
 		
 	}
 	
+	/**
+	 * Permet de modifier la racine
+	 * @param repRacin qui prend un nom de racine en argument
+	 */
 	public void setRepRacine(String repRacin)
 	{
 		this.repRacine = repRacin;
