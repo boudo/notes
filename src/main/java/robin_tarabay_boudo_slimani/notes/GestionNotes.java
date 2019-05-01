@@ -40,21 +40,8 @@ public class GestionNotes
 		this.notes = new HashMap<> ();
 		configGestionnaire();
 		creerRepertoire();
-//		try {
-//			File fichier = new File("fc");
-//			String path = fichier.getCanonicalPath();
-//			path = path.substring(0, path.length() - 2);
-//			
-//			File rep = new File (path, repertoire);
-//			rep.mkdirs();
-////			System.out.println("rep = " + rep.getCanonicalPath());
-//			this.repertoire = rep.getCanonicalPath();
-////			System.out.println("repert = " + repertoire);
-			actualiserNotes();
-////			System.out.println(notes.toString());
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
+		actualiserNotes();
+		trier();
 	}
 	
 /******************************************* COMMAND ************************************************/
@@ -218,6 +205,7 @@ public class GestionNotes
 				Notes o  = (Notes) this.notes.remove(nom);
 				del = o.getNom() + " a été supprimer";
 //				System.out.println( o.getNom() + " a été supprimer" );
+				trier();
 			}catch (Exception e)
 			{
 				e.getMessage();
@@ -237,7 +225,8 @@ public class GestionNotes
 	public String search(String mot) throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{
 		
-//		System.out.println("le mot =" + mot);		
+//		System.out.println("le mot =" + mot);
+		boolean trouver = false;
 		String sear = "--------------------------------------------------------------------------------\n";
 		sear += "Voici le resultat de la recherche:\n" + "\n";
 		Set<String> list = this.notes.keySet();
@@ -252,15 +241,16 @@ public class GestionNotes
 					)
 			{
 				sear += "+ " + this.notes.get(key).getNom() + "\n";
+				trouver = true;
 //				System.out.println(this.notes.get(key).getNom());
-			}
-			//TEST EXCEPTION MARCHE PAS 
-			else {
-				throw new NotesOuMotClesInexistantException("Mot-clé Introuvable !\n");
 			}
 			
 		}
 		sear += "--------------------------------------------------------------------------------";
+		if(!trouver)
+		{
+			throw new NotesOuMotClesInexistantException("Mot-clé Introuvable !\n");
+		}
 		return sear;
 	}
 	
@@ -487,7 +477,8 @@ public class GestionNotes
 				boolean b = true;
 			    String liste[] = dossier.list();      
 				
-					    if (liste != null && liste.length != 0) {         
+					    if (liste != null && liste.length != 0)
+					    {         
 					        for (int i = 0; i < liste.length; i++)
 					        {
 					        	if(liste[i].contains(".adoc") && liste[i].substring(0, liste[i].length()-5).equals(note))
@@ -552,10 +543,8 @@ public class GestionNotes
 					        		break;
 					        	}
 					        }
+					        trier();
 					    }
-			}
-			else {
-				
 			}
 		}
 		catch(Exception e)
@@ -619,6 +608,10 @@ public class GestionNotes
 //					System.out.println("fin if 2");
 				}
 //				System.out.println("après while");
+				if(misAjour)
+				{
+					trier();
+				}
 			}
 			else
 			{
@@ -686,6 +679,14 @@ public class GestionNotes
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void modeConfiguration()
+	{
+		this.notes.clear();
+		configGestionnaire();
+		creerRepertoire();
+		actualiserNotes();
 	}
 	
 	

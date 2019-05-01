@@ -5,7 +5,7 @@ import java.util.*;
 import robin_tarabay_boudo_slimani.Exception.CommandInexistantException;
 import robin_tarabay_boudo_slimani.Exception.NoteOuMotCleManquantException;
 import robin_tarabay_boudo_slimani.Exception.NotesOuMotClesInexistantException;
-import robin_tarabay_boudo_slimani.Exception.TropDargumentException;
+//import robin_tarabay_boudo_slimani.Exception.TropDargumentException;
 import robin_tarabay_boudo_slimani.Interface.Command;
 import robin_tarabay_boudo_slimani.notes.GestionNotes;
 
@@ -216,10 +216,10 @@ public class SaisieCommand {
 					String context = "";
 					
 					//TEST BUG Trop d'arguments
-					if(args.length > 6)
-					{
-						throw new TropDargumentException("Trop d'arguments !\n");
-					}
+//					if(args.length > 6)
+//					{
+//						throw new TropDargumentException("Trop d'arguments !\n");
+//					}
 					
 					if(args.length > 1) {
 						note = note + args[1];
@@ -247,19 +247,20 @@ public class SaisieCommand {
 					if(this.gestionNotes.miseAJour())
 					{
 						this.commands.clear();
-						gestionNotes.trier();
+//						gestionNotes.trier();
 					}
 					if(tmpNote.equals("conf"))
 					{
-						this.gestionNotes.configGestionnaire();
-						this.gestionNotes.miseAJour();
+//						System.out.println("\n dans if de conf \n");
+						this.commands.clear();
+						this.gestionNotes.modeConfiguration();
 						tmpNote = "";
 					}
 					
 					else if(!tmpNote.equals("") && !tmpNote.equals("conf"))
 					{
 						this.gestionNotes.initialiser(tmpNote);
-						gestionNotes.trier();
+//						gestionNotes.trier();
 						tmpNote = "";
 					}
 					switch (cmd)
@@ -414,23 +415,15 @@ public class SaisieCommand {
 					init = true;
 				}
 			}
-			catch(NoteOuMotCleManquantException e)
+			catch(NoteOuMotCleManquantException | NotesOuMotClesInexistantException | CommandInexistantException e)
 			{
 				System.out.println(e.getMessage());
 			}
-			catch(NotesOuMotClesInexistantException e)
-			{
-				System.out.println(e.getMessage());
-			}
-			catch(CommandInexistantException e)
-			{
-				System.out.println(e.getMessage());
-				
-			}
-			catch(TropDargumentException e)
-			{
-				System.out.println(e.getMessage());
-			}
+
+//			catch(TropDargumentException e)
+//			{
+//				System.out.println(e.getMessage());
+//			}
 			
 		}
 		saisie.close();
