@@ -6,7 +6,7 @@ package robin_tarabay_boudo_slimani.Exception;
  * @version 1.0
  */
 
-public class NotesInexistantException extends Exception {
+public class NotesOuMotClesInexistantException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -14,7 +14,7 @@ public class NotesInexistantException extends Exception {
 	 * Constructeur par Défaut
 	 * @param message qui prend un message en argument
 	 */
-	public NotesInexistantException(String message) {
+	public NotesOuMotClesInexistantException(String message) {
 		super(message);
 	}
 

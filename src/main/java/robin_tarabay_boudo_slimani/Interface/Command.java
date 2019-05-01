@@ -1,6 +1,7 @@
 package robin_tarabay_boudo_slimani.Interface;
 
-import robin_tarabay_boudo_slimani.Exception.NoteManquantException;
+import robin_tarabay_boudo_slimani.Exception.NoteOuMotCleManquantException;
+import robin_tarabay_boudo_slimani.Exception.NotesOuMotClesInexistantException;
 
 /**
  * Command.java : Interface Command
@@ -13,7 +14,8 @@ public interface Command {
 	/**
 	 * Permet d'exécuter une commande
 	 * @return un string
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	String execute() throws NoteManquantException;
+	String execute() throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException;
 }

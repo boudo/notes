@@ -4,7 +4,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import robin_tarabay_boudo_slimani.Exception.NoteManquantException;
+import robin_tarabay_boudo_slimani.Exception.NoteOuMotCleManquantException;
+import robin_tarabay_boudo_slimani.Exception.NotesOuMotClesInexistantException;
 
 //import java.awt.Desktop;
 import java.io.BufferedWriter;
@@ -61,8 +62,9 @@ public class GestionNotes
 	/**
 	 * Fonction qui permet de lister le contenu du dossier Document
 	 * @return le nom des notes présentes ou un message d'erreur
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String liste() {
+	public String liste() throws NotesOuMotClesInexistantException {
 		// foction de vérification
 		String listeNote = "";
 		if(!this.notes.isEmpty()) {
@@ -86,7 +88,9 @@ public class GestionNotes
 		else
 		{
 //			System.out.println(this.notes.size());
-			listeNote = "Il n'y a aucune notes";
+			
+			throw new NotesOuMotClesInexistantException("Aucune Notes !\n");
+			//listeNote = "Il n'y a aucune notes";
 			//System.out.println("Il n'y a aucune notes");
 		}
 		return listeNote;
@@ -96,9 +100,10 @@ public class GestionNotes
 	 * Fonction qui permet de visualiser une note
 	 * @param nom qui prend en paramètre un nom
 	 * @return le nom de la note consultée
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String view(String nom) throws NoteManquantException
+	public String view(String nom) throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{	
 		String lecture = "";
 		if(this.notes.containsKey(nom))
@@ -135,7 +140,8 @@ public class GestionNotes
 			
 		else
 		{
-			lecture = "Cette note n'existe pas";
+			throw new NotesOuMotClesInexistantException("ce Fichier n'existe pas !\n");
+			//lecture = "Cette note n'existe pas";
 //			System.out.println("Cette note n'existe pas");
 		}
 		return lecture;
@@ -147,9 +153,9 @@ public class GestionNotes
 	 * @param projet qui prend en paramètre un attribut projet
 	 * @param context qui prend en paramètre un attribut contexte
 	 * @return le nom de la note editée
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
 	 */
-	public String edit(String nom, String context, String projet) throws NoteManquantException {
+	public String edit(String nom, String context, String projet) throws NoteOuMotCleManquantException {
 		
 
 //		if(!this.notes.containsKey(nom))
@@ -189,14 +195,16 @@ public class GestionNotes
 	 * Fonction qui permet de supprimer une note 
 	 * @param nom qui prend en paramètre un nom
 	 * @return le nom de la note supprimée ou un message d'erreur
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String delete(String nom) throws NoteManquantException
+	public String delete(String nom) throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{
 		String del = "";
 		if(!this.notes.containsKey(nom))
 		{
-			del = "Ce Fichier n'existe pas";
+			throw new NotesOuMotClesInexistantException("ce Fichier n'existe pas !\n");
+			//del = "Ce Fichier n'existe pas";
 //			System.out.println("Ce Fichier n'existe pas");
 		}
 		
@@ -223,10 +231,12 @@ public class GestionNotes
 	 * Fonction qui permet de rechercher un mot
 	 * @param mot qui prend en paramètre un mot à rechercher
 	 * @return la liste des fichiers contenant le mot-clé ou la phrase demandée
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String search(String mot) throws NoteManquantException
+	public String search(String mot) throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{
+		
 //		System.out.println("le mot =" + mot);		
 		String sear = "--------------------------------------------------------------------------------\n";
 		sear += "Voici le resultat de la recherche:\n" + "\n";
@@ -243,6 +253,10 @@ public class GestionNotes
 			{
 				sear += "+ " + this.notes.get(key).getNom() + "\n";
 //				System.out.println(this.notes.get(key).getNom());
+			}
+			//TEST EXCEPTION MARCHE PAS 
+			else {
+				throw new NotesOuMotClesInexistantException("Mot-clé Introuvable !\n");
 			}
 			
 		}

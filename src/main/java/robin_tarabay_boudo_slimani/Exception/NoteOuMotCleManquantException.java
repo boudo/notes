@@ -6,7 +6,7 @@ package robin_tarabay_boudo_slimani.Exception;
  * @author robin_tarabay_boudo_slimani
  * @version 1.0
  */
-public class NoteManquantException extends Exception {
+public class NoteOuMotCleManquantException extends Exception {
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -15,7 +15,7 @@ public class NoteManquantException extends Exception {
 	 * Constructeur par Défaut
 	 * @param message qui prend un message en argument
 	 */
-	public NoteManquantException(String message) {
+	public NoteOuMotCleManquantException(String message) {
 		super(message);
 	}
 }

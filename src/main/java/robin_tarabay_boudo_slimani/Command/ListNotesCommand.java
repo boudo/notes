@@ -1,5 +1,6 @@
 package robin_tarabay_boudo_slimani.Command;
 
+import robin_tarabay_boudo_slimani.Exception.NotesOuMotClesInexistantException;
 import robin_tarabay_boudo_slimani.Interface.Command;
 import robin_tarabay_boudo_slimani.notes.GestionNotes;
 
@@ -26,8 +27,9 @@ public class ListNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande de liste
 	 * @return le nom des notes présentes ou un message d'erreur
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String execute() {
+	public String execute() throws NotesOuMotClesInexistantException {
 		return gestionNotes.liste();
 		
 	}

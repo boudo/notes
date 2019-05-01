@@ -2,7 +2,8 @@ package robin_tarabay_boudo_slimani.Command;
 
 import java.util.*;
 
-import robin_tarabay_boudo_slimani.Exception.NoteManquantException;
+import robin_tarabay_boudo_slimani.Exception.NoteOuMotCleManquantException;
+import robin_tarabay_boudo_slimani.Exception.NotesOuMotClesInexistantException;
 import robin_tarabay_boudo_slimani.Interface.Command;
 import robin_tarabay_boudo_slimani.notes.GestionNotes;
 
@@ -36,9 +37,10 @@ public class SaisieCommand {
 	 * @param nom qui permet de passer un nom en paramètre
 	 * @param cmd qui permet de passer une cmd en paramètre
 	 * @return  le nom de la commande stockée et l'exécute
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String storeAndExecute(String nom, Command cmd) throws NoteManquantException
+	public String storeAndExecute(String nom, Command cmd) throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{
 		this.commands.put(nom, cmd);
 	    return this.commands.get(nom).execute();   
@@ -48,9 +50,10 @@ public class SaisieCommand {
 	 * Permet d'executer la commande
 	 * @param nom qui permet de passer un nom en paramètre
 	 * @return  le nom de la commande exécutée
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String executeCommand(String nom) throws NoteManquantException
+	public String executeCommand(String nom) throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{
 		return this.commands.get(nom).execute();       
 	}
@@ -399,10 +402,16 @@ public class SaisieCommand {
 					args = phrase.split(delims);
 					init = true;
 				}
-			}catch(NoteManquantException e)
+			}
+			catch(NoteOuMotCleManquantException e)
 			{
 				System.out.println(e.getMessage());
 			}
+			catch(NotesOuMotClesInexistantException e)
+			{
+				System.out.println(e.getMessage());
+			}
+			
 		}
 		saisie.close();
 		

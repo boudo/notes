@@ -1,6 +1,7 @@
 package robin_tarabay_boudo_slimani.Command;
 
-import robin_tarabay_boudo_slimani.Exception.NoteManquantException;
+import robin_tarabay_boudo_slimani.Exception.NoteOuMotCleManquantException;
+import robin_tarabay_boudo_slimani.Exception.NotesOuMotClesInexistantException;
 import robin_tarabay_boudo_slimani.Interface.Command;
 import robin_tarabay_boudo_slimani.notes.GestionNotes;
 
@@ -29,13 +30,14 @@ public class ViewNotesCommand implements Command {
 	
 	/**
 	 * Permet d'exécuter la commande de view qui affiche une note
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String execute() throws NoteManquantException
+	public String execute() throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{
 		if(nom.equals("") || nom.equals(" ") || nom == null)
 		{
-			throw new NoteManquantException("cette commande doit s'appliquer à une note\n");
+			throw new NoteOuMotCleManquantException("cette commande doit s'appliquer à une note\n");
 		}
 		
 		return gestionNotes.view(nom);

@@ -1,6 +1,7 @@
 package robin_tarabay_boudo_slimani.Command;
 
-import robin_tarabay_boudo_slimani.Exception.NoteManquantException;
+import robin_tarabay_boudo_slimani.Exception.NoteOuMotCleManquantException;
+import robin_tarabay_boudo_slimani.Exception.NotesOuMotClesInexistantException;
 import robin_tarabay_boudo_slimani.Interface.Command;
 import robin_tarabay_boudo_slimani.notes.GestionNotes;
 
@@ -29,13 +30,14 @@ public class SearchNotesCommand implements Command {
 	/**
 	 * Permet d'exécuter la commande de recherche
 	 * @return la liste des fichiers contenant le mot-clé ou la phrase demandée
-	 * @throws NoteManquantException une exception
+	 * @throws NoteOuMotCleManquantException une exception
+	 * @throws NotesOuMotClesInexistantException une exception
 	 */
-	public String execute() throws NoteManquantException
+	public String execute() throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{
 		if(mot.equals("") || mot.equals(" ") || mot == null)
 		{
-			throw new NoteManquantException("cette commande doit s'appliquer à un mot-clé,une phrase ou plusieurs mots.\n");
+			throw new NoteOuMotCleManquantException("cette commande doit s'appliquer à un mot-clé,une phrase ou plusieurs mots.\n");
 		}
 		
 		return gestionNotes.search(mot);
