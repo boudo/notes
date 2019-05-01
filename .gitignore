@@ -71,3 +71,6 @@ hs_err_pid*
 ##########################
 Document/
 *.html
+.configuration
+*.adoc
+*.html
