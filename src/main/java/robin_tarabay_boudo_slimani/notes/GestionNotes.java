@@ -32,6 +32,7 @@ public class GestionNotes
 	private String navigateur;
 	private String editeur;
 	
+
 	/**
 	 * Constructeur par défaut
 	 */
@@ -693,12 +694,29 @@ public class GestionNotes
 /******************************************* GET ET SET ************************************************/
 	
 
+
 	/**
 	 * Permet de récupérer les notes
 	 * @return notes qui renvoie les notes
 	 */
 	public Map<String, Notes> getNotes() {
 		return notes;
+	}
+	
+	public String getRepRacine() {
+		return repRacine;
+	}
+
+	public String getRepertoire() {
+		return repertoire;
+	}
+
+	public String getNavigateur() {
+		return navigateur;
+	}
+
+	public String getEditeur() {
+		return editeur;
 	}
 	
 	/**

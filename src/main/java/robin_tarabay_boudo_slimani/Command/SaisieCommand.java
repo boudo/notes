@@ -247,7 +247,6 @@ public class SaisieCommand {
 					if(this.gestionNotes.miseAJour())
 					{
 						this.commands.clear();
-//						gestionNotes.trier();
 					}
 					if(tmpNote.equals("conf"))
 					{
@@ -260,7 +259,6 @@ public class SaisieCommand {
 					else if(!tmpNote.equals("") && !tmpNote.equals("conf"))
 					{
 						this.gestionNotes.initialiser(tmpNote);
-//						gestionNotes.trier();
 						tmpNote = "";
 					}
 					switch (cmd)
@@ -274,7 +272,6 @@ public class SaisieCommand {
 							}
 							else
 							{
-//								this.gestionNotes.getNotes().put(note,new Notes.NoteBuilder(note).date(new Date(System.currentTimeMillis())).context(context).project(projet).build());
 								Command command = new EditNotesCommand(gestionNotes,note, context, projet);
 								System.out.println( storeAndExecute(note+" "+cmd, command) );
 								tmpNote = note;
@@ -429,6 +426,21 @@ public class SaisieCommand {
 		saisie.close();
 		
 
+	}
+
+
+	public Scanner getSaisie() {
+		return saisie;
+	}
+
+
+	public Map<String, Command> getCommands() {
+		return commands;
+	}
+
+
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
 	}
 	
 	
