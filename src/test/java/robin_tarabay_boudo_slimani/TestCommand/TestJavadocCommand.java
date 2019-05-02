@@ -15,7 +15,7 @@ public class TestJavadocCommand {
 		GestionNotes gestionNotes = new GestionNotes();
 		
 		JavadocCommand j = new JavadocCommand(gestionNotes);
-		
+		assertEquals(j.getGestionNotes(),gestionNotes);
 		assertNotNull(j);
 	}
 

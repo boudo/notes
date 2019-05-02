@@ -15,7 +15,7 @@ public class TestListNotesCommand {
 		GestionNotes gestionNotes = new GestionNotes();
 		
 		ListNotesCommand l = new ListNotesCommand(gestionNotes);
-		
+		assertEquals(l.getGestionNotes(),gestionNotes);
 		assertNotNull(l);
 	}
 

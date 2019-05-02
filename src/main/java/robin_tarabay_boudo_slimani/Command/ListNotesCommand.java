@@ -24,6 +24,10 @@ public class ListNotesCommand implements Command {
 		this.gestionNotes = g;
 	}
 	
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
+	}
+
 	/**
 	 * Permet d'exécuter la commande de liste
 	 * @return le nom des notes présentes ou un message d'erreur

@@ -15,7 +15,7 @@ public class TestIndexCommand {
 		GestionNotes gestionNotes = new GestionNotes();
 		
 		IndexCommand i = new IndexCommand(gestionNotes);
-		
+		assertEquals(i.getGestionNotes(),gestionNotes);
 		assertNotNull(i);
 	}
 
