@@ -789,14 +789,24 @@ public class GestionNotes
 			FileWriter fw = new FileWriter(laNote);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("= Index" + "\n" + "\n");
-			for(int i=0; i<listnotes.size(); i++) {
+			for(int i=0; i<listnotes.size(); i++)
+			{
 				if(i == 0 || listnotes.get(i-1).getContext().compareTo(listnotes.get(i).getContext()) != 0) {
 					bw.write(". Context: "+listnotes.get(i).getContext()+"\n");
 				}
 				if(i == 0 || listnotes.get(i-1).getProject().compareTo(listnotes.get(i).getProject()) != 0) {
 					bw.write(".. Project: "+listnotes.get(i).getProject()+"\n");
 				}
-				bw.write("*** "+listnotes.get(i).getNom()+"\n");
+				File lien = new File (this.repertoire, listnotes.get(i).getNom() + ".html");
+				if(lien.exists() && lien.isFile())
+				{
+					String leLien = lien.getCanonicalPath();
+					bw.write("***  link:"+ leLien + "["+ listnotes.get(i).getNom() + "]" +"\n");
+				}
+				else
+				{
+					bw.write("*** " + listnotes.get(i).getNom() +"\n");
+				}
 			}
 			bw.close();
 		}catch (Exception e) {
