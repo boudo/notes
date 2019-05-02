@@ -28,6 +28,14 @@ public class ViewNotesCommand implements Command {
 		this.nom = n;
 	}
 	
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
 	/**
 	 * Permet d'exécuter la commande de view qui affiche une note
 	 * @throws NoteOuMotCleManquantException une exception

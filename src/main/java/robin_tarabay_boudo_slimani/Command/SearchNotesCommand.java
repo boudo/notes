@@ -27,6 +27,14 @@ public class SearchNotesCommand implements Command {
 		this.mot = n;
 	}
 	
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
+	}
+
+	public String getMot() {
+		return mot;
+	}
+
 	/**
 	 * Permet d'exécuter la commande de recherche
 	 * @return la liste des fichiers contenant le mot-clé ou la phrase demandée

@@ -34,6 +34,26 @@ public class EditNotesCommand implements Command {
 	}
 
 
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public String getContext() {
+		return context;
+	}
+
+
+	public String getProjet() {
+		return projet;
+	}
+
+
 	/**
 	 * Permet d'exécuter la commande d'édition
 	 * @return le nom de la note editée

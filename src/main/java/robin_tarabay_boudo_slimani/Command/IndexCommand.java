@@ -33,5 +33,9 @@ private GestionNotes gestionNotes;
 		return this.gestionNotes.index();
 	}
 
+	public GestionNotes getGestionNotes() {
+		return gestionNotes;
+	}
+
 
 }
