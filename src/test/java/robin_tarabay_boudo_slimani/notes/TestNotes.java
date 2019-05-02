@@ -35,17 +35,17 @@ public class TestNotes {
 		assertEquals("", test.getContenu());
 	}
 	
-//	@Test
-//	public void TestBuilderDate() throws ParseException {
-//		
-//		Date d = null;
-//		String index = "22/06/1992";
-//		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-//    	d = sdf.parse(index);
-//		Notes test = new Notes.NoteBuilder("Ma première Note").date(d).build();
-//		
-//		assertEquals("22/06/1992", test.getDate());
-//	}
+	@Test
+	public void TestBuilderDate() throws ParseException {
+		
+		Date d = null;
+		String index = "22/06/1992";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+    	d = sdf.parse(index);
+		Notes test = new Notes.NoteBuilder("Ma première Note").date(d).build();
+		
+		assertEquals(sdf.parse("22/06/1992"), test.getDate());
+	}
 	
 	@Test
 	public void TestBuilderProject() {
@@ -71,13 +71,16 @@ public class TestNotes {
 		assertEquals("contenu", test.getContenu());
 	}
 	
-//	@Test
-//	public void TestBuilderComplet() {
-//		
-//		Notes test = new Notes.NoteBuilder("Ma première Note").date(d).project("work").context("cds").contenu("contenu").build();
-//		
-//		assertEquals("Notes [nom=" + test.getNom() + ",date=" + test.getDate() +", project=" + test.getProject() + ", context=" + test.getContext() + ", contenu="
-//				+ test.getContenu() + "]", test.toString());
-//	}
+	@Test
+	public void TestBuilderComplet() throws ParseException {
+		Date d = null;
+		String index = "22/06/1992";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+    	d = sdf.parse(index);
+		Notes test = new Notes.NoteBuilder("Ma première Note").date(d).project("work").context("cds").contenu("contenu").build();
+		
+		assertEquals("Notes [nom=" + test.getNom() + ", date=" + test.getDate() +", project=" + test.getProject() + ", context=" + test.getContext() + ", contenu="
+				+ test.getContenu() + "]", test.toString());
+	}
 
 }

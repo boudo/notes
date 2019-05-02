@@ -52,7 +52,7 @@ public class TestSaisieCommand {
 		String st="";
 		try {
 			st = s.storeAndExecute("testcmd1 delete", cmd1);
-			assertEquals(st,"Ce Fichier n'existe pas");
+			assertEquals(st,"testcmd1 a été supprimer");
 		} catch (NoteOuMotCleManquantException | NotesOuMotClesInexistantException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,10 +80,11 @@ public class TestSaisieCommand {
 	public void executeListeAucuneNoteCommande() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException 
 	{
 		GestionNotes gestionNotes = new GestionNotes();
+		gestionNotes.getNotes().clear();
 		SaisieCommand s = new SaisieCommand(gestionNotes);
 		Command cmd1=new ListNotesCommand(gestionNotes);
-		s.getCommands().put(" ls", cmd1);
-		String st=s.executeCommand(" ls");
+		s.getCommands().put("ls", cmd1);
+		String st=s.executeCommand("ls");
 		assertEquals(st,"");
 	}
 	
@@ -150,17 +151,6 @@ public class TestSaisieCommand {
 	;
 	}
 
-	@Test
-	public void executeSearchTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
-	{
-		GestionNotes gestionNotes = new GestionNotes();
-		SaisieCommand s = new SaisieCommand(gestionNotes);
-		Command cmd1=new SearchNotesCommand(gestionNotes,"testcmd1 mot");
-		s.getCommands().put("testcmd1 mot search", cmd1);
-		String st=s.executeCommand("testcmd1 mot search");
-		assertEquals(st,"--------------------------------------------------------------------------------\n"+"Voici le resultat de la recherche:\n"+"\n--------------------------------------------------------------------------------");
-	}
-	
 	@Test(expected =NoteOuMotCleManquantException.class)
 	public void executeSearchMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
 	{

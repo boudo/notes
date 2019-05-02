@@ -56,7 +56,7 @@ public class GestionNotes
 		this.notes = new HashMap<> ();
 		configGestionnaire();
 		creerRepertoire();
-		System.out.println("Reperstoire:"+getRepertoire()+" ");
+		
 //		try {
 //			File fichier = new File("fc");
 //			String path = fichier.getCanonicalPath();
