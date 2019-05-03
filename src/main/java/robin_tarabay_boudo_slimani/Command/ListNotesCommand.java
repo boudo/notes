@@ -24,6 +24,10 @@ public class ListNotesCommand implements Command {
 		this.gestionNotes = g;
 	}
 	
+	/**
+	 * Permet de récupérer GestionNotes
+	 * @return  qui renvoie la liste de notes
+	 */
 	public GestionNotes getGestionNotes() {
 		return gestionNotes;
 	}

@@ -33,6 +33,10 @@ private GestionNotes gestionNotes;
 		return this.gestionNotes.index();
 	}
 
+	/**
+	 * Permet de récupérer GestionNotes
+	 * @return  qui renvoie la liste de notes
+	 */
 	public GestionNotes getGestionNotes() {
 		return gestionNotes;
 	}

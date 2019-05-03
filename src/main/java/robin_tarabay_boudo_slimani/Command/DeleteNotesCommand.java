@@ -29,10 +29,18 @@ public class DeleteNotesCommand implements Command {
 		this.nom = n;
 	}
 	
+	/**
+	 * Permet de récupérer GestionNotes
+	 * @return  qui renvoie la liste de notes
+	 */
 	public GestionNotes getGestionNotes() {
 		return gestionNotes;
 	}
 
+	/**
+	 * Permet de récupérer le nom
+	 * @return  qui renvoie le nom
+	 */
 	public String getNom() {
 		return nom;
 	}

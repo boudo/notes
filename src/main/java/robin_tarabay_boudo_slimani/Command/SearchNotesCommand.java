@@ -27,10 +27,18 @@ public class SearchNotesCommand implements Command {
 		this.mot = n;
 	}
 	
+	/**
+	 * Permet de récupérer GestionNotes
+	 * @return  qui renvoie la liste de notes
+	 */
 	public GestionNotes getGestionNotes() {
 		return gestionNotes;
 	}
 
+	/**
+	 * Permet de récupérer un mot
+	 * @return  qui renvoie le mot
+	 */
 	public String getMot() {
 		return mot;
 	}

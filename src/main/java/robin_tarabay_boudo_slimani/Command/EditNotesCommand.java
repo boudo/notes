@@ -33,22 +33,34 @@ public class EditNotesCommand implements Command {
 		this.projet = projet;
 	}
 
-
+	/**
+	 * Permet de récupérer GestionNotes
+	 * @return  qui renvoie la liste de notes
+	 */
 	public GestionNotes getGestionNotes() {
 		return gestionNotes;
 	}
 
-
+	/**
+	 * Permet de récupérer le nom
+	 * @return  qui renvoie le nom
+	 */
 	public String getNom() {
 		return nom;
 	}
 
-
+	/**
+	 * Permet de récupérer le context
+	 * @return  qui renvoie le context
+	 */
 	public String getContext() {
 		return context;
 	}
 
-
+	/**
+	 * Permet de récupérer le projet
+	 * @return  qui renvoie le projet
+	 */
 	public String getProjet() {
 		return projet;
 	}

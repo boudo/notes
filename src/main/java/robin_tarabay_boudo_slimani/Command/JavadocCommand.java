@@ -32,6 +32,10 @@ public class JavadocCommand implements Command {
 		return this.gestionNotes.javadoc();
 	}
 
+	/**
+	 * Permet de récupérer GestionNotes
+	 * @return  qui renvoie la liste de notes
+	 */
 	public GestionNotes getGestionNotes() {
 		return gestionNotes;
 	}

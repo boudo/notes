@@ -428,17 +428,26 @@ public class SaisieCommand {
 
 	}
 
-
+	/**
+	 * Permet de récupérer Saisie
+	 * @return  qui renvoie la saisie
+	 */
 	public Scanner getSaisie() {
 		return saisie;
 	}
 
-
+	/**
+	 * Permet de récupérer la liste de commandes
+	 * @return  qui renvoie la liste de commandes
+	 */
 	public Map<String, Command> getCommands() {
 		return commands;
 	}
 
-
+	/**
+	 * Permet de récupérer GestionNotes
+	 * @return  qui renvoie la liste de notes
+	 */
 	public GestionNotes getGestionNotes() {
 		return gestionNotes;
 	}
