@@ -233,11 +233,26 @@ public class SaisieCommand {
 						while(i<args.length) {
 							if(args[i].equals("-c")) {
 								i++;
-								context = args[i];
+								if(args[i].equals("-p"))
+								{
+									context = args[10];
+								}
+								else
+								{
+									context = args[i];
+								}
+								
 							} 
 							if(args[i].equals("-p")) {
 								i++;
-								projet = args[i];
+								if(args[i].equals("-c"))
+								{
+									projet = args[10];
+								}
+								else
+								{
+									projet = args[i];
+								}
 							}
 							i++;
 						}
@@ -417,10 +432,15 @@ public class SaisieCommand {
 				System.out.println(e.getMessage());
 			}
 
-//			catch(TropDargumentException e)
-//			{
-//				System.out.println(e.getMessage());
-//			}
+			catch(IndexOutOfBoundsException e)
+			{
+				System.out.println("Paramètres Incorrectes (edit fichier -p nom -c nom2");
+				String phrase = saisie.nextLine();
+				String delims = "[ ]+";
+				args = phrase.split(delims);
+				init = true;
+				
+			}
 			
 		}
 		saisie.close();

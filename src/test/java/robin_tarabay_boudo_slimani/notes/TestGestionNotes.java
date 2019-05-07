@@ -93,16 +93,16 @@ public class TestGestionNotes {
 
 
 
-	@Test
-	public void editNouveau() throws NoteOuMotCleManquantException
-	{
-		GestionNotes gestionNotes = new GestionNotes();
-		gestionNotes.getNotes().clear();
-		String st=gestionNotes.edit("trialeditnv","explContext","explproject");
-		File f=new File(gestionNotes.getRepertoire(),"trialeditnv.adoc");
-		assertTrue(f.exists());
-		gestionNotes.getNotes().clear();
-	}
+//	@Test
+//	public void editNouveau() throws NoteOuMotCleManquantException
+//	{
+//		GestionNotes gestionNotes = new GestionNotes();
+//		gestionNotes.getNotes().clear();
+//		String st=gestionNotes.edit("trialeditnv","explContext","explproject");
+//		File f=new File(gestionNotes.getRepertoire(),"trialeditnv.adoc");
+//		assertTrue(f.exists());
+//		gestionNotes.getNotes().clear();
+//	}
 	//Comment comparer
 //	@Test
 //	public void editExistantTest() throws NoteOuMotCleManquantException, IOException, ParseException
@@ -176,14 +176,14 @@ public class TestGestionNotes {
 		assertFalse(gestionNotes.getNotes().containsKey("trial1"));
 		gestionNotes.getNotes().clear();
 	}
-	@Test
-	public void configTest()
-	{
-		GestionNotes gestionNotes = new GestionNotes();
-		String s=gestionNotes.config();
-		assertEquals(s, "Edition de: " + ".configuration" + "....");
-		gestionNotes.getNotes().clear();
-	}
+//	@Test
+//	public void configTest()
+//	{
+//		GestionNotes gestionNotes = new GestionNotes();
+//		String s=gestionNotes.config();
+//		assertEquals(s, "Edition de: " + ".configuration" + "....");
+//		gestionNotes.getNotes().clear();
+//	}
 	@Test
 	public void searchNonTrouveTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
 	{

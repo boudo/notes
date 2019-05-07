@@ -581,7 +581,7 @@ public class GestionNotes
 						listeDyn.add(liste[i].substring(0, liste[i].length()-5));
 		        	}
 				}
-//				System.out.println("après for");
+//			System.out.println("après for");
 				Map<String,Notes> tmp = new HashMap<> ();
 				tmp.putAll(notes);
 				Set<String> list = tmp.keySet();
@@ -595,7 +595,7 @@ public class GestionNotes
 //					System.out.println("note =" + note);
 					if(!listeDyn.contains(note))
 					{
-//						System.out.println("debut if 2");
+//					System.out.println("debut if 2");
 						Notes o  = (Notes) this.notes.remove(note);
 						File html = new File (repertoire, note +".html");
 						if(html.exists() && html.isFile())
@@ -603,12 +603,12 @@ public class GestionNotes
 							html.delete();
 						}
 						misAjour = true;
-						System.out.println( o.getNom() + " a été supprimer manuellement dans " + repertoire );
+//						System.out.println( o.getNom() + " a été supprimer manuellement dans " + repertoire );
 						
 					}
 //					System.out.println("fin if 2");
 				}
-//				System.out.println("après while");
+//			System.out.println("après while");
 				if(misAjour)
 				{
 					trier();
