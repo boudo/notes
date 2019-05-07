@@ -117,6 +117,7 @@ public class GestionNotes
 				String laNoteHtml = noteHtml.getCanonicalPath();
 				
 				proc1.exec(this.navigateur + " " + laNoteHtml);
+				trier();
 //				Desktop.getDesktop().browse(noteHtml.toURI());
 				
 				
