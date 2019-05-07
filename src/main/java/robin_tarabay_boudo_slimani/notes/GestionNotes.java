@@ -809,6 +809,12 @@ public class GestionNotes
 			{
 				note.createNewFile();
 			}
+			for(int i=0; i<listnotes.size(); i++) {
+				Runtime proc1 = Runtime.getRuntime();
+				File noteAdoc = new File (repertoire, listnotes.get(i).getNom() +".adoc");
+				String laNoteAdoc = noteAdoc.getCanonicalPath();
+				proc1.exec("asciidoctor " + laNoteAdoc);
+			}
 			FileWriter fw = new FileWriter(laNote);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("= Index\n\n");
