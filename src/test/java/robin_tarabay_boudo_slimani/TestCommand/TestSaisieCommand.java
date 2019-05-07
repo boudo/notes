@@ -75,19 +75,19 @@ public class TestSaisieCommand {
 //		testmap.put("testcmd2 projet context edit", cmd2);
 //		assertEquals(testmap,s.getCommands());
 //	}
-//
-//	@Test(expected =NotesOuMotClesInexistantException.class)
-//	public void executeListeAucuneNoteCommande() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException 
-//	{
-//		GestionNotes gestionNotes = new GestionNotes();
-//		gestionNotes.getNotes().clear();
-//		SaisieCommand s = new SaisieCommand(gestionNotes);
-//		Command cmd1=new ListNotesCommand(gestionNotes);
-//		s.getCommands().put("ls", cmd1);
-//		String st=s.executeCommand("ls");
-//		assertEquals(st,"");
-//	}
-//	
+
+	@Test(expected =NotesOuMotClesInexistantException.class)
+	public void executeListeAucuneNoteCommande() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException 
+	{
+		GestionNotes gestionNotes = new GestionNotes();
+		gestionNotes.getNotes().clear();
+		SaisieCommand s = new SaisieCommand(gestionNotes);
+		Command cmd1=new ListNotesCommand(gestionNotes);
+		s.getCommands().put("ls", cmd1);
+		String st=s.executeCommand("ls");
+		assertEquals(st,"");
+	}
+	
 //	@Test
 //	public void executeEditTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
 //	{
@@ -99,69 +99,69 @@ public class TestSaisieCommand {
 //		assertEquals(st,"Edition de: testcmd1....");
 //		
 //	}
-//	@Test(expected =NoteOuMotCleManquantException.class)
-//	public void executeEditMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
-//	{	
-//		GestionNotes gestionNotes = new GestionNotes();
-//		SaisieCommand s = new SaisieCommand(gestionNotes);
-//		Command cmd1=new EditNotesCommand(gestionNotes,"","projet","context");
-//		s.getCommands().put(" projet", cmd1);
-//		String st=s.executeCommand(" projet");
-//
-//	}
-//	
-//	 @Test(expected =NotesOuMotClesInexistantException.class)
-//	public void executeViewTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
-//	{
-//		GestionNotes gestionNotes = new GestionNotes();
-//		SaisieCommand s = new SaisieCommand(gestionNotes);
-//		Command cmd1=new ViewNotesCommand(gestionNotes,"testviewcmd1");
-//		s.getCommands().put("testviewcmd1 view", cmd1);
-//		String st=s.executeCommand("testviewcmd1 view");
-//		
-//	}
-//	 @Test(expected =NoteOuMotCleManquantException.class)
-//		public void executeViewMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
-//		{
-//			GestionNotes gestionNotes = new GestionNotes();
-//			SaisieCommand s = new SaisieCommand(gestionNotes);
-//			Command cmd1=new ViewNotesCommand(gestionNotes,"");
-//			s.getCommands().put("view", cmd1);
-//			String st=s.executeCommand("view");
-//			
-//		}
-//	@Test(expected =NotesOuMotClesInexistantException.class)
-//	public void executeDeleteTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
-//	{
-//		GestionNotes gestionNotes = new GestionNotes();
-//		SaisieCommand s = new SaisieCommand(gestionNotes);
-//		Command cmd1=new DeleteNotesCommand(gestionNotes,"testdeletecmd1");
-//		s.getCommands().put("testdeletecmd1 delete", cmd1);
-//		String st=s.executeCommand("testdeletecmd1 delete");
-//	}
-//	
-//	@Test(expected =NoteOuMotCleManquantException.class)
-//	public void executeDeleteMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
-//	{
-//		GestionNotes gestionNotes = new GestionNotes();
-//		SaisieCommand s = new SaisieCommand(gestionNotes);
-//		Command cmd1=new DeleteNotesCommand(gestionNotes,"");
-//		s.getCommands().put("delete", cmd1);
-//		String st=s.executeCommand("delete");
-//	;
-//	}
-//
-//	@Test(expected =NoteOuMotCleManquantException.class)
-//	public void executeSearchMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
-//	{
-//		GestionNotes gestionNotes = new GestionNotes();
-//		SaisieCommand s = new SaisieCommand(gestionNotes);
-//		Command cmd1=new SearchNotesCommand(gestionNotes,"test");
-//		s.getCommands().put("search", cmd1);
-//		String st=s.executeCommand("search");
-//	}
+	@Test(expected =NoteOuMotCleManquantException.class)
+	public void executeEditMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
+	{	
+		GestionNotes gestionNotes = new GestionNotes();
+		SaisieCommand s = new SaisieCommand(gestionNotes);
+		Command cmd1=new EditNotesCommand(gestionNotes,"","projet","context");
+		s.getCommands().put(" projet", cmd1);
+		s.executeCommand(" projet");
+
+	}
 	
-	//Celui ci est en commentaire car ca ouvre le javadoc
+	 @Test(expected =NotesOuMotClesInexistantException.class)
+	public void executeViewTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
+	{
+		GestionNotes gestionNotes = new GestionNotes();
+		SaisieCommand s = new SaisieCommand(gestionNotes);
+		Command cmd1=new ViewNotesCommand(gestionNotes,"testviewcmd1");
+		s.getCommands().put("testviewcmd1 view", cmd1);
+		s.executeCommand("testviewcmd1 view");
+		
+	}
+	 @Test(expected =NoteOuMotCleManquantException.class)
+		public void executeViewMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
+		{
+			GestionNotes gestionNotes = new GestionNotes();
+			SaisieCommand s = new SaisieCommand(gestionNotes);
+			Command cmd1=new ViewNotesCommand(gestionNotes,"");
+			s.getCommands().put("view", cmd1);
+			s.executeCommand("view");
+			
+		}
+	@Test(expected =NotesOuMotClesInexistantException.class)
+	public void executeDeleteTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
+	{
+		GestionNotes gestionNotes = new GestionNotes();
+		SaisieCommand s = new SaisieCommand(gestionNotes);
+		Command cmd1=new DeleteNotesCommand(gestionNotes,"testdeletecmd1");
+		s.getCommands().put("testdeletecmd1 delete", cmd1);
+		s.executeCommand("testdeletecmd1 delete");
+	}
+	
+	@Test(expected =NoteOuMotCleManquantException.class)
+	public void executeDeleteMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
+	{
+		GestionNotes gestionNotes = new GestionNotes();
+		SaisieCommand s = new SaisieCommand(gestionNotes);
+		Command cmd1=new DeleteNotesCommand(gestionNotes,"");
+		s.getCommands().put("delete", cmd1);
+		s.executeCommand("delete");
+	
+	}
+
+	@Test(expected =NotesOuMotClesInexistantException.class)
+	public void executeSearchMotManquantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
+	{
+		GestionNotes gestionNotes = new GestionNotes();
+//		SaisieCommand s = new SaisieCommand(gestionNotes);
+		Command cmd1=new SearchNotesCommand(gestionNotes,"GL");
+//		s.getCommands().put("search", cmd1);
+		cmd1.execute();
+	}
+	
+//	//Celui ci est en commentaire car ca ouvre le javadoc
 //	@Test
 //	public void executeJavaDoc() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
 //	{
@@ -172,7 +172,7 @@ public class TestSaisieCommand {
 //		String st=s.executeCommand(" javadoc");
 //		assertEquals(st,"Lecture de la documentation java de l'application...\n");
 //	}
-	//Celui ci /Celui ci est en commentaire car ca ouvre l'index
+//	//Celui ci /Celui ci est en commentaire car ca ouvre l'index
 //	@Test
 //	public void executeIndexCommand() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
 //	{
