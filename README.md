@@ -92,3 +92,21 @@ l'utilisateur peut aussi effectuer toutes ces actions en ligne de commande direc
 L'utilisateur doit se mettre dans le dossier "target/apidocs/" puis ouvrir index.html.
 Ou sinon il peut aussi accéder directement au manuel technique via l'application en tapant la commande suivante : "javadoc" ou "doc".
 Le détail de chaque méthode de chaque classe et le détail des classes seront présentes.
+
+##IV]Conclusion
+
+  Voici les fonctionnalités que l'on a traité:
+  
+  -On a utilisé l'outil maven et bitbucket.
+  -La plupart des classes possèdent des Tests Unitaires.
+  -L'application propose 2 modes d'interactions : lignes de commandes et interpréteur
+  -On peut créer ou modifier une note avec la commande e ou edit nom_de_la_note et on peut même rajouter un contexte avec l'option -c nom_contexte et/ou un projet avec l'option -p nom_projet en lançant une application externe d'edition de texte.
+  -On peut lister les notes existantes avec la commande ls ou list.
+  -On peut supprimer une note avec la commande delete ou d.
+  -On peut voir une note avec la commande view ou v en lançant une application externe(navigateur).
+  -On peut rechercher un mot-clé dans les notes avec la commande search ou s.
+  -On peut consulter un fichier index.html avec la commande index et son fichier index.adoc est mis à jour à chaque nouvelle commande.Ce fichier contient bien les notes triées par ordres alphabétiques de 3 façons : triée par context,triée par projet et triée par mois.
+  -Un fichier de configuration est présent (.configuration),et l'utilisateur peut le modifier pour personnaliser lui même le répertoire de destination des notes,son éditeur de texte ainsi que son navigateur pour visualiser les notes.Il peut y accéder avec la commande conf ou configuration.
+  -On peut aussi consulter la javadoc à l'aide de la commande javadoc.
+  
+  Toutes les fonctionnalités obligatoires ont été traitées.Par contre, nous n'avons pas utilisé la bibliothèque de recherche de mot-clé Lucene pour la commande de recherche.Et concernant la fonctionnalité optionnelle décrite dans le sujet concernant la gestion de listes au format JSON,nous ne l'avons pas traité.
