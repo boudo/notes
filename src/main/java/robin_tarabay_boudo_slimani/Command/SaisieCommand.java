@@ -233,7 +233,7 @@ public class SaisieCommand {
 						while(i<args.length) {
 							if(args[i].equals("-c")) {
 								i++;
-								if(args[i].equals("-p"))
+								if(args[i].equals("-p") || args[i].equals("-") || args[i].equals("- p"))
 								{
 									context = args[10];
 								}
@@ -245,7 +245,7 @@ public class SaisieCommand {
 							} 
 							if(args[i].equals("-p")) {
 								i++;
-								if(args[i].equals("-c"))
+								if(args[i].equals("-c") || args[i].equals("-") || args[i].equals("- c"))
 								{
 									projet = args[10];
 								}
@@ -253,6 +253,12 @@ public class SaisieCommand {
 								{
 									projet = args[i];
 								}
+							}
+							if(args[i].equals("-") || args[i].equals("- ") || args[i].equals(" -") ||
+								args[i].equals("- p") || args[i].equals("- c") ||
+								args[i].equals("p-") || args[i].equals("c-") ||args[i].equals("p -") || args[i].equals("c -"))
+							{
+								projet = args[10];
 							}
 							i++;
 						}
