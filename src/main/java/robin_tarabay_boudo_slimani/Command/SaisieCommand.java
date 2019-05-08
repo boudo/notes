@@ -434,7 +434,7 @@ public class SaisieCommand {
 
 			catch(IndexOutOfBoundsException e)
 			{
-				System.out.println("Paramètres Incorrectes (edit fichier -p nom -c nom2");
+				System.out.println("Paramètres Incorrectes (edit fichier -p nom -c nom2)");
 				String phrase = saisie.nextLine();
 				String delims = "[ ]+";
 				args = phrase.split(delims);

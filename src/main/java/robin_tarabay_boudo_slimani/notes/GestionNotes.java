@@ -687,6 +687,9 @@ public class GestionNotes
 		}
 	}
 	
+	/**
+	 * Fonction qui permet de s'adapter au fichier de configuration
+	 */
 	public void modeConfiguration()
 	{
 		this.notes.clear();
@@ -708,18 +711,34 @@ public class GestionNotes
 		return notes;
 	}
 	
+	/**
+	 * Permet de récupérer le repertoire racine
+	 * @return repRacine qui renvoie le repertoire racine
+	 */
 	public String getRepRacine() {
 		return repRacine;
 	}
 
+	/**
+	 * Permet de récupérer le repertoire 
+	 * @return repertoire qui renvoie le repertoire 
+	 */
 	public String getRepertoire() {
 		return repertoire;
 	}
 
+	/**
+	 * Permet de récupérer le navigateur
+	 * @return navigateur qui renvoie le navigateur
+	 */
 	public String getNavigateur() {
 		return navigateur;
 	}
 
+	/**
+	 * Permet de récupérer l'editeur
+	 * @return editeur qui renvoie l'editeur
+	 */
 	public String getEditeur() {
 		return editeur;
 	}
