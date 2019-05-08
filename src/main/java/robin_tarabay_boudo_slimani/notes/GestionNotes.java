@@ -769,7 +769,6 @@ public class GestionNotes
 	 */
 	public void trier()
 	{
-//		System.out.println("\n Tri \n");
 		List<Notes> listnotes = new ArrayList<Notes>();
 		Set<String> list = this.notes.keySet();
 		Iterator<String> iterator = list.iterator();
@@ -778,30 +777,7 @@ public class GestionNotes
 			Object key = iterator.next();
 			listnotes.add(this.notes.get(key));
 		}
-		//System.out.println(listnotes.toString()+"\n\n");
-		Collections.sort(listnotes, new Comparator<Notes>() {
-		    @Override
-		    public int compare(Notes n1, Notes n2) {
-		    	return n1.getNom().compareTo(n2.getNom());
-		    }
-		});
-//		Collections.sort(listnotes, new Comparator<Notes>() {
-//		    @Override
-//		    public int compare(Notes n1, Notes n2) {
-//		    	if(n1.getContext().compareTo(n2.getContext()) == 0 && n1.getProject().compareTo(n2.getProject()) == 0){
-//		    		Calendar calendar1 = new GregorianCalendar();
-//			        calendar1.setTime(n1.getDate());
-//			        Calendar calendar2 = new GregorianCalendar();
-//			        calendar2.setTime(n2.getDate());
-//		    		return calendar1.get(Calendar.MONTH) - calendar2.get(Calendar.MONTH);
-//		    	} else if(n1.getContext().compareTo(n2.getContext()) == 0) {
-//		    		return n1.getProject().compareTo(n2.getProject());
-//		    	} else {
-//		    		return n1.getContext().compareTo(n2.getContext());
-//		    	}
-//		    }
-//		});
-		//System.out.println(listnotes.toString());
+
 		try {
 			File note = new File ("index.adoc");
 			String laNote = note.getCanonicalPath();
@@ -809,24 +785,96 @@ public class GestionNotes
 			{
 				note.createNewFile();
 			}
+			Runtime proc1 = Runtime.getRuntime();
 			for(int i=0; i<listnotes.size(); i++) {
-				Runtime proc1 = Runtime.getRuntime();
-				File noteAdoc = new File (repertoire, listnotes.get(i).getNom() +".adoc");
-				String laNoteAdoc = noteAdoc.getCanonicalPath();
-				proc1.exec("asciidoctor " + laNoteAdoc);
+				File f = new File(repertoire, listnotes.get(i).getNom() + ".html");
+				if(!f.exists() && !f.isFile())
+				{
+					File noteAdoc = new File (repertoire, listnotes.get(i).getNom() +".adoc");
+					String laNoteAdoc = noteAdoc.getCanonicalPath();
+					proc1.exec("asciidoctor " + laNoteAdoc);
+				}
 			}
 			FileWriter fw = new FileWriter(laNote);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("= Index\n\n");
 			bw.write("====\n****\n");
+			bw.write("\n<<arborescence, Arborescence>>\n");
 			bw.write("\n<<context, Contexte>>\n");
 			bw.write("\n<<project, Projet>>\n");
 			bw.write("\n<<date, Date>>\n");
 			bw.write("\n****\n====\n");
 			
 			
+			bw.write("\n== Arborescence [[arborescence]]"+"\n");
+			bw.write("---"+"\n");
+			
+			Collections.sort(listnotes, new Comparator<Notes>() {
+			    @Override
+			    public int compare(Notes n1, Notes n2) {
+			    	return n1.getNom().compareTo(n2.getNom());
+			    }
+			});
+			Collections.sort(listnotes, new Comparator<Notes>() {
+			    @Override
+			    public int compare(Notes n1, Notes n2) {
+			    	if(n1.getContext().compareTo(n2.getContext()) == 0 && n1.getProject().compareTo(n2.getProject()) == 0){
+			    		Calendar calendar1 = new GregorianCalendar();
+				        calendar1.setTime(n1.getDate());
+				        Calendar calendar2 = new GregorianCalendar();
+				        calendar2.setTime(n2.getDate());
+			    		return calendar1.get(Calendar.MONTH) - calendar2.get(Calendar.MONTH);
+			    	} else if(n1.getContext().compareTo(n2.getContext()) == 0) {
+			    		return n1.getProject().compareTo(n2.getProject());
+			    	} else {
+			    		return n1.getContext().compareTo(n2.getContext());
+			    	}
+			    }
+			});
+			for(int i=0; i<listnotes.size(); i++)
+			{
+				if(i == 0 || listnotes.get(i-1).getContext().compareTo(listnotes.get(i).getContext()) != 0) {
+					bw.write("* Context: "+listnotes.get(i).getContext()+"\n");
+				}
+				if(i == 0 || listnotes.get(i-1).getProject().compareTo(listnotes.get(i).getProject()) != 0) {
+					bw.write("** Project: "+listnotes.get(i).getProject()+"\n");
+				}
+				if(i == 0) {
+					SimpleDateFormat formatter = new SimpleDateFormat("MMMMM");
+				    String formattedDate = formatter.format(listnotes.get(i).getDate());
+					bw.write("*** Mois: "+formattedDate+"\n");
+				}else {
+					Calendar calendar1 = new GregorianCalendar();
+			        calendar1.setTime(listnotes.get(i-1).getDate());
+			        Calendar calendar2 = new GregorianCalendar();
+			        calendar2.setTime(listnotes.get(i).getDate());
+			        if(listnotes.get(i-1).getProject().compareTo(listnotes.get(i).getProject()) != 0 || calendar1.get(Calendar.MONTH) != calendar2.get(Calendar.MONTH)) {
+			        	SimpleDateFormat formatter = new SimpleDateFormat("MMMMM");
+					    String formattedDate = formatter.format(listnotes.get(i).getDate());
+						bw.write("*** Mois: "+formattedDate+"\n");
+			        }
+				}
+				File lien = new File (this.repertoire, listnotes.get(i).getNom() + ".html");
+				if(lien.exists() && lien.isFile())
+				{
+					String leLien = lien.getCanonicalPath();
+					bw.write("****  link:"+ leLien + "["+ listnotes.get(i).getNom() + "]" +"\n");
+				}
+				else
+				{
+					bw.write("**** " + listnotes.get(i).getNom() +"\n");
+				}
+			}
+			
+			
 			bw.write("\n== Context [[context]]"+"\n");
 			bw.write("---"+"\n");
+			Collections.sort(listnotes, new Comparator<Notes>() {
+			    @Override
+			    public int compare(Notes n1, Notes n2) {
+			    	return n1.getNom().compareTo(n2.getNom());
+			    }
+			});
 			Collections.sort(listnotes, new Comparator<Notes>() {
 			    @Override
 			    public int compare(Notes n1, Notes n2) {
@@ -924,26 +972,7 @@ public class GestionNotes
 					bw.write("*** " + listnotes.get(i).getNom() +"\n");
 				}
 			}
-//			for(int i=0; i<listnotes.size(); i++)
-//			{
-//				if(i == 0 || listnotes.get(i-1).getContext().compareTo(listnotes.get(i).getContext()) != 0) {
-//					bw.write(". Context: "+listnotes.get(i).getContext()+"\n");
-//				}
-//				if(i == 0 || listnotes.get(i-1).getProject().compareTo(listnotes.get(i).getProject()) != 0) {
-//					bw.write(".. Project: "+listnotes.get(i).getProject()+"\n");
-//				}
-//				File lien = new File (this.repertoire, listnotes.get(i).getNom() + ".html");
-//				if(lien.exists() && lien.isFile())
-//				{
-//					System.out.println("on est la");
-//					String leLien = lien.getCanonicalPath();
-//					bw.write("***  link:"+ leLien + "["+ listnotes.get(i).getNom() + "]" +"\n");
-//				}
-//				else
-//				{
-//					bw.write("*** " + listnotes.get(i).getNom() +"\n");
-//				}
-//			}
+
 			
 			bw.close();
 		}catch (Exception e) {
