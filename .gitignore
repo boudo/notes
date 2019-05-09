@@ -72,4 +72,4 @@ hs_err_pid*
 Document/
 *.html
 *.adoc
-.configuration
+#.configuration
