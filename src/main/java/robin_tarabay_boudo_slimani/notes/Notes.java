@@ -76,7 +76,15 @@ public static class NoteBuilder{
 		 */
 		public NoteBuilder nomUser(String nUser)
 		{
-			this.nomUser = nUser;
+			if(nUser.equals("null"))
+			{
+				this.nomUser = "";
+			}
+			else
+			{
+				this.nomUser = nUser;
+			}
+			
 			return this;
 		}
 		
@@ -87,7 +95,15 @@ public static class NoteBuilder{
 		 */
 		public NoteBuilder email(String e)
 		{
-			this.email = e;
+			if(e.equals("null"))
+			{
+				this.email = "";
+			}
+			else
+			{
+				this.email = e;
+			}
+			
 			return this;
 		}
 		

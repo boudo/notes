@@ -36,6 +36,8 @@ public class GestionNotes
 	private String navigateur;
 	private String editeur;
 	private int  design;
+	private String nomUser;
+	private String email;
 	
 
 	/**
@@ -170,7 +172,8 @@ public class GestionNotes
 				note.createNewFile();
 				FileWriter fw = new FileWriter(laNote);
 				BufferedWriter bw = new BufferedWriter(fw);
-				bw.write("= "+ nom +"\n"+new SimpleDateFormat("dd/MM/yyyy").format(new Date())+"\n"+
+				bw.write("= "+ nom +"\n"+this.nomUser + " <"+this.email+"> \n"+
+							new SimpleDateFormat("dd/MM/yyyy").format(new Date())+"\n"+
 							":context: "+ context +"\n"+
 							":project: "+ projet);
 				bw.close();
@@ -546,6 +549,8 @@ public class GestionNotes
 					        																			.context(contexte)
 					        																			.project(project)
 					        																			.contenu(s)
+					        																			.nomUser(this.nomUser)
+					        																			.email(this.email)
 					        																			.build());
 					        		break;
 					        	}
@@ -651,6 +656,8 @@ public class GestionNotes
 			String editeur = "";
 			String navig ="";
 			int design = 0;
+			String nomUser;
+			String email;
 			while(scanner.hasNext())
 			{
 				index = scanner.next();
@@ -681,8 +688,20 @@ public class GestionNotes
 				else if(index.equals("DESIGN:"))
 				{
 					design = scanner.nextInt();
-//					System.out.println("navig =" + navig);
+//					System.out.println("design =" + design);
 					setDesign(design);
+				}
+				else if(index.equals("USER:"))
+				{
+					nomUser = scanner.next();
+//					System.out.println("nomUser =" + nomUser);
+					setNomUser(nomUser);
+				}
+				else if(index.equals("EMAIL:"))
+				{
+					email = scanner.next();
+//					System.out.println("email =" + email);
+					setEmail(email);
 				}
 			}
 			
@@ -808,6 +827,16 @@ public class GestionNotes
 		this.design = design;
 		
 	}
+	
+	private void setEmail(String email)
+	{
+		this.email = email;
+	}
+
+	private void setNomUser(String nomUser)
+	{
+		this.nomUser = nomUser;
+	}
 
 	/**
 	 * Fonction qui permet de trier dans le fichier index.adoc
@@ -928,7 +957,16 @@ public class GestionNotes
 			});
 			for(int i=0; i<listnotes.size(); i++) {
 				if(i == 0 || listnotes.get(i-1).getContext().compareTo(listnotes.get(i).getContext()) != 0) {
-					bw.write("\n=== "+listnotes.get(i).getContext()+"\n");
+					System.out.println("context="+listnotes.get(i).getContext()+"ok");
+					if(listnotes.get(i).getContext().equals(" ") || listnotes.get(i).getContext().equals(""))
+					{
+						bw.write("\n=== aucun\n");
+					}
+					else
+					{
+						bw.write("\n=== "+listnotes.get(i).getContext()+"\n");
+					}
+					
 				}
 				File lien = new File (this.repertoire, listnotes.get(i).getNom() + ".html");
 				if(lien.exists() && lien.isFile())
@@ -958,7 +996,16 @@ public class GestionNotes
 			});
 			for(int i=0; i<listnotes.size(); i++) {
 				if(i == 0 || listnotes.get(i-1).getProject().compareTo(listnotes.get(i).getProject()) != 0) {
-					bw.write("\n=== "+listnotes.get(i).getProject()+"\n");
+					System.out.println("projet="+listnotes.get(i).getProject()+"ok");
+					if(listnotes.get(i).getProject().equals(" ") || listnotes.get(i).getContext().equals(""))
+					{
+						bw.write("\n=== aucun\n");
+					}
+					else
+					{
+						bw.write("\n=== "+listnotes.get(i).getProject()+"\n");
+					}
+					
 				}
 				File lien = new File (this.repertoire, listnotes.get(i).getNom() + ".html");
 				if(lien.exists() && lien.isFile())
