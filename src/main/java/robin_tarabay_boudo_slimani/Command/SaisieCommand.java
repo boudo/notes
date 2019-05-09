@@ -62,30 +62,60 @@ public class SaisieCommand {
 	
 	/**
 	 * Permet d'afficher le Menu
+	 * @param numDesign le numéro du sisign choisi
 	 */
-	public void afficheInfo()
+	public void afficheInfo(int numDesign)
 	{
-//		design();
-		design1();
-//		design2();
-//		design3();
-//		design4();
-		System.out.println("Bienvenue sur notre application de prises de Notes !\n\n"+
-		"	Voici les différentes commandes que vous pouvez effectuer:\n\n"+
-		"		-Créer ou éditer un Fichier: Tapez e ou edit suivi du nom de votre Fichier \n"+
-		"		-Créer ou éditer un Fichier avec un project et/ou contexte: Tapez e ou edit suivi du nom de votre Fichier suivi de -p nom de votre project et/ou -c nom de votre contexte(Ordre sans importance) \n"+
-		"		-Visualiser un Fichier: Tapez v ou view suivi du nom de votre Fichier\n"+
-		"		-Lister le contenu du répertoire Document: Tapez ls ou list\n"+
-		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
-		"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
-		"		-Rechercher un mot-clé: Tapez s ou search suivi du mot ou de la phrase que vous recherchez dans les notes présentes\n"+
-		"		-Consulter le manuel technique: Tapez doc ou javadoc pour consulter le manuel technique\n"+
-		"		-Consulter le fichier index: Tapez index pour afficher les notes triées par context,project et date \n"+
-		"		-Modifier le fichier de configuration: Tapez conf ou configuration pour pouvoir modifier le fichier de configuration selon vos préférences\n"+
-		"		-Quitter le programme: Tapez q ou exit pour fermer l'application\n\n"+
-		"		-Remarque: Toutes ces commandes sont aussi directement disponibles en ligne de commandes ! :)\n");
+		switch(numDesign)
+		{
+			case 1:
+				design1();
+				info();
+				break;
+			
+			case 2:
+				design2();
+				info();
+				break;
+			
+			case 3:
+				design3();
+				info();
+				break;
+				
+			case 4:
+				design4();
+				info();
+				break;
+				
+			default:
+				design();
+				info();
+		}
 		
-		System.out.println("Que souhaitez-vous faire? ");
+	}
+	
+	/**
+	 * Permet d'afficher l'information d'utilisation
+	 */
+	public void info()
+	{
+		System.out.println("Bienvenue sur notre application de prises de Notes !\n\n"+
+				"	Voici les différentes commandes que vous pouvez effectuer:\n\n"+
+				"		-Créer ou éditer un Fichier: Tapez e ou edit suivi du nom de votre Fichier \n"+
+				"		-Créer ou éditer un Fichier avec un project et/ou contexte: Tapez e ou edit suivi du nom de votre Fichier suivi de -p nom de votre project et/ou -c nom de votre contexte(Ordre sans importance) \n"+
+				"		-Visualiser un Fichier: Tapez v ou view suivi du nom de votre Fichier\n"+
+				"		-Lister le contenu du répertoire Document: Tapez ls ou list\n"+
+				"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
+				"		-Supprimer un Fichier: Tapez d ou delete suivi du nom de votre Fichier\n"+
+				"		-Rechercher un mot-clé: Tapez s ou search suivi du mot ou de la phrase que vous recherchez dans les notes présentes\n"+
+				"		-Consulter le manuel technique: Tapez doc ou javadoc pour consulter le manuel technique\n"+
+				"		-Consulter le fichier index: Tapez index pour afficher les notes triées par context,project et date \n"+
+				"		-Modifier le fichier de configuration: Tapez conf ou configuration pour pouvoir modifier le fichier de configuration selon vos préférences\n"+
+				"		-Quitter le programme: Tapez q ou exit pour fermer l'application\n\n"+
+				"		-Remarque: Toutes ces commandes sont aussi directement disponibles en ligne de commandes ! :)\n");
+				
+				System.out.println("Que souhaitez-vous faire? ");
 	}
 	
 	/**
@@ -424,7 +454,7 @@ public class SaisieCommand {
 				{   
 					if(affiche)
 					{
-						afficheInfo();
+						afficheInfo(this.gestionNotes.getDesign());
 						affiche = false;
 					}
 					String phrase = saisie.nextLine();
