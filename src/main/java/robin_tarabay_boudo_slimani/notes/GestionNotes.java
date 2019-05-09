@@ -35,6 +35,7 @@ public class GestionNotes
 	private String repertoire;// = "Document";
 	private String navigateur;
 	private String editeur;
+	private int  design;
 	
 
 	/**
@@ -649,6 +650,7 @@ public class GestionNotes
 			String repRacin ="";
 			String editeur = "";
 			String navig ="";
+			int design = 0;
 			while(scanner.hasNext())
 			{
 				index = scanner.next();
@@ -676,6 +678,12 @@ public class GestionNotes
 //					System.out.println("navig =" + navig);
 					setNavigateur(navig);
 				}
+				else if(index.equals("DESIGN:"))
+				{
+					design = scanner.nextInt();
+//					System.out.println("navig =" + navig);
+					setDesign(design);
+				}
 			}
 			
         } catch (FileNotFoundException e)
@@ -687,6 +695,7 @@ public class GestionNotes
 		}
 	}
 	
+
 	/**
 	 * Fonction qui permet de s'adapter au fichier de configuration
 	 */
@@ -744,6 +753,14 @@ public class GestionNotes
 	}
 	
 	/**
+	 * Permet de récupérer le design choisi par user
+	 * @return design qui renvoie le design choisi par user
+	 */
+	public int getDesign() {
+		return this.design;
+	}
+	
+	/**
 	 * Permet de modifier le repertoire
 	 * @param rep qui prend un nom de repertoire en argument
 	 */
@@ -782,6 +799,15 @@ public class GestionNotes
 		this.repRacine = repRacin;
 	}
 	
+	/**
+	 * Permet de modifier le design
+	 * @param design qui prend un entier representant ne numéro de design
+	 */
+	private void setDesign(int design)
+	{
+		this.design = design;
+		
+	}
 
 	/**
 	 * Fonction qui permet de trier dans le fichier index.adoc
