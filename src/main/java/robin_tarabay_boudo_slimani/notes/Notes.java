@@ -13,6 +13,8 @@ public class Notes {
 	
 	private final String nom;
 	private final Date date;
+	private final String nomUser;
+	private final String email;
 	private final String project;
 	private final String context;
 	private final String contenu;
@@ -26,6 +28,8 @@ public class Notes {
 	{
 		nom = builder.nom;
 		date = builder.date;
+		nomUser = builder.nomUser;
+		email = builder.email;
 		project = builder.project;
 		context = builder.context;
 		contenu = builder.contenu;
@@ -38,6 +42,8 @@ public static class NoteBuilder{
 		
 		private final String nom;
 		private Date date;
+		private String nomUser;
+		private String email;
 		private String project;
 		private String context;
 		private String contenu;
@@ -63,6 +69,27 @@ public static class NoteBuilder{
 			return this;
 		}
 		
+		/**
+		 * Permet d'ajouter un nom d'utilisateur à une note
+		 * @param nUser qui représente le nom de l'utilisateur qui crée la note
+		 * @return this qui retourne la note avec l'attribut nomUser
+		 */
+		public NoteBuilder nomUser(String nUser)
+		{
+			this.nomUser = nUser;
+			return this;
+		}
+		
+		/**
+		 * Permet d'ajouter un email de l'utilisateur à une note
+		 * @param e qui représente l'email de l'utilisateur qui crée la note
+		 * @return this qui retourne la note avec l'attribut email
+		 */
+		public NoteBuilder email(String e)
+		{
+			this.email = e;
+			return this;
+		}
 		
 		/**
 		 * Permet d'ajouter un project à une note
@@ -114,6 +141,22 @@ public static class NoteBuilder{
  */
 public String getNom() {
 	return nom;
+}
+
+/**
+ * Récupère le nom de l'utilisateur
+ * @return nomUser : qui renvoie le nom de l'utilisateur 
+ */
+public String getNomUser() {
+	return nomUser;
+}
+
+/**
+ * Récupère l'email de l'utilisateur
+ * @return email : qui renvoie l'email de l'utilisateur 
+ */
+public String getEmail() {
+	return email;
 }
 
 /**
