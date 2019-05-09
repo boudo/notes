@@ -822,7 +822,7 @@ public class GestionNotes
 			Object key = iterator.next();
 			listnotes.add(this.notes.get(key));
 		}
-
+//
 		try {
 			File note = new File ("index.adoc");
 			String laNote = note.getCanonicalPath();
