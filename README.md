@@ -1,5 +1,7 @@
 # Projet Notes : Robin Joran - Slimani Arezki - Boudo Ibrahim - Tarabay Marianne
 
+##Important : Pensez tout de suite à modifier le fichier de configuration avec votre chemin.Le fichier est un fichier caché (.configuration),modifiez le manuellement ou via l'application avec la commande conf ou configuration
+
 ##I]Exécution Maven
 
 ###1)Création Du Package Maven
@@ -109,4 +111,4 @@ Le détail de chaque méthode de chaque classe et le détail des classes seront 
   -Un fichier de configuration est présent (.configuration),et l'utilisateur peut le modifier pour personnaliser lui même le répertoire de destination des notes,son éditeur de texte,son nom d'utilisateur,son email ainsi que son navigateur pour visualiser les notes.Il peut y accéder avec la commande conf ou configuration.
   -On peut aussi consulter la javadoc à l'aide de la commande javadoc.
   
-  Toutes les fonctionnalités obligatoires ont été traitées.Par contre, nous n'avons pas utilisé la bibliothèque de recherche de mot-clé Lucene pour la commande de recherche.Et concernant la fonctionnalité optionnelle décrite dans le sujet concernant la gestion de listes au format JSON,nous ne l'avons pas traité.
+  Toutes les fonctionnalités obligatoires ont été traitées.Par contre, nous n'avons pas utilisé la bibliothèque de recherche de mot-clé Lucene pour la commande de recherche.Et concernant la fonctionnalité optionnelle décrite dans le sujet à propos de la gestion de listes au format JSON,nous ne l'avons pas traité.
