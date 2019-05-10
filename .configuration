@@ -1,8 +1,8 @@
 /* Ceci est le fichier de configuration*/
 
-RACINE: /home/babatche
+RACINE: /home/user
 
-REPERTOIRE: /Bureau/UVSQ/UNIVERSITE/Veresailles/M1/S2/ProgGL/Projets/notes/Document
+REPERTOIRE: /Bureau/Genie-Logiciel/PROJET_NOTES/notes/Document
 
 EDITEUR: code
 
@@ -10,6 +10,6 @@ NAVIGATEUR: firefox
 
 DESIGN: 10
 
-USER: kiki
+USER: jojo
 
-EMAIL: kiki@gmail.com
+EMAIL: jojo@gmail.com
