@@ -67,26 +67,17 @@ public class GestionNotes
 			Set<String> list = this.notes.keySet();
 			Iterator<String> iterator = list.iterator();
 			listeNote = "--------------------------------------------------------------------------------\n";
-//			System.out.println("--------------------------------------------------------------------------------");
 			listeNote += "Voici la liste de vos notes:\n" + "\n";
-//			System.out.println("Voici la liste de vos notes:\n");
 			while(iterator.hasNext())
 			{
 				Object key = iterator.next();
-				listeNote += "+ " + this.notes.get(key).getNom() + "\n";
-//				System.out.println("+ " + this.notes.get(key).getNom());
-				
+				listeNote += "+ " + this.notes.get(key).getNom() + "\n";				
 			}
 			listeNote += "--------------------------------------------------------------------------------";
-//			System.out.println("--------------------------------------------------------------------------------");
 		}
 		else
-		{
-//			System.out.println(this.notes.size());
-			
+		{			
 			throw new NotesOuMotClesInexistantException("Aucune Notes !\n");
-			//listeNote = "Il n'y a aucune notes";
-			//System.out.println("Il n'y a aucune notes");
 		}
 		return listeNote;
 	}
@@ -104,12 +95,8 @@ public class GestionNotes
 		if(this.notes.containsKey(nom))
 		{
 			lecture = "Lecture de: " + nom + "....";
-//			System.out.println("Lecture de: " + nom + "....");
 			try
-			{	
-	//			String nomDuSystem = System.getProperty("os.name");
-	//			System.out.println(nomDuSystem);
-				
+			{					
 				Runtime proc1 = Runtime.getRuntime();
 				File noteAdoc = new File (repertoire, nom +".adoc");
 				String laNoteAdoc = noteAdoc.getCanonicalPath();
@@ -125,7 +112,6 @@ public class GestionNotes
 				
 				proc1.exec(this.navigateur + " " + laNoteHtml);
 				trier();
-//				Desktop.getDesktop().browse(noteHtml.toURI());
 				
 				
 			}catch (Exception e)
@@ -137,8 +123,6 @@ public class GestionNotes
 		else
 		{
 			throw new NotesOuMotClesInexistantException("ce Fichier n'existe pas !\n");
-			//lecture = "Cette note n'existe pas";
-//			System.out.println("Cette note n'existe pas");
 		}
 		return lecture;
 	}
@@ -154,17 +138,10 @@ public class GestionNotes
 	public String edit(String nom, String context, String projet) throws NoteOuMotCleManquantException {
 		
 
-//		if(!this.notes.containsKey(nom))
-//		{
-//			this.notes.put(nom,new Notes.NoteBuilder(nom).build());
-////			System.out.println(this.notes.toString());
-//		}
-		
 		String edition = "";
 		try
 		{
 			edition = "Edition de: " + nom + "....";
-//			System.out.println("Edition de: " + nom + "....");
 			File note = new File (repertoire, nom +".adoc");
 			String laNote = note.getCanonicalPath();
 			if (!note.exists())
@@ -201,8 +178,6 @@ public class GestionNotes
 		if(!this.notes.containsKey(nom))
 		{
 			throw new NotesOuMotClesInexistantException("ce Fichier n'existe pas !\n");
-			//del = "Ce Fichier n'existe pas";
-//			System.out.println("Ce Fichier n'existe pas");
 		}
 		
 		else {
@@ -214,7 +189,6 @@ public class GestionNotes
 				html.delete();
 				Notes o  = (Notes) this.notes.remove(nom);
 				del = o.getNom() + " a été supprimer";
-//				System.out.println( o.getNom() + " a été supprimer" );
 				trier();
 			}catch (Exception e)
 			{
@@ -235,7 +209,6 @@ public class GestionNotes
 	public String search(String mot) throws NoteOuMotCleManquantException,NotesOuMotClesInexistantException
 	{
 		
-//		System.out.println("le mot =" + mot);
 		boolean trouver = false;
 		String sear = "--------------------------------------------------------------------------------\n";
 		sear += "Voici le resultat de la recherche:\n" + "\n";
@@ -252,7 +225,6 @@ public class GestionNotes
 			{
 				sear += "+ " + this.notes.get(key).getNom() + "\n";
 				trouver = true;
-//				System.out.println(this.notes.get(key).getNom());
 			}
 			
 		}
@@ -291,7 +263,6 @@ public class GestionNotes
 		try
 		{
 			conf = "Edition de: " + ".configuration" + "....";
-//			System.out.println("Edition de: " + nom + "....");
 			File note = new File (".configuration");
 			String laNote = note.getCanonicalPath();
 			
@@ -351,7 +322,6 @@ public class GestionNotes
 	{
 		try {
 			File fichier = new File("","fc");
-//			System.out.println(fichier.getAbsolutePath()); 
 			String path = fichier.getCanonicalPath();
 			path = path.substring(0, path.length() - 2);
 			
@@ -393,22 +363,18 @@ public class GestionNotes
 					        {
 					        	if(liste[i].contains(".adoc"))
 					        	{
-//					        		System.out.println(liste[i]);
 					        		try( FileInputStream fs = new FileInputStream (new File(repertoire, liste[i]));
 					                        Scanner scanner = new Scanner(fs))
 					                {
 					        			Pattern p = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{4}");
 					        			
-//					        			System.out.println(repertoire + "/"+liste[i]);
 					                    while(scanner.hasNext())
 					                    {
-//					                    	System.out.println("while");
 					                        index = scanner.next();
 					                        Matcher m = p.matcher(index);
 					                        if(index.equals("=") && b)
 					                        {
 					                        	titre = scanner.nextLine();
-//					                        	System.out.println("titre = " + titre);
 					                        	b = false;
 					                        }
 					                        else if(m.find()) {
@@ -418,12 +384,10 @@ public class GestionNotes
 					                        else if(index.equals(":context:"))
 					                        {
 					                        	contexte = scanner.nextLine();
-//					                        	System.out.println("contexte = " + project);
 					                        }
 					                        else if(index.equals(":project:"))
 					                        {
 					                        	project = scanner.nextLine();
-//					                        	System.out.println("project = " + project);
 					                        }
 					                        else
 					                        {
@@ -432,17 +396,12 @@ public class GestionNotes
 					                        	{
 					                        		s += scanner.nextLine() + "\n";
 					                        	}
-//					                        	System.out.println("la note contien: \n" + "\n" + s);
-//					                        	System.out.println("else");
 					                        }
 					                        
 					                    }
 					                    fs.close();
 					                    scanner.close();
-//					                    System.out.println("\n fin if");
 					                }
-//		                        	System.out.println("\n fin de boucle");
-//					        		System.out.println("\n la note contien: \n" + "\n" + s);
 					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre.substring(1, titre.length()))
 					        																			.date(date)
 					        																			.context(contexte)
@@ -473,7 +432,6 @@ public class GestionNotes
 	public void initialiser(String note)
 	{
 		try {
-//			this.notes.clear();
 			File dossier = new File(repertoire);
 			
 			if(dossier.exists() && dossier.isDirectory())
@@ -493,22 +451,18 @@ public class GestionNotes
 					        {
 					        	if(liste[i].contains(".adoc") && liste[i].substring(0, liste[i].length()-5).equals(note))
 					        	{
-//					        		System.out.println(liste[i]);
 					        		try( FileInputStream fs = new FileInputStream (new File(repertoire, liste[i]));
 					                        Scanner scanner = new Scanner(fs))
 					                {
 					        			Pattern p = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{4}");
 					        			
-//					        			System.out.println(repertoire + "/"+liste[i]);
 					                    while(scanner.hasNext())
 					                    {
-//					                    	System.out.println("while");
 					                        index = scanner.next();
 					                        Matcher m = p.matcher(index);
 					                        if(index.equals("=") && b)
 					                        {
 					                        	titre = scanner.nextLine();
-//					                        	System.out.println("titre = " + titre);
 					                        	b = false;
 					                        }
 					                        else if(m.find()) {
@@ -518,12 +472,10 @@ public class GestionNotes
 					                        else if(index.equals(":context:"))
 					                        {
 					                        	contexte = scanner.nextLine();
-//					                        	System.out.println("contexte = " + project);
 					                        }
 					                        else if(index.equals(":project:"))
 					                        {
 					                        	project = scanner.nextLine();
-//					                        	System.out.println("project = " + project);
 					                        }
 					                        else
 					                        {
@@ -532,18 +484,12 @@ public class GestionNotes
 					                        	{
 					                        		s += scanner.nextLine() + "\n";
 					                        	}
-//					                        	System.out.println("la note contien: \n" + "\n" + s);
-//					                        	System.out.println("else");
 					                        }
 					                        
 					                    }
 					                    fs.close();
 					                    scanner.close();
-//					                    System.out.println("\n fin if");
 					                }
-//		                        	System.out.println("\n fin de boucle");
-//					        		System.out.println("\n la note contien: \n" + "\n" + s);
-//					        		System.out.println("titre =" + titre);
 					        		this.notes.put(liste[i].substring(0, liste[i].length()-5),new Notes.NoteBuilder(titre.substring(1, titre.length()))
 					        																			.date(date)
 					        																			.context(contexte)
@@ -573,14 +519,10 @@ public class GestionNotes
 	public boolean miseAJour()
 	{
 		boolean misAjour = false;
-//		System.out.println("mise ajour");
-//		System.out.println(repertoire);
 		File dossier = new File(repertoire);
 		
 		if(dossier.exists() && dossier.isDirectory())
 		{
-//			System.out.println("dans if 1");
-//			System.out.println(this.notes.toString());
 			String liste[] = dossier.list();
 			if(liste != null && liste.length != 0 && !this.notes.isEmpty())
 			{
@@ -592,21 +534,17 @@ public class GestionNotes
 						listeDyn.add(liste[i].substring(0, liste[i].length()-5));
 		        	}
 				}
-//			System.out.println("après for");
 				Map<String,Notes> tmp = new HashMap<> ();
 				tmp.putAll(notes);
 				Set<String> list = tmp.keySet();
 				Iterator<String> iterator = list.iterator();
 				String note = "";
-//				System.out.println("debut while");
 				while(iterator.hasNext())
 				{
 					Object key = iterator.next();
 					note = tmp.get(key).getNom();
-//					System.out.println("note =" + note);
 					if(!listeDyn.contains(note))
 					{
-//					System.out.println("debut if 2");
 						Notes o  = (Notes) this.notes.remove(note);
 						File html = new File (repertoire, note +".html");
 						if(html.exists() && html.isFile())
@@ -614,12 +552,9 @@ public class GestionNotes
 							html.delete();
 						}
 						misAjour = true;
-//						System.out.println( o.getNom() + " a été supprimer manuellement dans " + repertoire );
 						
 					}
-//					System.out.println("fin if 2");
 				}
-//			System.out.println("après while");
 				if(misAjour)
 				{
 					trier();
@@ -634,7 +569,6 @@ public class GestionNotes
 		else
 		{
 			creerRepertoire();
-//			dossier.mkdirs();
 			this.notes.clear();
 			misAjour = true;
 		}
@@ -646,7 +580,6 @@ public class GestionNotes
 	 */
 	public void configGestionnaire()
 	{
-//		System.out.println("\n sui dans sonfig\n");
 		try( FileInputStream fs = new FileInputStream (new File(".configuration"));
                 Scanner scanner = new Scanner(fs))
         {
@@ -664,43 +597,36 @@ public class GestionNotes
 				if(index.equals("RACINE:"))
 				{
 					repRacin = scanner.next();
-//					System.out.println("repRacin =" + repRacin);
 					setRepRacine(repRacin);
 				}
 				else if(index.equals("REPERTOIRE:"))
 				{
 					rep = scanner.next();
-//					System.out.println("rep =" + rep);
 					setRepertoire(rep);
 				}
 				else if(index.equals("EDITEUR:"))
 				{
 					editeur = scanner.next();
-//					System.out.println("editeur =" + editeur);
 					setEditeur(editeur);
 				}
 				else if(index.equals("NAVIGATEUR:"))
 				{
 					navig = scanner.next();
-//					System.out.println("navig =" + navig);
 					setNavigateur(navig);
 				}
 				else if(index.equals("DESIGN:"))
 				{
 					design = scanner.nextInt();
-//					System.out.println("design =" + design);
 					setDesign(design);
 				}
 				else if(index.equals("USER:"))
 				{
 					nomUser = scanner.next();
-//					System.out.println("nomUser =" + nomUser);
 					setNomUser(nomUser);
 				}
 				else if(index.equals("EMAIL:"))
 				{
 					email = scanner.next();
-//					System.out.println("email =" + email);
 					setEmail(email);
 				}
 			}
@@ -965,7 +891,6 @@ public class GestionNotes
 			});
 			for(int i=0; i<listnotes.size(); i++) {
 				if(i == 0 || listnotes.get(i-1).getContext().compareTo(listnotes.get(i).getContext()) != 0) {
-					System.out.println("context="+listnotes.get(i).getContext()+"ok");
 					if(listnotes.get(i).getContext().equals(" ") || listnotes.get(i).getContext().equals(""))
 					{
 						bw.write("\n=== aucun\n");
@@ -1004,7 +929,6 @@ public class GestionNotes
 			});
 			for(int i=0; i<listnotes.size(); i++) {
 				if(i == 0 || listnotes.get(i-1).getProject().compareTo(listnotes.get(i).getProject()) != 0) {
-					System.out.println("projet="+listnotes.get(i).getProject()+"ok");
 					if(listnotes.get(i).getProject().equals(" ") || listnotes.get(i).getContext().equals(""))
 					{
 						bw.write("\n=== aucun\n");
