@@ -106,7 +106,7 @@ Le détail de chaque méthode de chaque classe et le détail des classes seront 
   -On peut voir une note avec la commande view ou v en lançant une application externe(navigateur).
   -On peut rechercher un mot-clé dans les notes avec la commande search ou s.
   -On peut consulter un fichier index.html avec la commande index et son fichier index.adoc est mis à jour à chaque nouvelle commande.Ce fichier contient bien les notes triées par ordres alphabétiques de 3 façons : triée par context,triée par projet et triée par mois.
-  -Un fichier de configuration est présent (.configuration),et l'utilisateur peut le modifier pour personnaliser lui même le répertoire de destination des notes,son éditeur de texte ainsi que son navigateur pour visualiser les notes.Il peut y accéder avec la commande conf ou configuration.
+  -Un fichier de configuration est présent (.configuration),et l'utilisateur peut le modifier pour personnaliser lui même le répertoire de destination des notes,son éditeur de texte,son nom d'utilisateur,son email ainsi que son navigateur pour visualiser les notes.Il peut y accéder avec la commande conf ou configuration.
   -On peut aussi consulter la javadoc à l'aide de la commande javadoc.
   
   Toutes les fonctionnalités obligatoires ont été traitées.Par contre, nous n'avons pas utilisé la bibliothèque de recherche de mot-clé Lucene pour la commande de recherche.Et concernant la fonctionnalité optionnelle décrite dans le sujet concernant la gestion de listes au format JSON,nous ne l'avons pas traité.

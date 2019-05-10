@@ -820,7 +820,7 @@ public class GestionNotes
 	
 	/**
 	 * Permet de modifier le design
-	 * @param design qui prend un entier representant ne numéro de design
+	 * @param design qui prend un entier representant le numéro de design
 	 */
 	private void setDesign(int design)
 	{
@@ -828,11 +828,19 @@ public class GestionNotes
 		
 	}
 	
+	/**
+	 * Permet de modifier le mail
+	 * @param email qui prend un String representant l'email
+	 */
 	private void setEmail(String email)
 	{
 		this.email = email;
 	}
 
+	/**
+	 * Permet de modifier le nom d'utilisateur
+	 * @param nomUser qui prend un String representant le nom d'utilisateur
+	 */
 	private void setNomUser(String nomUser)
 	{
 		this.nomUser = nomUser;

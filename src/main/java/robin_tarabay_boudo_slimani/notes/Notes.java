@@ -213,7 +213,7 @@ public String getContenu() {
  */
 @Override
 public String toString() {
-	return "Notes [nom=" + nom + ", date=" + date + ", project=" + project + ", context=" + context + ", contenu="
+	return "Notes [nom=" + nom + ",nomUser=" + nomUser +", email=" + email + ", date=" + date + ", project=" + project + ", context=" + context + ", contenu="
 			+ contenu + "]";
 }
 

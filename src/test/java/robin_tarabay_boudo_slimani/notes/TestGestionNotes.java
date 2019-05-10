@@ -103,60 +103,6 @@ public class TestGestionNotes {
 //		assertTrue(f.exists());
 //		gestionNotes.getNotes().clear();
 //	}
-	//Comment comparer
-//	@Test
-//	public void editExistantTest() throws NoteOuMotCleManquantException, IOException, ParseException
-//	{
-//		GestionNotes gestionNotes = new GestionNotes();
-//		gestionNotes.getNotes().clear();
-//		String st=gestionNotes.edit("trialedit","explContext","explproject");
-//
-//		String titre="",contexte="",project="";
-//		
-//		FileInputStream fs = new FileInputStream (new File(gestionNotes.getRepertoire(),"trialedit.adoc"));
-//        Scanner scanner = new Scanner(fs);
-//        Pattern p = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{4}");
-//        String s="";
-//        Date date=null;
-//       while(scanner.hasNext())
-//       {
-//        String index = scanner.next();
-//        Matcher m = p.matcher(index);
-//        if(index.equals("="))
-//        {
-//        	titre = scanner.nextLine();
-//
-//        }
-//        else if(m.find()) {
-//        	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//        	date = sdf.parse(index);
-//        }
-//        else if(index.equals(":context:"))
-//        {
-//        	contexte = scanner.nextLine();
-//        	System.out.println(contexte);
-//
-//        }
-//        else if(index.equals(":project:"))
-//        {
-//        	project = scanner.nextLine();
-//
-//        }
-//        else
-//        {
-//        	s += index;
-//        	if(scanner.hasNext())
-//        	{
-//        		s += scanner.nextLine() + "\n";
-//        	}
-//
-//        }
-//      
-//	}
-//     assertEquals(gestionNotes.getNotes().get("trialedit").getContext(),"explcontext");
-//     
-//	}
-
 
 	@Test(expected = NotesOuMotClesInexistantException.class)
 	public void deleteFichierNonExistantTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException {
@@ -202,17 +148,6 @@ public class TestGestionNotes {
 //		GestionNotes gestionNotes = new GestionNotes();
 //		String st=gestionNotes.index();
 //		assertEquals(st, "Lecture de: " + "index" + "....");
-//	}
-//	@Test
-//	public void viewTest() throws NoteOuMotCleManquantException, NotesOuMotClesInexistantException
-//	{
-//
-//		GestionNotes gestionNotes = new GestionNotes();
-//		gestionNotes.getNotes().clear();
-//		gestionNotes.getNotes().put("trial1",new Notes.NoteBuilder("trial1").date(new Date(System.currentTimeMillis())).context("").project("").build());
-//		String st=gestionNotes.view("trial1");
-//		assertEquals(st,"Lecture de: " + "trial1:" + "....");
-//		
 //	}
 
 }

@@ -245,12 +245,6 @@ public class SaisieCommand {
 					String projet = "";
 					String context = "";
 					
-					//TEST BUG Trop d'arguments
-//					if(args.length > 6)
-//					{
-//						throw new TropDargumentException("Trop d'arguments !\n");
-//					}
-					
 					if(args.length > 1) {
 						note = note + args[1];
 						avecEspace = avecEspace + args[1];
@@ -301,7 +295,6 @@ public class SaisieCommand {
 					}
 					if(tmpNote.equals("conf"))
 					{
-//						System.out.println("\n dans if de conf \n");
 						this.commands.clear();
 						this.gestionNotes.modeConfiguration();
 						tmpNote = "";
@@ -328,19 +321,16 @@ public class SaisieCommand {
 								tmpNote = note;
 							}
 							
-	//						System.out.println("tmpNote =" + tmpNote);
 							break;
 								
 						case "view":
 						case "v":
 							if(this.commands.containsKey(note+" "+cmd))
 							{
-	//							System.out.println("if");
 								System.out.println( executeCommand(note+" "+cmd) );
 							}
 							else
 							{
-	//							System.out.println("else");
 								Command command = new ViewNotesCommand(gestionNotes,note);
 								System.out.println( storeAndExecute(note+" "+cmd, command) );
 							}
@@ -350,12 +340,10 @@ public class SaisieCommand {
 						case "ls":
 							if(this.commands.containsKey(cmd))
 							{
-	//							System.out.println("if");
 								System.out.println( executeCommand(cmd) );
 							}
 							else
 							{
-	//							System.out.println("else");
 								Command command = new ListNotesCommand(gestionNotes);
 								System.out.println( storeAndExecute(cmd, command) );
 							}
@@ -365,12 +353,10 @@ public class SaisieCommand {
 						case "d":
 							if(this.commands.containsKey(note+" "+cmd))
 							{
-	//							System.out.println("if");
 								System.out.println( executeCommand(note+" "+cmd) );
 							}
 							else
 							{
-	//							System.out.println("else");
 								Command command = new DeleteNotesCommand(gestionNotes,note);
 								System.out.println( storeAndExecute(note+" "+cmd, command) );
 							}
@@ -381,12 +367,10 @@ public class SaisieCommand {
 						case "s":
 							if(this.commands.containsKey(note+" "+cmd))
 							{
-	//							System.out.println("if");
 								System.out.println( executeCommand(note+" "+cmd) );
 							}
 							else
 							{
-	//							System.out.println("else");
 								Command command = new SearchNotesCommand(gestionNotes,avecEspace);
 								System.out.println( storeAndExecute(note+" "+cmd, command) );
 							}
@@ -396,12 +380,10 @@ public class SaisieCommand {
 						case "doc":
 							if(this.commands.containsKey(cmd))
 							{
-	//							System.out.println("if");
 								System.out.println( executeCommand(cmd) );
 							}
 							else
 							{
-	//							System.out.println("else");
 								Command command = new JavadocCommand(gestionNotes);
 								System.out.println( storeAndExecute(cmd, command) );
 							}
@@ -411,12 +393,10 @@ public class SaisieCommand {
 						case "conf":
 							if(this.commands.containsKey(cmd))
 							{
-	//							System.out.println("if");
 								System.out.println( executeCommand(cmd) );
 							}
 							else
 							{
-	//							System.out.println("else");
 								Command command = new ConfigurationCommand(gestionNotes);
 								System.out.println( storeAndExecute(cmd, command) );
 								
@@ -427,12 +407,10 @@ public class SaisieCommand {
 						case "index":
 							if(this.commands.containsKey(cmd))
 							{
-	//							System.out.println("if");
 								System.out.println( executeCommand(cmd) );
 							}
 							else
 							{
-	//							System.out.println("else");
 								Command command = new IndexCommand(gestionNotes);
 								System.out.println( storeAndExecute(cmd, command) );
 							}

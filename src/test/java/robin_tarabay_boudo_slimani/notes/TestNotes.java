@@ -72,14 +72,30 @@ public class TestNotes {
 	}
 	
 	@Test
+	public void TestBuilderEmail() {
+		
+		Notes test = new Notes.NoteBuilder("Ma première Note").email("jojo@hotmail.com").build();
+		
+		assertEquals("jojo@hotmail.com", test.getEmail());
+	}
+	
+	@Test
+	public void TestBuilderNomUser() {
+		
+		Notes test = new Notes.NoteBuilder("Ma première Note").nomUser("jojo").build();
+		
+		assertEquals("jojo", test.getNomUser());
+	}
+	
+	@Test
 	public void TestBuilderComplet() throws ParseException {
 		Date d = null;
 		String index = "22/06/1992";
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
     	d = sdf.parse(index);
-		Notes test = new Notes.NoteBuilder("Ma première Note").date(d).project("work").context("cds").contenu("contenu").build();
+		Notes test = new Notes.NoteBuilder("Ma première Note").nomUser("jojo").email("jojo@hotmail.com").date(d).project("work").context("cds").contenu("contenu").build();
 		
-		assertEquals("Notes [nom=" + test.getNom() + ", date=" + test.getDate() +", project=" + test.getProject() + ", context=" + test.getContext() + ", contenu="
+		assertEquals("Notes [nom=" + test.getNom() + ",nomUser=" + test.getNomUser() + ", email=" + test.getEmail() + ", date=" + test.getDate() +", project=" + test.getProject() + ", context=" + test.getContext() + ", contenu="
 				+ test.getContenu() + "]", test.toString());
 	}
 
